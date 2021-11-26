@@ -1,11 +1,14 @@
-import SignUpForm from "./Sign-Up-Form/SignUpForm";
-import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Menu from './Pages/Menu';
 
 function App() {
   return (
-    <div>
-      <SignUpForm />
-    </div>
+    <Router>
+      <Switch>
+        <Menu/>
+        <Route/>
+      </Switch>
+    </Router>
   );
 }
 
