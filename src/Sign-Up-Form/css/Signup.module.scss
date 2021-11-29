@@ -1,9 +1,15 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,900;1,700;1,800&display=swap);
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "Proxima Nova";
 }
 
@@ -31,11 +37,138 @@ nav a {
   width: 150px;
 }
 
+.title h3 {
+  margin: 10px 10px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 30px;
+  letter-spacing: 1px;
+}
+
 .SignUpForm {
   position: absolute;
+  left: 30em;
+  bottom: 14em;
   width: 500px;
   height: 500px;
   align-items: center;
   justify-content: center;
-  background-color: powderblue;
+  // background-color: powderblue;
+}
+
+.Form {
+  display: grid;
+  padding: 1em;
+  margin: 2rem auto 0 auto;
+  max-width: 429px;
+}
+
+.Form .btn {
+  width: 100px;
+}
+
+.Form input {
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  height: 36px;
+  border-radius: 3px;
+  outline: none;
+  opacity: 0.7;
+  border: 1px solid #e1e1e1;
+}
+
+.chkbox {
+  display: flex;
+  justify-content: flex-start;
+  .box {
+    position: relative;
+    bottom: 26%;
+  }
+}
+
+.formup {
+  display: row;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  bottom: 4%;
+  .btnsignup {
+    position: relative;
+    width: 445px;
+    height: 52px;
+    bottom: 20%;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #ff5353;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+  .or {
+    background: #ffff;
+    height: 20px;
+    width: 45px;
+    position: relative;
+    left: 45%;
+    bottom: 12%;
+    margin: 0px;
+    text-align: center;
+  }
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
+  .ggle {
+    position: relative;
+    right: 4%;
+    color: red;
+    border: 1px solid #f14336;
+    background-color: #ffffff;
+    font-family: "Proxima Nova";
+    box-sizing: border-box;
+    margin-right: 20px;
+    border-radius: 5px;
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 24px;
+    cursor: pointer;
+  }
+  .fb {
+    color: blue;
+    border: 1px solid #1967d3;
+    background-color: #ffffff;
+    font-family: "Proxima Nova";
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 24px;
+    cursor: pointer;
+  }
+}
+.href {
+  font-family: "Proxima Nova";
+  font-style: normal;
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  top: 20%;
+  a {
+    text-decoration: none;
+    color: rgb(97, 13, 206);
+    font-style: normal;
+    font-weight: 24px;
+  }
 }
