@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+.container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./image\ 25.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 829px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  .content {
+    img {
+      margin-top: -70px;
+    }
+    h3 {
+      color: #ffffff;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 21px;
+      margin-bottom: 30px;
+    }
+    p {
+      color: #ffffff;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 18px;
+      line-height: 27px;
+    }
+    .btn_merchant {
+      color: #ff5353;
+      background-color: #ffffff;
+      width: 178px;
+      height: 52px;
+      margin-right: 10px;
+      text-transform: none;
+      font-size: 16px;
+      font-weight: 500;
+      .icon {
+        padding: 10px;
+        font-size: 20px;
+      }
+    }
+    .btn_customer {
+      color: #ffffff;
+      background-color: #ff5353;
+      font-style: normal;
+      width: 178px;
+      height: 52px;
+      text-transform: none;
+      font-size: 16px;
+      font-weight: 500;
+      .icon {
+        padding: 10px;
+        font-size: 20px;
+      }
+    }
+  }
+}

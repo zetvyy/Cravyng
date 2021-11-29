@@ -1,0 +1,41 @@
+.container {
+  height: 197px;
+  background-color: #262626;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  .logo2 {
+    padding: 50px;
+    margin-top: -35px;
+  }
+  .get_started {
+    padding: 20px;
+    margin-right: 115px;
+    p {
+      margin-top: -25px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #868993;
+    }
+    a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+  .download {
+    p {
+      margin-top: -35px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #868993;
+    }
+    img {
+      margin-right: 10px;
+    }
+  }
+}
