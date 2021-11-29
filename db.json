@@ -1,0 +1,22 @@
+{
+    "menus": [
+      {
+        "id": 1,
+        "menu": "Garlic Sliced Chicken",
+        "price": "Rp 104.000",
+        "image": "https://s3-alpha-sig.figma.com/img/515b/006e/1a7e62b9f0ccccb6f430c5363fc6cf0c?Expires=1638748800&Signature=dsztta6XXNW~uOHvoGMnB0ZxOAs~2hGK19Q5bVAy0s6DuTshWsiFmfz6HytEOZ~lUTIpoZcKZPZEjyvJGQDBg32eg3ViFsbBFaPef3TS7fsveZVG5uhmSEG1-zTfZYkrMnfqhtB~gTOVXWcMy50W-HeRAzP5RJgGA6LynhwtM2xekcwHWDzQYs779n1z2T1YtbDHuy~XnzCv1MOoidrpk6SY03XmbHmjtVPcEFUivDkbjwQkgmDES4uFZwhwLwQiSvzWg~sXwM2brWNC287kio6l7MGpk9xlh7pBifJd5C~RyuBFjT7kHDZp2nCPPjC7aadsPhWjO7dEHkyNU3EFyQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      },
+      {
+        "id": 2,
+        "menu": "Crispy Fungus",
+        "price": "Rp 88.000",
+        "image": "https://s3-alpha-sig.figma.com/img/515b/006e/1a7e62b9f0ccccb6f430c5363fc6cf0c?Expires=1638748800&Signature=dsztta6XXNW~uOHvoGMnB0ZxOAs~2hGK19Q5bVAy0s6DuTshWsiFmfz6HytEOZ~lUTIpoZcKZPZEjyvJGQDBg32eg3ViFsbBFaPef3TS7fsveZVG5uhmSEG1-zTfZYkrMnfqhtB~gTOVXWcMy50W-HeRAzP5RJgGA6LynhwtM2xekcwHWDzQYs779n1z2T1YtbDHuy~XnzCv1MOoidrpk6SY03XmbHmjtVPcEFUivDkbjwQkgmDES4uFZwhwLwQiSvzWg~sXwM2brWNC287kio6l7MGpk9xlh7pBifJd5C~RyuBFjT7kHDZp2nCPPjC7aadsPhWjO7dEHkyNU3EFyQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      },
+      {
+        "id": 3,
+        "menu": "Cucumber Salad",
+        "price": "Rp 88.000",
+        "image": "https://s3-alpha-sig.figma.com/img/515b/006e/1a7e62b9f0ccccb6f430c5363fc6cf0c?Expires=1638748800&Signature=dsztta6XXNW~uOHvoGMnB0ZxOAs~2hGK19Q5bVAy0s6DuTshWsiFmfz6HytEOZ~lUTIpoZcKZPZEjyvJGQDBg32eg3ViFsbBFaPef3TS7fsveZVG5uhmSEG1-zTfZYkrMnfqhtB~gTOVXWcMy50W-HeRAzP5RJgGA6LynhwtM2xekcwHWDzQYs779n1z2T1YtbDHuy~XnzCv1MOoidrpk6SY03XmbHmjtVPcEFUivDkbjwQkgmDES4uFZwhwLwQiSvzWg~sXwM2brWNC287kio6l7MGpk9xlh7pBifJd5C~RyuBFjT7kHDZp2nCPPjC7aadsPhWjO7dEHkyNU3EFyQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      }
+    ]
+  }

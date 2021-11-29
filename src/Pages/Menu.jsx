@@ -1,17 +1,63 @@
 import './Menu.css';
 import image from './assets/Rectangle 5.png';
 import rating from './assets/Vector (2).png';
-import Slider from 'react-slick'
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Discount from '../Components/Discount/Discount';
+import logo1 from './assets/Vector (4).png'
+import CardMenu from '../Components/CardMenu/CardMenu';
+import logo2 from './assets/Vector (3).png'
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { useState } from 'react';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getMenu } from './../redux/action/menuAction';
 
 const Menu =  () => {
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3
-      };
+    // const [menuTitle, setMenuTitle] = useState();
+    // const [price, setPrice] = useState();
+    // const dispatch = useDispatch();
+
+    // const {isLoading: loadingMenu, data: menuData} = useSelector(
+    //     (state) => state.menuReducer
+    // );
+
+    // useEffect(() => {
+    //     dispatch(getMenu());
+    // }, );
+
+    const [value, setValue] = useState(0);
+    
+
+
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: '#FF5353',
+        },
+
+        secondary: {
+          main: '#313440'
+        }
+      },
+    })
+
+    const CustomTab = styled(Tab)`
+      font-family: "Poppins";
+      text-transform: unset;
+      font-weight: bold;
+      color: #C2C4CD; 
+       :hover {
+         color: #313440;
+       } `
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
 
     return (
         <>
@@ -30,40 +76,64 @@ const Menu =  () => {
                     </div>                    
                 </div>
 
-                {/* Cart Discount */}
-                <div>
-                    <h2> Multiple items </h2>
-                    <Slider {...settings}>
-                    <div>
-                        <h3>1</h3>
-                    </div>
-                    <div>
-                        <h3>2</h3>
-                    </div>
-                    <div>
-                        <h3>3</h3>
-                    </div>
-                    <div>
-                        <h3>4</h3>
-                    </div>
-                    <div>
-                        <h3>5</h3>
-                    </div>
-                    <div>
-                        <h3>6</h3>
-                    </div>
-                    <div>
-                        <h3>7</h3>
-                    </div>
-                    <div>
-                        <h3>8</h3>
-                    </div>
-                    <div>
-                        <h3>9</h3>
-                    </div>
-                    </Slider>
-                </div>
+                {/* Card Discount */}
+                <CssBaseline />
+                <Container maxWidth="md" sx={{marginTop: '24px'}} >
+                   
+                    <Discount/>
 
+            
+                {/* tabs menu */}
+                    
+                <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', marginTop: '40px'}}>
+                    <ThemeProvider theme={theme}>
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        variant="scrollable"
+                        scrollButtons="auto"
+                        textColor="secondary"
+                        aria-label="scrollable auto tabs example"
+                        font-family="Poppins"
+                        
+                    >
+                        
+                        <CustomTab label="Recommended" href="#recommended" />
+                        <CustomTab label="Most Favorite" href="#most-favorite"/>
+                        <CustomTab label="Appetizer" href="#track-menu"/>
+                        <CustomTab label="Seafood Dishes and Others" />
+                        <CustomTab label="Vegetable Dishes" />
+                        <CustomTab label="Staple" />
+                        <CustomTab label="Item Seven" />
+                        
+                        
+                    </Tabs>
+                    </ThemeProvider>
+                </Box>
+
+
+                {/* menu item */}
+                
+                <div id="recommended">
+                    <img className="logo" src={logo1} alt="" />
+                    <h3>Recommended</h3>
+                </div>
+                
+                     
+                    <CardMenu />
+                
+                <div id="most-favorite">
+                    <img className="logo" src={logo2} alt="" />
+                    <h3>Most Favorite</h3>
+                </div>
+                <CardMenu/>
+
+                <div id="track-menu">
+                    {/* <img className="logo" src={logo2} alt="" /> */}
+                    <h3>Appetizer</h3>
+                </div>
+                <CardMenu/>
+                </Container>
 
         </>
     )
