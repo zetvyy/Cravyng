@@ -4,10 +4,11 @@ import ps from "./assets/google_play.png";
 import as from "./assets/appstore.png";
 
 const Footer = () => {
+  const Login = window.location.pathname === "/";
   return (
     <div className={Styles.container}>
       <img className={Styles.logo2} src={logo2} alt="logo2" />
-      <div className={Styles.get_started}>
+      <div className={Login ? Styles.get_started : Styles.get_started_login}>
         <p>GET STARTED</p>
         <a href="#">AS MERCHANT</a>
         <br />
