@@ -7,7 +7,7 @@ export const getMenu = () => {
 
         axios({
             method: 'GET',
-            url: 'http://localhost:3000/menus',
+            url: 'http://localhost:3001/menus',
         })
             .then((response) => {
                 dispatch({
