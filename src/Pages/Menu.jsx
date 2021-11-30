@@ -70,7 +70,7 @@ const Menu =  () => {
                             <h1>Heavenly Taste</h1>
                             <div className="rating">
                                 <img src={rating} alt="" />
-                                <p>Rating</p>
+                                <p>4.7</p>
                             </div>
                         </div>                        
                     </div>                    
