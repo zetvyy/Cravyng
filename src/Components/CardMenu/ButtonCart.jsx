@@ -14,7 +14,7 @@ const ButtonCart = styled(Button) (() => ({
     boxShadow: 'none',
     marginLeft: '23px',
     '&:hover': {
-      backgroundColor: '#b23a3a',
+      backgroundColor: '#ff5e5e',
       boxShadow: 'none'
     },
   }));
