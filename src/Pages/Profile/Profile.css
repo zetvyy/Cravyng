@@ -1,0 +1,57 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.profile-wrap {
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 302px;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  position: absolute;
+  height: 302px;
+}
+
+.title {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding-top: 86px;
+}
+
+.title h1 {
+  font-family: "Poppins";
+  font-weight: 700;
+}
+
+.info-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.info-profile p {
+  font-family: "Poppins";
+  font-weight: bold;
+}
+
+.rating-wrap {
+  display: flex;
+}
+
+.rating-wrap p {
+  margin-left: 5px;
+  font-family: "Poppins";
+}
+
+.rating-wrap img {
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+}
