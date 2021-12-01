@@ -104,7 +104,7 @@ const Menu =  () => {
                         <CustomTab label="Seafood Dishes and Others" />
                         <CustomTab label="Vegetable Dishes" />
                         <CustomTab label="Staple" />
-                        <CustomTab label="Item Seven" />
+                        {/* <CustomTab label="Item Seven" /> */}
                         
                         
                     </Tabs>
