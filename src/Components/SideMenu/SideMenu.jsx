@@ -25,7 +25,7 @@ const SideMenu = () => {
     const CustomTab = styled(Tab)`
       font-family: "Poppins";
       text-transform: unset;
-      font-weight: bold;
+      font-weight: 400;
       color: #C2C4CD; 
        :hover {
          color: #313440;
