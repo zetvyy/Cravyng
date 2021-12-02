@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Styles from "./css/Signup.module.scss";
 import foto from "./assets/logo.png";
 import { IoLogoGoogle } from "react-icons/io";
 import { FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerSuccess } from "../../redux/action/authAction";
 
 function SignUpForm() {
+  const [register, setRegister] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "",
+  });
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleChangeInput = (e) => {
+    setRegister({...register, [e.target.name]: e.target.value})
+  }
+
+  const submitRegister = (e) => {
+    e.preventDefault();
+    dispatch(registerSuccess(register))
+  }
+
   return (
     <div>
       <nav>
@@ -20,16 +42,49 @@ function SignUpForm() {
             <div className={Styles.title}>
               <h3>Sign up</h3>
             </div>
-            <input name="Restaurant Name" type="text" placeholder="Restaurant Name" />
-            <input name="Email" type="text" placeholder="Email" />
-            <input name="Password" type="password" placeholder="Password 5+ Characters" />
-            <input name="Confirm Password" type="password" placeholder="Confirm Password 5+ characters" />
+            <input 
+              name="name" 
+              type="text" 
+              placeholder="Restaurant Name"
+              onChange={e => handleChangeInput(e)}
+              />
+            <input 
+              name="email" 
+              type="text" 
+              placeholder="Email" 
+              onChange={e => handleChangeInput(e)}            
+              />
+             <input 
+              name="role" 
+              type="text" 
+              placeholder="Role" 
+              onChange={e => handleChangeInput(e)}
+            />
+            <input 
+              name="password" 
+              type="password" 
+              placeholder="Password 5+ Characters" 
+              onChange={e => handleChangeInput(e)}            
+              />
+            <input 
+              name="confirmPassword" 
+              type="password" 
+              placeholder="Confirm Password 5+ characters" 
+              onChange={e => handleChangeInput(e)} 
+            />
+
             <div className={Styles.chkbox}>
               <input className={Styles.box} type="checkbox" name="remember" />
               <p> I agree with Cravyng terms & conditions </p>
             </div>
             <div className={Styles.formup}>
-              <button className={Styles.btnsignup}>Sign Up</button>
+              <button 
+                className={Styles.btnsignup}
+                onClick={(e) => submitRegister(e)}
+                payload={register}
+              >
+                Sign Up
+              </button>
               <hr />
               <p className={Styles.or}>or</p>
               <div className={Styles.logo}>
