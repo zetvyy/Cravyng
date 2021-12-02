@@ -6,6 +6,7 @@ import ButtonUpload from '../../Components/ButtonUpload';
 import { Container, CssBaseline, Typography,  } from '@mui/material';
 import DateFilter from '../../Components/Date/DateFilter';
 import SalesSummary from '../../Components/SalesSummary/SalesSummary';
+import TableOrder from '../../Components/TableProfile/TableProfile';
 
 
 const Profile = () => {
@@ -43,6 +44,8 @@ const Profile = () => {
             <DateFilter/>
             
             <SalesSummary/>
+
+            <TableOrder/>
 
         </Container>
         </>

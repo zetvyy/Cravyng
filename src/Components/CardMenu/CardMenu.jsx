@@ -87,6 +87,7 @@ export default function CardMenu ({menu, image, price}) {
       
             )
           })}
+          
       <Dialog 
         open={open} 
         onClose={handleClose} 
