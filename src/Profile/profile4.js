@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import Styles from "./css/checkout.module.scss";
+import Styles from "./css/profile4.module.scss";
 import foto from "./assets/logo.png";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { MdShoppingBasket } from "react-icons/md";
+import { MdStars } from "react-icons/md";
 
-function Checkoutcart() {
+function Profile4() {
   const [visible, setVisible] = useState(false);
   const toggleMenu = () => {
     setVisible(!visible);
   };
   return (
     <div>
-      <div className={Styles.Container}>
+      <div className={Styles.container}>
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
             <img src={foto} alt="Cravyng Logo" />
@@ -48,9 +49,30 @@ function Checkoutcart() {
             </div>
           </div>
         )}
+
+        <div className={Styles.banner}>
+          {/* <img src={foto2} alt="banner-cravyng" /> */}
+          <div className={Styles.captionBanner}>
+            <h2>Heavenly Taste</h2>
+            <h4>
+              hi@heavenly.taste | <MdStars /> 4.7{" "}
+            </h4>
+          </div>
+          <div className={Styles.button}>
+            <button className={Styles.button1}>
+              <a href=""> Change Header Photo</a>
+            </button>
+            <button className={Styles.button2}>
+              <a href=""> Sign out</a>
+            </button>
+          </div>
+        </div>
+        <div className={Styles.sales}>
+          <h4>Sales Summary</h4>
+        </div>
       </div>
     </div>
   );
 }
 
-export default Checkoutcart;
+export default Profile4;

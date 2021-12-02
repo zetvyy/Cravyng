@@ -13,14 +13,14 @@
   font-family: "Proxima Nova";
 }
 
-nav {
+.nav {
   display: flex;
   justify-content: flex-start;
   background-color: #fff;
   padding: 20px 0;
 }
 
-nav a {
+.nav a {
   position: absolute;
   margin-left: 10px;
   text-decoration: none;
@@ -32,7 +32,7 @@ nav a {
   left: 20%;
 }
 
-nav ul {
+.nav ul {
   display: flex;
   justify-content: space-between;
   list-style: none;
@@ -47,7 +47,7 @@ nav ul {
 .Cart {
   position: absolute;
   top: 3.5%;
-  left: 80%;
+  left: 79%;
   color: #868993;
   font-size: 16px;
   font-weight: 400;
@@ -56,9 +56,56 @@ nav ul {
 .Cart2 {
   position: absolute;
   top: 1.7rem;
-  left: 86rem;
+  left: 85rem;
   cursor: pointer;
   color: #ff5353;
   font-size: 16px;
   line-height: 24px;
+}
+
+.Cart2.active {
+  background-size: 25px;
+}
+
+.sideCart {
+  position: relative;
+  left: 77.9%;
+  background: #fff;
+  align-items: center;
+  transition: 4s;
+  z-index: 100;
+  width: calc(55% - 500px);
+  height: 50rem;
+  top: 0;
+  box-shadow: 0px 2px 5px 3px #d8c8c8;
+  border-radius: 3px 3px 3px 3px;
+  padding: 10px;
+
+  .tl1 {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 5px;
+  }
+
+  h3,
+  h2 {
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  h4 {
+    padding: 15px;
+  }
+
+  h3,
+  h4 {
+    color: #868993;
+    font-weight: normal;
+  }
+  hr {
+    background-color: #d3d9ff;
+    opacity: 0.5;
+  }
 }
