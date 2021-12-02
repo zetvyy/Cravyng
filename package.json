@@ -23,10 +23,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
-<<<<<<< HEAD
     "react-slick": "^0.28.1",
-=======
->>>>>>> a2793c56008fb2388f260e0df0a4df3c7d3d5d08
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-saga": "^1.1.3",
