@@ -1,10 +1,11 @@
-import SignUpForm from "./Sign-Up-Form/SignUpForm";
-import "./App.css";
+import Routes from "./routes/routes";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div>
-      <SignUpForm />
+      <Routes />
+      <Footer />
     </div>
   );
 }
