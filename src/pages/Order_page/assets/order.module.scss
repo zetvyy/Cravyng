@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+.header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./header.png");
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 302px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    margin-bottom: 20px;
+  }
+  p {
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 28px;
+    position: relative;
+    .star_icon {
+      position: absolute;
+      top: 3px;
+      right: 213px;
+    }
+  }
+}
+.container {
+  //   position: relative;
+  max-width: 872px;
+  margin: 50px auto;
+  font-family: "Poppins", sans-serif;
+  .checkout {
+    h3 {
+      font-weight: 700;
+      font-size: 24px;
+      font-style: normal;
+      line-height: 32px;
+      color: #313440;
+      margin-bottom: 20px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 16px;
+      font-style: normal;
+      line-height: 24px;
+      color: #313440;
+      margin-bottom: 20px;
+    }
+    .role {
+      margin: 10px;
+      .icon {
+        color: #868993;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      span {
+        color: #868993;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+  .btn_order {
+    color: #ffffff;
+    background-color: #ff5353;
+    width: 200px;
+    height: 52px;
+    text-transform: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 24px;
+    margin: 40px 0 80px 700px;
+  }
+  button:hover {
+    background-color: #ff6161;
+  }
+  .rating {
+    display: flex;
+    h3 {
+      font-weight: 700;
+      font-size: 24px;
+      font-style: normal;
+      line-height: 32px;
+      color: #313440;
+      margin-bottom: 20px;
+    }
+    p {
+      font-weight: 500;
+      font-size: 16px;
+      font-style: normal;
+      line-height: 24px;
+      color: #313440;
+      margin-bottom: 20px;
+      width: 508px;
+    }
+    .star_rating {
+      margin-left: 190px;
+      .btn_submit {
+        color: #ff5353;
+        background-color: #ffffff;
+        border: 1px solid #ff5353;
+        width: 200px;
+        height: 52px;
+        text-transform: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        line-height: 24px;
+        margin-top: 20px;
+      }
+    }
+  }
+}
