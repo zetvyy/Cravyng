@@ -1,7 +1,7 @@
 import React from "react";
-import Styles from "./css/cart.module.scss";
-import foto from "./assets/logo.png";
-import foto2 from "./assets/wavy.png";
+import Styles from "../checkout-cart-3/css/cart.module.scss";
+import foto from "../checkout-cart-3/assets/logo.png";
+import foto2 from "../checkout-cart-3/assets/wavy.png";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 
 function Checkoutcart3() {

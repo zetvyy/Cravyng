@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Styles from "./css/checkout.module.scss";
-import foto from "./assets/logo.png";
+import Styles from "../checkout-cart/css/checkout.module.scss";
+import foto from "../checkout-cart/assets/logo.png";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { MdShoppingBasket } from "react-icons/md";
 

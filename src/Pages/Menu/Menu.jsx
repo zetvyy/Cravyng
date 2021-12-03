@@ -12,6 +12,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import Checkout from "../../components/checkout-cart/checkout-cart";
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getMenu } from './../redux/action/menuAction';
@@ -59,6 +60,7 @@ const Menu = () => {
 
   return (
     <>
+      <Checkout />
       {/* Header Menu */}
       <div className="container">
         <img className="image" src={image} alt="" />
