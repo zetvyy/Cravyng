@@ -27,6 +27,7 @@ const UploadButton = styled(Button)(() => ({
 
 export default function ButtonUpload() {
   return (
+    //button
     <label htmlFor="contained-button-file">
       <Input accept="image/*" id="contained-button-file" multiple type="file" />
       <UploadButton variant="contained" component="span">
