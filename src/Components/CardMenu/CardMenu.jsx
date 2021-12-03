@@ -75,6 +75,7 @@ export default function CardMenu({ menu, image, price }) {
         },
       }}
     >
+<<<<<<< HEAD
       {["Menu A for 1 Pax", "Menu B for 2 Pax", "Menu 3 for 1 Pax", "Menu B for 3 Pax", "Menu C for 3 Pax"].map((item, index) => {
         return (
           <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px" }} onClick={handleOpen("body")}>
@@ -105,6 +106,49 @@ export default function CardMenu({ menu, image, price }) {
           <Container maxWidth="xl" dividers={scroll === "paper"} sx={{ marginTop: "24px", borderBottom: "10px solid #FAF9FF" }}>
             <Typography sx={{ fontFamily: "Poppins", fontWeight: "Bold", fontSize: "21px" }}>Menu A for 1 Pax</Typography>
             <Box
+=======
+       {['Menu A for 1 Pax', 'Menu B for 2 Pax', 'Menu 3 for 1 Pax', 'Menu B for 3 Pax', 'Menu C for 3 Pax' ].map((item, index) => {
+            return (         
+      <Card sx={{ maxWidth: 200, boxShadow: 'none', marginTop: '24px', }} onClick={handleOpen('body')}>
+      
+        <CardActionArea>
+          <CardMedia component="img" height="200" image={menuImage} alt="menu" />
+          <CardContent sx={{ padding: 0, marginTop: 2, marginLeft: 1, marginBottom: 2, marginRight: 1 }}>          
+            <Typography variant="body2" sx={{ width: 272, fontWeight: 'bold', fonSize: 16, color: '#000000', marginTop: 1, fontFamily:'Poppins' }}>
+            {item}
+            </Typography>
+            <Box sx={{display: 'flex', 
+              '& > :not(style)': { marginRight: '5px'}, }} >
+              <Typography variant="caption" sx={{ fonSize: 12, color: '#313440', fontWeight: 'bold', marginTop: 1, fontFamily:'Poppins' }}>
+              Rp 176.000
+              </Typography>
+              <Typography variant="caption" sx={{ textDecoration:'line-through', fonSize: 12, color: '#868993', marginTop: 1, fontFamily:'Poppins' }}>
+              Rp 196.000
+              </Typography>
+              <img src={discountImg} alt="" style={{width: '10px', height:'10px', marginTop:'13px'}} />
+            </Box>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      
+            )
+          })}
+          
+      <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        scroll={scroll}
+        aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description">
+        <DialogContent maxWidth sx={{padding:'0', width: "500px",}}>
+          <img src={detailImg} alt="" style={{objectFit:'cover'}} />
+          <CssBaseline/>
+          <Container maxWidth="xl" dividers={scroll === 'paper'} sx={{marginTop: '24px', borderBottom: '10px solid #FAF9FF',}}>
+            <Typography sx={{fontFamily: 'Poppins', fontWeight: 'Bold', fontSize: '21px'}}>
+              Menu A for 1 Pax
+            </Typography>
+            <Box             
+>>>>>>> 05a8515bd8a8bfaaf988d92ef718a9be8ab70232
               sx={{
                 display: "flex",
                 marginTop: "8px",
