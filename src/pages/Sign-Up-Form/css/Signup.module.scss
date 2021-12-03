@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,900;1,700;1,800&display=swap);
-=======
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
->>>>>>> a2793c56008fb2388f260e0df0a4df3c7d3d5d08
 
 * {
   margin: 0;
@@ -10,11 +6,7 @@
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-.container {
-=======
 .Container {
->>>>>>> a2793c56008fb2388f260e0df0a4df3c7d3d5d08
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,21 +45,12 @@ nav a {
   font-size: 23px;
   line-height: 30px;
   letter-spacing: 1px;
-<<<<<<< HEAD
-}
-
-.SignUpForm {
-  position: absolute;
-  left: 30em;
-  bottom: 9em;
-=======
   color: #313440;
 }
 
 .SignUpForm {
   left: 30em;
   bottom: 14em;
->>>>>>> a2793c56008fb2388f260e0df0a4df3c7d3d5d08
   width: 500px;
   height: 120vh;
   align-items: center;
@@ -141,7 +124,6 @@ nav a {
 .logo {
   display: flex;
   justify-content: center;
-<<<<<<< HEAD
   // background-color: powderblue;
 }
 
@@ -211,8 +193,6 @@ nav a {
 .logo {
   display: flex;
   justify-content: center;
-=======
->>>>>>> a2793c56008fb2388f260e0df0a4df3c7d3d5d08
   margin-left: 15px;
   .ggle {
     position: relative;
