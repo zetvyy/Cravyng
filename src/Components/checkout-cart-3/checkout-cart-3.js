@@ -11,7 +11,7 @@ function Checkoutcart3() {
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
             <img src={foto} alt="Cravyng Logo" />
-            <a href="#">Checkout</a>
+            <span >Checkout</span>
           </div>
         </nav>
         <div className={Styles.Hero}>

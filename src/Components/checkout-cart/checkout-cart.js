@@ -15,7 +15,7 @@ function Checkoutcart() {
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
             <img src={foto} alt="Cravyng Logo" />
-            <a href="#">Continue as merchant</a>
+            <span href="#">Continue as merchant</span>
           </div>
           <div className={Styles.Cart}>
             <RiAccountCircleFill /> Heavenly Taste |
