@@ -6,10 +6,43 @@ import {
     RadioGroup, 
     FormControlLabel, 
     Radio,
-    Button
+    Button,
+    Modal,
+    Box,
+    Typography,
+    
 } from "@mui/material";
+import { useState } from "react"
+import loadingLogo from "./assets/Group 4615.svg"
+import { useHistory } from "react-router";
 
 const CardPayment = () => {
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    p: 4,
+    fontFamily: 'Poppins',
+    textAlign: 'center',
+  };
+
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      history.push("/cart");
+    }, 3000);
+  };
+  // const handleClose = () => setOpen(false);
+
   return (
     <div className={Styles.card}>
       <p>
@@ -50,8 +83,29 @@ const CardPayment = () => {
             </RadioGroup>
         </FormControl>
       </div>
-        <Button className={Styles.btn_pay}>Pay</Button>
+        <Button onClick={handleSubmit} className={Styles.btn_pay}>Pay</Button>
+
+        {/* loading */}
+        <Modal
+        open={loading}
+        // onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography            
+          >
+            <img src={loadingLogo} alt="" />
+            <Typography>
+              Hold on. Don’t close your browser
+            </Typography>
+          </Typography>
+        
+      </Box>
+      </Modal>
     </div>
+
+    
   );
 };
 
