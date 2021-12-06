@@ -2,10 +2,19 @@ import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL } from "../t
 import axios from "axios";
 
 // const currentToken = localStorage.getItem("token");
-// const config = {
-//   headers: {
-//     Body: currentToken
-//   }
+
+// const myHeaders = new Headers();
+
+// const formdata = new FormData();
+// formdata.append("email", "agif@mail.com");
+// formdata.append("password", "Agif123@");
+
+// const requestOptions = {
+//   method: "POST",
+//   headers: myHeaders,
+//   body: formdata,
+//   redirect: "follow",
+//   token: currentToken
 // };
 
 export const registerSuccess = registerData => {

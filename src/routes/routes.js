@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "../Pages/landing_page/LandingPage";
-import SignUpForm from "./../Pages/Sign-Up-Form/SignUpForm";
+import SignUpForm from "./../Pages/Sign-Up-Form/SignUpForm.jsx";
 import SignIn from "../Pages/Signin/SignIn";
 import Checkoutcart3 from "../Components/checkout-cart-3/checkout-cart-3";
 import Menu from "../Pages/Menu/Menu";

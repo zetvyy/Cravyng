@@ -94,9 +94,19 @@ nav {
       border-radius: 5px;
       box-sizing: border-box;
       text-transform: none;
+      position: relative;
       .icon_fb {
-        padding: 10px;
         font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 45px;
+        transform: translateY(-50%);
+      }
+      span {
+        position: absolute;
+        top: 50%;
+        right: 60px;
+        transform: translateY(-50%);
       }
     }
     .btn_google {
@@ -111,8 +121,17 @@ nav {
       box-sizing: border-box;
       text-transform: none;
       .icon_google {
-        padding: 10px;
         font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50px;
+        transform: translateY(-50%);
+      }
+      span {
+        position: absolute;
+        top: 50%;
+        right: 70px;
+        transform: translateY(-50%);
       }
     }
     p {

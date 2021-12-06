@@ -6,8 +6,14 @@ import { FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerSuccess } from "../../redux/action/authAction";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+
 
 function SignUpForm() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+
   const [register, setRegister] = useState({
     name: "",
     email: "",
@@ -31,10 +37,8 @@ function SignUpForm() {
   return (
     <div>
       <nav>
-        <div className={Styles.Logo}>
-          <img src={foto} alt="Cravyng Logo" />
-          <span href="#">Continue as merchant</span>
-        </div>
+        <img src={foto} alt="logo" />
+        <p>Continue as merchant</p>
       </nav>
       <div className={Styles.Container}>
         <div className={Styles.SignUpForm}>
@@ -60,18 +64,36 @@ function SignUpForm() {
               placeholder="Role" 
               onChange={e => handleChangeInput(e)}
             />
-            <input 
-              name="password" 
-              type="password" 
-              placeholder="Password 5+ Characters" 
-              onChange={e => handleChangeInput(e)}            
+            <div className={Styles.password_input}>
+              <input 
+                name="password" 
+                type={showPassword ? "text" : "password" }
+                placeholder="Password 5+ Characters" 
+                onChange={e => handleChangeInput(e)}            
               />
-            <input 
-              name="confirmPassword" 
-              type="password" 
-              placeholder="Confirm Password 5+ characters" 
-              onChange={e => handleChangeInput(e)} 
-            />
+               {
+              showPassword ? 
+              <BsFillEyeFill className={Styles.eye_icon} 
+              onClick={() => setShowPassword(!showPassword)} /> 
+              : 
+              <BsFillEyeSlashFill className={Styles.eye_icon} 
+              onClick={() => setShowPassword(!showPassword)} />}
+            </div>
+            <div className={Styles.password_input}>
+              <input 
+                name="confirmPassword" 
+                type={showConfirmPassword ? "text" : "password" }
+                placeholder="Confirm Password 5+ Characters" 
+                onChange={e => handleChangeInput(e)}            
+              />
+               {
+              showConfirmPassword ? 
+              <BsFillEyeFill className={Styles.eye_icon} 
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)} /> 
+              : 
+              <BsFillEyeSlashFill className={Styles.eye_icon} 
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)} />}
+            </div>
 
             <div className={Styles.chkbox}>
               <input className={Styles.box} type="checkbox" name="remember" />
