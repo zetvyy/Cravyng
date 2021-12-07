@@ -3,6 +3,7 @@ import logo from "./assets/logo.png";
 import { BsShopWindow, BsFillPersonFill } from "react-icons/bs";
 import CardDetail from "../../Components/Card_detail_payment/CardDetail";
 import CardPayment from "../../Components/Card_payment/CardPayment";
+import Coupon from "../../Components/Coupon/Coupon";
 
 const Checkout = () => {
   return (
@@ -24,6 +25,7 @@ const Checkout = () => {
           </div>
           <CardDetail />
           <CardDetail />
+          <Coupon />
         </div>
         <div className={Styles.card_payment}>
           <CardPayment />

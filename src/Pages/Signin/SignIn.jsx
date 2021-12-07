@@ -3,12 +3,13 @@ import { Button } from "@mui/material";
 import logo from "./assets/logo.png";
 import { BsGoogle, BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/action/authAction";
 
 const SignIn = () => {
+  const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
 
   const [login, setLogin] = useState({
@@ -25,6 +26,7 @@ const SignIn = () => {
   const submitLogin = e => {
     e.preventDefault();
     dispatch(loginSuccess(login));
+    history.push("/menu");
   };
 
   return (
@@ -37,21 +39,25 @@ const SignIn = () => {
       <div className={Styles.container}>
         <div className={Styles.content}>
           <h1>Sign in</h1>
-          <input  
-            type="email" 
-            className={Styles.email_input} 
+          <input 
+            type="email" className={Styles.email_input} 
             placeholder="Email" 
             onChange={e => handleChangeInput(e)} 
-            name="email"
+            name="email" 
           />
           <div className={Styles.password_input}>
             <input 
-            type={showPassword ? "text" : "password"} 
-            placeholder="Password" 
-            onChange={e => handleChangeInput(e)} 
-            name="password"
+              type={showPassword ? "text" : "password"} 
+              placeholder="Password" 
+              onChange={e => handleChangeInput(e)} name="password" 
             />
-            {showPassword ? <BsFillEyeFill className={Styles.eye_icon} onClick={() => setShowPassword(!showPassword)} /> : <BsFillEyeSlashFill className={Styles.eye_icon} onClick={() => setShowPassword(!showPassword)} />}
+            {
+              showPassword ? 
+              <BsFillEyeFill className={Styles.eye_icon} 
+              onClick={() => setShowPassword(!showPassword)} /> 
+              : 
+              <BsFillEyeSlashFill className={Styles.eye_icon} 
+              onClick={() => setShowPassword(!showPassword)} />}
           </div>
           <Button className={Styles.btn_signin} onClick={e => submitLogin(e)} payload={login}>
             Sign in
@@ -63,11 +69,11 @@ const SignIn = () => {
           </div>
           <Button variant="outlined" className={Styles.btn_google}>
             <BsGoogle className={Styles.icon_google} />
-            Google
+            <span>Google</span> 
           </Button>
           <Button variant="outlined" className={Styles.btn_fb}>
             <FaFacebookF className={Styles.icon_fb} />
-            Facebook
+            <span>Facebook</span>
           </Button>
           <p>
             Don't have an account?
