@@ -85,7 +85,7 @@ const CardPayment = () => {
       </div>
         <Button onClick={handleSubmit} className={Styles.btn_pay}>Pay</Button>
 
-        {/* loading */}
+        {/* loading loading */}
         <Modal
         open={loading}
         // onClose={handleClose}
