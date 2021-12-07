@@ -19,6 +19,7 @@ build:
   artifacts:
     paths:
       - node_modules/
+      - build/
   only:
     - default
 
