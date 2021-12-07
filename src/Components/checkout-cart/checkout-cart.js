@@ -9,7 +9,7 @@ import { FaClipboardList } from "react-icons/fa";
 import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom"
 
-function Checkoutcart({number}) {
+function Checkoutcart() {
   const [visible, setVisible] = useState(false);
   const toggleMenu = () => {
     setVisible(!visible);
@@ -33,7 +33,7 @@ function Checkoutcart({number}) {
           </div>
           
           <div className={Styles.Cart2} onClick={() => toggleMenu()}>
-            <MdShoppingBasket /> 0 Items
+            <MdShoppingBasket /> 1 Items
           </div>
         </nav>
         {visible && (
@@ -103,7 +103,7 @@ function Checkoutcart({number}) {
               <p>Total payment </p>
               <p>Rp 352.000</p>
             </div>
-            <div className={Styles.buttonCheck}>
+            <div className={Styles.buttonCheck} onClick={() => history.push('/checkout')} >
               <button> Go to Checkout </button>
             </div>
           </div>

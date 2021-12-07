@@ -1,9 +1,9 @@
 import "./Menu.css";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
-import Discount from "../../components/Discount/Discount";
+import Discount from "../../Components/Discount/Discount";
 import logo1 from "./assets/Vector (4).png";
-import CardMenu from "../../components/CardMenu/CardMenu";
+import CardMenu from "../../Components/CardMenu/CardMenu";
 import logo2 from "./assets/Vector (3).png";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
