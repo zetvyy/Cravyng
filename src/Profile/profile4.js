@@ -44,7 +44,7 @@ function Profile4(props) {
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
             <img src={foto} alt="Cravyng Logo" />
-            <a href="#">Continue as merchant</a>
+            {/* <a href="#">Continue as merchant</a> */}
           </div>
           <div className={Styles.Cart}>
             <RiAccountCircleFill /> Heavenly Taste |

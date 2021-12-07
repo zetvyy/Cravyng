@@ -3,6 +3,10 @@ import Styles from "../checkout-cart/css/checkout.module.scss";
 import foto from "../checkout-cart/assets/logo.png";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { MdShoppingBasket } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
+import { FiPlus } from "react-icons/fi";
+import { FaClipboardList } from "react-icons/fa";
+import { AiOutlineMinus } from "react-icons/ai";
 
 function Checkoutcart() {
   const [visible, setVisible] = useState(false);
@@ -15,10 +19,11 @@ function Checkoutcart() {
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
             <img src={foto} alt="Cravyng Logo" />
-            <a href="#">Continue as merchant</a>
+            {/* <a href="#">Continue as merchant</a> */}
           </div>
           <div className={Styles.Cart}>
-            <RiAccountCircleFill /> Heavenly Taste |
+            <RiAccountCircleFill />
+            Heavenly Taste |
           </div>
           <div className={Styles.Cart2} onClick={() => toggleMenu()}>
             <MdShoppingBasket /> 0 Items
@@ -29,22 +34,67 @@ function Checkoutcart() {
             <h2>Your Cart</h2>
             <div className={Styles.tl2}>
               <h3>Start adding items to your cart</h3>
-              <br />
-              <h4>0 item(s)</h4>
+            </div>
+            <div className={Styles.pax}>
+              <p>Menu A for 1 Pax</p>
+              <h4>
+                <span>
+                  <FaTrash />
+                </span>
+                1
+                <span>
+                  <FiPlus />
+                </span>
+              </h4>
+            </div>
+            <div className={Styles.addition}>
+              <h4 className={Styles.paxSide}>
+                Rp 176.000 <span> Rp 220.000 </span>
+              </h4>
+              <p className={Styles.add}>
+                <FiPlus /> Scrambled Egg with Tomato
+              </p>
+              <p className={Styles.add}>
+                <FiPlus /> Chicken in Sichuan Chili Oil Sauce
+              </p>
+              <p className={Styles.note}>
+                <FaClipboardList /> Note
+              </p>
+            </div>
+            <hr />
+            <div className={Styles.pax2}>
+              <p>Cucumber Salad</p>
+              <h4>
+                <span>
+                  <AiOutlineMinus />
+                </span>
+                2
+                <span>
+                  <FiPlus />
+                </span>
+              </h4>
+            </div>
+            <div className={Styles.addition2}>
+              <h4>
+                Rp 88.000 <span> Rp 110.000 </span>
+              </h4>
+              <p className={Styles.note}>
+                <FaClipboardList /> Note
+              </p>
             </div>
             <hr />
             <div className={Styles.tl1}>
               <p>Price </p>
-              <p>Rp 0</p>
+              <p>Rp 440.000</p>
             </div>
             <div className={Styles.tl1}>
               <p>Discount </p>
-              <p>-Rp 0</p>
+              <p>-Rp 88.000</p>
             </div>
             <hr />
             <div className={Styles.tl1}>
               <p>Total payment </p>
-              <p>Rp 0</p>
+              <p>Rp 352.000</p>
             </div>
           </div>
         )}
