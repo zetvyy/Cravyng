@@ -15,7 +15,7 @@ function SignUpForm() {
     confirmPassword: "",
     role: "",
   });
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ function SignUpForm() {
       <nav>
         <div className={Styles.Logo}>
           <img src={foto} alt="Cravyng Logo" />
-          <a href="#">Continue as merchant</a>
+          <span href="#">Continue as merchant</span>
         </div>
       </nav>
       <div className={Styles.Container}>
@@ -98,7 +98,7 @@ function SignUpForm() {
               <p className={Styles.href}>
                 Already have an account?
                 <Link to="/Signin">
-                  <a href="#"> Sign in</a>
+                  <span href="#"> Sign in</span>
                 </Link>
               </p>
             </div>

@@ -10,10 +10,10 @@ const Footer = () => {
       <img className={Styles.logo2} src={logo2} alt="logo2" />
       <div className={Login ? Styles.get_started : Styles.get_started_login}>
         <p>GET STARTED</p>
-        <a href="#">AS MERCHANT</a>
+        <span >AS MERCHANT</span>
         <br />
         <br />
-        <a href="#">AS CUSTOMER</a>
+        <span >AS CUSTOMER</span>
       </div>
       <div className={Styles.download}>
         <p>DOWNLOAD CRAVYNC</p>

@@ -6,16 +6,16 @@ import foto3 from "./assets/wave.png";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { MdShoppingBasket } from "react-icons/md";
 import { MdStars } from "react-icons/md";
-import { InputLabel, MenuItem, FormControl, Select, TextField, Stack, withStyles } from "@mui/material";
+import { InputLabel, MenuItem, FormControl, Select, TextField, Stack } from "@mui/material";
 import { MobileDatePicker, LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
-const styles = (theme) => ({
-  classDatePicker: {
-    width: 140,
-    background: "red",
-  },
-});
+// const styles = (theme) => ({
+//   classDatePicker: {
+//     width: 140,
+//     background: "red",
+//   },
+// });
 
 function Profile4(props) {
   const [Date, setDate] = React.useState("");
@@ -88,10 +88,10 @@ function Profile4(props) {
           </div>
           <div className={Styles.button}>
             <button className={Styles.button1}>
-              <a href=""> Change Header Photo</a>
+              <span> Change Header Photo</span>
             </button>
             <button className={Styles.button2}>
-              <a href=""> Sign out</a>
+              <span> Sign out</span>
             </button>
           </div>
         </div>
@@ -100,7 +100,7 @@ function Profile4(props) {
           <Stack direction="row" spacing={3} sx={{ marginTop: 5, marginLeft: 1.5 }}>
             <FormControl sx={{ minWidth: 160 }}>
               <InputLabel id="demo-simple-select-autowidth-label">Date</InputLabel>
-              <Select label="Date" labelId="demo-simple-select-autowidth-label" id="demo-simple-select-autowidth" value={Date} onChange={handleChange} autoWidth label="Date">
+              <Select label="Date" labelId="demo-simple-select-autowidth-label" id="demo-simple-select-autowidth" value={Date} onChange={handleChange} autoWidth>
                 <MenuItem value={10}>Today</MenuItem>
                 <MenuItem value={21}>This Week</MenuItem>
                 <MenuItem value={22}>Last Month</MenuItem>

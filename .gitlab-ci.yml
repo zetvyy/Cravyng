@@ -1,10 +1,10 @@
-image: node:14.18.0
+image: node:15
 
 before_script:
   - apt-get udpate -qq && apt-get install
 
 cache:
-  paths: 
+  paths:
     - node_modules/
 
 stages:
@@ -12,12 +12,20 @@ stages:
   - test
   - deploy
 
-build: 
+build:
   stage: build
   script:
     - npm install
+    - npm run build
   artifacts:
     paths:
       - node_modules/
+      - build/
   only:
     - default
+
+deploy:
+  stage: deploy
+  script:
+    - npm install --unsafe-perm=true -g netlify-cli
+    - netlify deploy --dir=build --prod

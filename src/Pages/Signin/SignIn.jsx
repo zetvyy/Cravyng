@@ -29,6 +29,7 @@ const SignIn = () => {
 
   return (
     <>
+    {/* test */}
       <nav>
         <img src={logo} alt="logo" />
         <p>Continue as merchant</p>

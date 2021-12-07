@@ -1,7 +1,7 @@
 import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL } from "../types";
 import axios from "axios";
 
-const currentToken = localStorage.getItem("token");
+// const currentToken = localStorage.getItem("token");
 // const config = {
 //   headers: {
 //     Body: currentToken

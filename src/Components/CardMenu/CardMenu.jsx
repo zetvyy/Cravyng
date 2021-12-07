@@ -98,6 +98,8 @@ export default function CardMenu({ menu, image, price }) {
           </Card>
         );
       })}
+
+      {/* modal/dialog detail menu */}
       <Dialog open={open} onClose={handleClose} scroll={scroll} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
         <DialogContent maxWidth sx={{ padding: "0", width: "500px" }}>
           <img src={detailImg} alt="" style={{ objectFit: "cover" }} />
@@ -175,7 +177,7 @@ export default function CardMenu({ menu, image, price }) {
                 rows={4}
                 value={newComment}
                 onChange={(event) => {
-                  setNewComment(event.target.value);
+                  setNewComment(event.target.value); 
                 }}
                 sx={{
                   width: "447px",
