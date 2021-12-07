@@ -4,7 +4,7 @@ before_script:
   - apt-get udpate -qq && apt-get install
 
 cache:
-  paths: 
+  paths:
     - node_modules/
 
 stages:
@@ -12,7 +12,7 @@ stages:
   - test
   - deploy
 
-build: 
+build:
   stage: build
   script:
     - npm install
@@ -21,3 +21,9 @@ build:
       - node_modules/
   only:
     - default
+
+deploy:
+  stage: deploy
+  script:
+    - npm install -g netlify-cli
+    - netlify deploy --dir=build --prod
