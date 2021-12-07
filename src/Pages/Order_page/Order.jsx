@@ -1,22 +1,22 @@
-import {useState} from 'react';
+import { useState } from "react";
 import logo from "./assets/logo.png";
 import Styles from "./assets/order.module.scss";
 import { BsShopWindow, BsFillPersonFill } from "react-icons/bs";
-import CardDetail from "../../Components/Card_detail_payment/CardDetail";
+import CardDetail from "../../components/Card_detail_payment/CardDetail";
 import { Button } from "@mui/material";
 import ReactStars from "react-rating-stars-component";
-import {MdStars} from 'react-icons/md';
+import { MdStars } from "react-icons/md";
 
 const Order = () => {
   const [text, setText] = useState("How about our services?");
 
-  const ratingChanged = newRating => {
+  const ratingChanged = (newRating) => {
     console.log(newRating);
   };
 
   const handleSubmit = () => {
-    setText("Thank You!")
-  }
+    setText("Thank You!");
+  };
   return (
     <>
       <nav>
@@ -26,7 +26,7 @@ const Order = () => {
         <div>
           <h1>Heavenly Taste</h1>
           <p>
-            <MdStars className={Styles.star_icon}/>
+            <MdStars className={Styles.star_icon} />
             <span>4.7</span>
           </p>
         </div>
@@ -49,25 +49,12 @@ const Order = () => {
         <Button className={Styles.btn_order}>Make new Order</Button>
         <div className={Styles.rating}>
           <div className={Styles.text}>
-            <h3>
-              {text}
-            </h3>
+            <h3>{text}</h3>
             <p>Your rating helps us improve our ability to provide you with the best service possible.</p>
           </div>
           <div className={Styles.star_rating}>
-            <ReactStars 
-                count={5} 
-                onChange={ratingChanged} 
-                size={41} 
-                activeColor="#ffd700"
-                isHalf={true}
-            />
-            <Button 
-              variant="outlined" 
-              className={Styles.btn_submit}
-              onClick={handleSubmit}
-              type="submit"
-            >
+            <ReactStars count={5} onChange={ratingChanged} size={41} activeColor="#ffd700" isHalf={true} />
+            <Button variant="outlined" className={Styles.btn_submit} onClick={handleSubmit} type="submit">
               Submit
             </Button>
           </div>
