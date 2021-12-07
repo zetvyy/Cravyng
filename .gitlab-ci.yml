@@ -1,4 +1,4 @@
-image: node:14.18.0
+image: node:15.18.0
 
 before_script:
   - apt-get udpate -qq && apt-get install
@@ -25,5 +25,5 @@ build:
 deploy:
   stage: deploy
   script:
-    - npm install -g netlify-cli
+    - npm install --unsafe-perm=true -g netlify-cli
     - netlify deploy --dir=build --prod
