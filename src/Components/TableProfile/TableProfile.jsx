@@ -56,7 +56,7 @@ export default function TableOrder() {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <TableContainer >
+    <TableContainer sx={{marginBottom: '30px'}} >
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>

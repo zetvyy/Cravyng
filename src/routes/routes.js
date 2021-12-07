@@ -18,8 +18,8 @@ export default function Routes() {
         <Route exact path="/sign-in" component={SignIn} />
         <Route path="/menu" component={Menu} />
         <Route path="/cart" component={Checkoutcart3} />
-        <Route path="/profile1" component={Profile4} />
-        <Route exact path="/checkout2" component={Checkout} />
+        <Route path="/profile-empty" component={Profile4} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/order" component={Order} />
         <Route exact path="/profile" component={Profile} />
       </Switch>

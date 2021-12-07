@@ -7,12 +7,15 @@ import { FaTrash } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
 import { AiOutlineMinus } from "react-icons/ai";
+import { useHistory } from "react-router-dom"
 
-function Checkoutcart() {
+function Checkoutcart({number}) {
   const [visible, setVisible] = useState(false);
   const toggleMenu = () => {
     setVisible(!visible);
   };
+  const history = useHistory();
+
   return (
     <div>
       <div className={Styles.Container}>
@@ -21,10 +24,14 @@ function Checkoutcart() {
             <img src={foto} alt="Cravyng Logo" />
             {/* <a href="#">Continue as merchant</a> */}
           </div>
-          <div className={Styles.Cart}>
-            <RiAccountCircleFill />
-            Heavenly Taste |
+          
+          <div className={Styles.Cart} onClick={() => history.push('/profile')} >
+            
+              <RiAccountCircleFill  />
+              Heavenly Taste |
+            
           </div>
+          
           <div className={Styles.Cart2} onClick={() => toggleMenu()}>
             <MdShoppingBasket /> 0 Items
           </div>

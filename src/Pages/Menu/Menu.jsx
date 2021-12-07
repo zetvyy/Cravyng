@@ -1,6 +1,4 @@
 import "./Menu.css";
-import image from "./assets/Rectangle 5.png";
-import rating from "./assets/Vector (2).png";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Discount from "../../Components/Discount/Discount";
@@ -13,6 +11,7 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import Checkout from "../../Components/checkout-cart/checkout-cart";
+import Header from "../../Components/Header/Header";
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getMenu } from './../redux/action/menuAction';
@@ -58,22 +57,13 @@ const Menu = () => {
     setValue(newValue);
   };
 
+  
+
   return (
     <>
       <Checkout />
       {/* Header Menu */}
-      <div className="container">
-        <img className="image" src={image} alt="" />
-        <div className="header-wrap">
-          <div className="text">
-            <h1>Heavenly Taste</h1>
-            <div className="rating">
-              <img src={rating} alt="" />
-              <p>4.7</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Header/>
 
       {/* Card Discount */}
       <CssBaseline />
@@ -101,8 +91,7 @@ const Menu = () => {
         <div id="recommended">
           <img className="logo" src={logo1} alt="" />
           <h3>Recommended</h3>
-        </div>
-
+        </div>        
         <CardMenu />
 
         <div id="most-favorite">
@@ -115,7 +104,7 @@ const Menu = () => {
           {/* <img className="logo" src={logo2} alt="" /> */}
           <h3>Appetizer</h3>
         </div>
-        <CardMenu />
+        <CardMenu/>
       </Container>
     </>
   );

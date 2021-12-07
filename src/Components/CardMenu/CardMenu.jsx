@@ -77,7 +77,7 @@ export default function CardMenu({ menu, image, price }) {
     >
       {["Menu A for 1 Pax", "Menu B for 2 Pax", "Menu 3 for 1 Pax", "Menu B for 3 Pax", "Menu C for 3 Pax"].map((item, index) => {
         return (
-          <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px" }} onClick={handleOpen("body")}>
+          <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: '20px' }} onClick={handleOpen("body")}>
             <CardActionArea>
               <CardMedia component="img" height="200" image={menuImage} alt="menu" />
               <CardContent sx={{ padding: 0, marginTop: 2, marginLeft: 1, marginBottom: 2, marginRight: 1 }}>
@@ -191,9 +191,9 @@ export default function CardMenu({ menu, image, price }) {
               </Typography>
               <Typography sx={{ marginRight: "18px", padding: "10px", fontWeight: "bold" }}> {counter} </Typography>
               <Typography sx={{ padding: "5px", cursor: "pointer", fontSize: "20px" }} onClick={incrementCounter}>
-                +
+                + 
               </Typography>
-              <ButtonAddCart />
+              <ButtonAddCart number={counter} />
             </Box>
           </ThemeProvider>
         </DialogContent>

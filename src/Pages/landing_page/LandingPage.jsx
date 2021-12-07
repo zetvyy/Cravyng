@@ -12,13 +12,13 @@ const LandingPage = () => {
         <h3>Paradise on your plate</h3>
         <hr />
         <p>Continue to Cravyng as?</p>
-        <Link to="/Signup" className={Styles.link}>
+        <Link to="/sign-in" className={Styles.link}>
           <Button className={Styles.btn_merchant}>
             <BsShopWindow className={Styles.icon} />
             <span>Merchant</span>
           </Button>
         </Link>
-        <Link to="/Signup" className={Styles.link}>
+        <Link to="/sign-up" className={Styles.link}>
           <Button className={Styles.btn_customer}>
             <BsFillPersonFill className={Styles.icon} />
             <span>Customer</span>

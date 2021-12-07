@@ -77,12 +77,12 @@ const SignIn = () => {
           </Button>
           <p>
             Don't have an account?
-            <Link to="/Signup" className={Styles.link_to}>
+            <Link to="/sign-up" className={Styles.link_to}>
               {" "}
               Sign up as Customer{" "}
             </Link>
             or
-            <Link to="/Signup" className={Styles.link_to}>
+            <Link to="/sign-up" className={Styles.link_to}>
               {" "}
               Sign up as Merchant{" "}
             </Link>
