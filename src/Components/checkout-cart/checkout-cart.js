@@ -92,9 +92,12 @@ function Checkoutcart() {
               <p>-Rp 88.000</p>
             </div>
             <hr />
-            <div className={Styles.tl1}>
+            <div className={Styles.tl3}>
               <p>Total payment </p>
               <p>Rp 352.000</p>
+            </div>
+            <div className={Styles.buttonCheck}>
+              <button> Go to Checkout </button>
             </div>
           </div>
         )}

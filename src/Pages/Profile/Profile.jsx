@@ -1,13 +1,13 @@
 import "./Profile.css";
 import image from "./assets/Rectangle 5.png";
 import rating from "./assets/Vector (2).png";
-import ButtonSignOut from "../../Components/ButtonSignOut";
-import ButtonUpload from "../../Components/ButtonUpload";
+import ButtonSignOut from "../../components/ButtonSignOut";
+import ButtonUpload from "../../components/ButtonUpload";
 import { Container, CssBaseline, Typography } from "@mui/material";
-import DateFilter from "../../Components/Date/DateFilter";
-import SalesSummary from "../../Components/SalesSummary/SalesSummary";
-import TableOrder from "../../Components/TableProfile/TableProfile";
-import Checkout from "../../Components/checkout-cart/checkout-cart";
+import DateFilter from "../../components/Date/DateFilter";
+import SalesSummary from "../../components/SalesSummary/SalesSummary";
+import TableOrder from "../../components/TableProfile/TableProfile";
+import Checkout from "../../components/checkout-cart/checkout-cart";
 
 const Profile = () => {
   return (
