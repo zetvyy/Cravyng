@@ -9,8 +9,11 @@ import FormControl from "@mui/material/FormControl";
 import discountImg from "./assets/Vector (2).png";
 import detailImg from "./assets/image 23.png";
 import likeImg from "./assets/Exclude.png";
-import ButtonAddCart from "./ButtonCart";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import * as React from 'react';
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
@@ -49,6 +52,26 @@ export default function CardMenu({ menu, image, price }) {
   if (counter <= 1) {
     decrementCounter = () => setCounter(0);
   }
+
+    // alert snackbar
+  const [openAlert, setOpenAlert] = useState(false);
+
+  const handleClickAlert = () => {
+    setOpenAlert(true);
+  };
+
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+        return;
+      }
+
+      setOpenAlert(false);
+    };
+    
+  
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   return (
     // <div>
@@ -177,7 +200,7 @@ export default function CardMenu({ menu, image, price }) {
                 rows={4}
                 value={newComment}
                 onChange={(event) => {
-                  setNewComment(event.target.value); 
+                  setNewComment(event.target.value);
                 }}
                 sx={{
                   width: "447px",
@@ -193,7 +216,31 @@ export default function CardMenu({ menu, image, price }) {
               <Typography sx={{ padding: "5px", cursor: "pointer", fontSize: "20px" }} onClick={incrementCounter}>
                 + 
               </Typography>
-              <ButtonAddCart number={counter} />
+              <Button 
+                sx={{
+                  color: '#FFFFFF',
+                  padding: '10px',
+                  width: '333px',
+                  fontWeight: 'bold',
+                  borderRadius: '9px',
+                  backgroundColor: '#FF5353',
+                  textTransform: 'unset',
+                  textDecoration: 'none',
+                  boxShadow: 'none',
+                  marginLeft: '23px',
+                  '&:hover': {
+                    backgroundColor: '#ff5e5e',
+                    boxShadow: 'none'
+                  },
+                }}
+                onClick={handleClickAlert} 
+                variant="contained" >Add to Cart</Button>
+              
+              <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+                  <Alert  onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
+                    {counter} item added to cart
+                  </Alert>
+              </Snackbar>
             </Box>
           </ThemeProvider>
         </DialogContent>

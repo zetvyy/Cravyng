@@ -25,32 +25,54 @@ const ButtonCart = styled(Button) (() => ({
 
 
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
+
   
 
 export default function ButtonAddCart({number}) {
-  const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
+  // alert snackbar
+  const [openAlert, setOpenAlert] = useState(false);
+
+  const handleClickAlert = () => {
+    setOpenAlert(true);
   };
 
-  const handleClose = (event, reason) => {
+  const handleCloseAlert = (event, reason) => {
     if (reason === 'clickaway') {
         return;
       }
 
-      setOpen(false);
+      setOpenAlert(false);
     };
+    
+  
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
     
     return (      
       <>
-      <ButtonCart onClick={handleClick} variant="contained" >Add to Cart</ButtonCart>
+      <Button 
+        sx={{
+          color: '#FFFFFF',
+          padding: '10px',
+          width: '333px',
+          fontWeight: 'bold',
+          borderRadius: '9px',
+          backgroundColor: '#FF5353',
+          textTransform: 'unset',
+          textDecoration: 'none',
+          boxShadow: 'none',
+          marginLeft: '23px',
+          '&:hover': {
+            backgroundColor: '#ff5e5e',
+            boxShadow: 'none'
+          },
+        }}
+        onClick={handleClickAlert} variant="contained" >Add to Cart</Button>
       
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert  onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+      <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+          <Alert  onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
             {number} item added to cart
           </Alert>
       </Snackbar>

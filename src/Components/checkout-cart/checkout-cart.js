@@ -9,11 +9,12 @@ import { FaClipboardList } from "react-icons/fa";
 import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom"
 
-function Checkoutcart() {
+function CheckoutCart() {
   const [visible, setVisible] = useState(false);
   const toggleMenu = () => {
     setVisible(!visible);
   };
+
   const history = useHistory();
 
   return (
@@ -113,4 +114,4 @@ function Checkoutcart() {
   );
 }
 
-export default Checkoutcart;
+export default CheckoutCart;

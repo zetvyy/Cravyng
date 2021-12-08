@@ -10,7 +10,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import Checkout from "../../Components/checkout-cart/checkout-cart";
+import CheckoutCart from "../../Components/checkout-cart/checkout-cart";
 import Header from "../../Components/Header/Header";
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +28,8 @@ const Menu = () => {
   // useEffect(() => {
   //     dispatch(getMenu());
   // }, );
+
+  
 
   const [value, setValue] = useState(0);
 
@@ -61,7 +63,7 @@ const Menu = () => {
 
   return (
     <>
-      <Checkout />
+      <CheckoutCart />
       {/* Header Menu */}
       <Header/>
 

@@ -17,6 +17,7 @@ const Order = () => {
   const handleSubmit = () => {
     setText("Thank You!");
   };
+  
   return (
     <>
       <nav>
