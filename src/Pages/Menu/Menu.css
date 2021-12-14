@@ -7,35 +7,12 @@ html {
   scroll-behavior: smooth;
 }
 
-#recommended {
+.categories {
   display: flex;
   margin-top: 72px;
 }
 
-#recommended h3 {
-  margin-left: 17px;
-  font-family: "Poppins";
-  font-size: 24px;
-  font-weight: bold;
-}
-#most-favorite {
-  display: flex;
-  margin-top: 72px;
-}
-
-#most-favorite h3 {
-  margin-left: 17px;
-  font-family: "Poppins";
-  font-size: 24px;
-  font-weight: bold;
-}
-#track-menu {
-  display: flex;
-  margin-top: 72px;
-}
-
-#track-menu h3 {
-  /* margin-left: 17px; */
+.categories h3 {
   font-family: "Poppins";
   font-size: 24px;
   font-weight: bold;
@@ -45,6 +22,7 @@ html {
   height: 22px;
   width: 22px;
   margin-top: 6px;
+  margin-right: 17px;
 }
 
 .tab-menu a {

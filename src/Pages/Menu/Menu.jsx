@@ -12,23 +12,43 @@ import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CheckoutCart from "../../Components/checkout-cart/checkout-cart";
 import Header from "../../Components/Header/Header";
-import { getDetailMenu } from "../../redux/action/menuAction";
+import { } from "../../redux/action/menuAction";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // import { getMenu } from './../redux/action/menuAction';
+import { getMenu, getMenuCategories,getDetailMenu  } from '../../redux/action/menuAction'
 
 const Menu = () => {
   // const [menuTitle, setMenuTitle] = useState();
   // const [price, setPrice] = useState();
-  const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { data: detailMenu } = useSelector((state) => state.menuReducer);
+  const { 
+    dataRecommended, 
+    dataMostFavorite, 
+    dataAppetizer,
+    dataHotDishes,
+    dataSeafood,
+    dataVegetable,
+    dataStaple } = useSelector(
+    (state) => state.menuReducer
+  );
+  
 
   useEffect(() => {
-    dispatch(getDetailMenu());
+    dispatch(getMenu());
+    dispatch(getMenuCategories(1));
+    dispatch(getMenuCategories(2));
+    dispatch(getMenuCategories(3));
+    dispatch(getMenuCategories(4));
+    dispatch(getMenuCategories(5));
+    dispatch(getMenuCategories(6));
+    dispatch(getMenuCategories(7));
+  
   }, []);
+
+
 
   const [value, setValue] = useState(0);
 
@@ -58,6 +78,11 @@ const Menu = () => {
     setValue(newValue);
   };
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 03e907077a1297d86d70307c2be9a747a95079c5
   return (
     <>
       <CheckoutCart />
@@ -71,15 +96,24 @@ const Menu = () => {
 
         {/* tabs menu */}
 
-        <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", marginTop: "40px" }}>
+        <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", marginTop: "40px", position: 'sticky', top: 0, zIndex: '1' }}>
           <ThemeProvider theme={theme}>
-            <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" textColor="secondary" aria-label="scrollable auto tabs example" font-family="Poppins">
-              <CustomTab label="Recommended" href="#recommended" />
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              variant="scrollable"
+              scrollButtons="auto"
+              textColor="secondary"
+              aria-label="scrollable auto tabs example"
+              font-family="Poppins"
+            >
+              <CustomTab label="Recommended" href="#recommended"  />
               <CustomTab label="Most Favorite" href="#most-favorite" />
-              <CustomTab label="Appetizer" href="#track-menu" />
-              <CustomTab label="Seafood Dishes and Others" />
-              <CustomTab label="Vegetable Dishes" />
-              <CustomTab label="Staple" />
+              <CustomTab label="Appetizer" href="#appetizer" />
+              <CustomTab label="Hot Dishes" href="#hot-dishes" />
+              <CustomTab label="Seafood Dishes and Others" href="#seafood" />
+              <CustomTab label="Vegetable Dishes" href="#vegetable" />
+              <CustomTab label="Staple" href="#staple" />
               {/* <CustomTab label="Item Seven" /> */}
             </Tabs>
           </ThemeProvider>
@@ -87,25 +121,123 @@ const Menu = () => {
 
         {/* menu item */}
 
-        <div id="recommended">
+
+        <div id="recommended" className="categories">
           <img className="logo" src={logo1} alt="" />
           <h3>Recommended</h3>
+<<<<<<< HEAD
         </div>
         {{ data: detailMenu }.map((item) => (
           <CardMenu detailImg={item.image} menuTitle={item.food} normalPrice={item.price} nameMenu={item.description} discountPrice={item.specialPrice} />
         ))}
+=======
+>>>>>>> 03e907077a1297d86d70307c2be9a747a95079c5
 
-        <div id="most-favorite">
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {dataRecommended.map((item) => (
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price} />
+          ))}
+        </div>
+
+        <div id="most-favorite" className="categories">
           <img className="logo" src={logo2} alt="" />
           <h3>Most Favorite</h3>
         </div>
-        <CardMenu />
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {dataMostFavorite.map((item) => (
 
-        <div id="track-menu">
-          {/* <img className="logo" src={logo2} alt="" /> */}
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price} />
+          ))}
+        </div>
+
+        <div id="appetizer" className="categories">
+          
           <h3>Appetizer</h3>
         </div>
+<<<<<<< HEAD
         <CardMenu />
+=======
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {dataAppetizer.map((item) => (
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price} />
+          ))}
+        </div>
+
+        <div id="hot-dishes" className="categories">
+          
+          <h3>Hot Dishes</h3>
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {dataHotDishes.map((item) => (
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price} />
+          ))}
+        </div>
+
+        <div id="seafood" className="categories">
+          
+          <h3>Seafood Dishes and Others</h3>
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {dataSeafood.map((item) => (
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price} />
+          ))}
+        </div>
+
+        <div id="vegetable" className="categories">
+          
+          <h3>Vegetable</h3>
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {dataVegetable.map((item) => (
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price} />
+          ))}
+        </div>
+
+        <div id="staple" className="categories">
+          
+          <h3>Staple</h3>
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {dataStaple.map((item) => (
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price} />
+          ))}
+        </div>
+>>>>>>> 03e907077a1297d86d70307c2be9a747a95079c5
       </Container>
     </>
   );
