@@ -1,6 +1,4 @@
 import "./Menu.css";
-import image from "./assets/Rectangle 5.png";
-import rating from "./assets/Vector (2).png";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Discount from "../../Components/Discount/Discount";
@@ -12,23 +10,25 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import Checkout from "../../Components/checkout-cart/checkout-cart";
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import CheckoutCart from "../../Components/checkout-cart/checkout-cart";
+import Header from "../../Components/Header/Header";
+import { getDetailMenu } from "../../redux/action/menuAction";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 // import { getMenu } from './../redux/action/menuAction';
 
 const Menu = () => {
   // const [menuTitle, setMenuTitle] = useState();
   // const [price, setPrice] = useState();
-  // const dispatch = useDispatch();
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-  // const {isLoading: loadingMenu, data: menuData} = useSelector(
-  //     (state) => state.menuReducer
-  // );
+  const { data: detailMenu } = useSelector((state) => state.menuReducer);
 
-  // useEffect(() => {
-  //     dispatch(getMenu());
-  // }, );
+  useEffect(() => {
+    dispatch(getDetailMenu());
+  }, []);
 
   const [value, setValue] = useState(0);
 
@@ -60,20 +60,9 @@ const Menu = () => {
 
   return (
     <>
-      <Checkout />
+      <CheckoutCart />
       {/* Header Menu */}
-      <div className="container">
-        <img className="image" src={image} alt="" />
-        <div className="header-wrap">
-          <div className="text">
-            <h1>Heavenly Taste</h1>
-            <div className="rating">
-              <img src={rating} alt="" />
-              <p>4.7</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Header />
 
       {/* Card Discount */}
       <CssBaseline />
@@ -102,8 +91,9 @@ const Menu = () => {
           <img className="logo" src={logo1} alt="" />
           <h3>Recommended</h3>
         </div>
-
-        <CardMenu />
+        {{ data: detailMenu }.map((item) => (
+          <CardMenu detailImg={item.image} menuTitle={item.food} normalPrice={item.price} nameMenu={item.description} discountPrice={item.specialPrice} />
+        ))}
 
         <div id="most-favorite">
           <img className="logo" src={logo2} alt="" />

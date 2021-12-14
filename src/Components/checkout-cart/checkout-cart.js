@@ -7,12 +7,16 @@ import { FaTrash } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
 import { AiOutlineMinus } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
 
-function Checkoutcart() {
+function CheckoutCart() {
   const [visible, setVisible] = useState(false);
   const toggleMenu = () => {
     setVisible(!visible);
   };
+
+  const history = useHistory();
+
   return (
     <div>
       <div className={Styles.Container}>
@@ -21,12 +25,16 @@ function Checkoutcart() {
             <img src={foto} alt="Cravyng Logo" />
             {/* <a href="#">Continue as merchant</a> */}
           </div>
-          <div className={Styles.Cart}>
-            <RiAccountCircleFill />
-            Heavenly Taste |
-          </div>
-          <div className={Styles.Cart2} onClick={() => toggleMenu()}>
-            <MdShoppingBasket /> 0 Items
+
+          <div className={Styles.cart_container}>
+            <div className={Styles.Cart} onClick={() => history.push("/profile")}>
+              <RiAccountCircleFill className={Styles.icon_account} />
+              Heavenly Taste
+            </div>
+
+            <div className={Styles.Cart2} onClick={() => toggleMenu()}>
+              <MdShoppingBasket className={Styles.icon_cart} /> 1 Items
+            </div>
           </div>
         </nav>
         {visible && (
@@ -96,7 +104,7 @@ function Checkoutcart() {
               <p>Total payment </p>
               <p>Rp 352.000</p>
             </div>
-            <div className={Styles.buttonCheck}>
+            <div className={Styles.buttonCheck} onClick={() => history.push("/checkout")}>
               <button> Go to Checkout </button>
             </div>
           </div>
@@ -106,4 +114,4 @@ function Checkoutcart() {
   );
 }
 
-export default Checkoutcart;
+export default CheckoutCart;

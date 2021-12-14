@@ -9,12 +9,15 @@ import FormControl from "@mui/material/FormControl";
 import discountImg from "./assets/Vector (2).png";
 import detailImg from "./assets/image 23.png";
 import likeImg from "./assets/Exclude.png";
-import ButtonAddCart from "./ButtonCart";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import * as React from "react";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-export default function CardMenu({ menu, image, price }) {
+export default function CardMenu({ menu, image, price, detailImg, menuTitle, normalPrice, nameMenu, discountPrice }) {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
@@ -50,6 +53,25 @@ export default function CardMenu({ menu, image, price }) {
     decrementCounter = () => setCounter(0);
   }
 
+  // alert snackbar
+  const [openAlert, setOpenAlert] = useState(false);
+
+  const handleClickAlert = () => {
+    setOpenAlert(true);
+  };
+
+  const handleCloseAlert = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenAlert(false);
+  };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
   return (
     // <div>
     //   <div className={Styles.Container}>
@@ -77,7 +99,7 @@ export default function CardMenu({ menu, image, price }) {
     >
       {["Menu A for 1 Pax", "Menu B for 2 Pax", "Menu 3 for 1 Pax", "Menu B for 3 Pax", "Menu C for 3 Pax"].map((item, index) => {
         return (
-          <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px" }} onClick={handleOpen("body")}>
+          <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: "20px" }} onClick={handleOpen("body")}>
             <CardActionArea>
               <CardMedia component="img" height="200" image={menuImage} alt="menu" />
               <CardContent sx={{ padding: 0, marginTop: 2, marginLeft: 1, marginBottom: 2, marginRight: 1 }}>
@@ -105,7 +127,7 @@ export default function CardMenu({ menu, image, price }) {
           <img src={detailImg} alt="" style={{ objectFit: "cover" }} />
           <CssBaseline />
           <Container maxWidth="xl" dividers={scroll === "paper"} sx={{ marginTop: "24px", borderBottom: "10px solid #FAF9FF" }}>
-            <Typography sx={{ fontFamily: "Poppins", fontWeight: "Bold", fontSize: "21px" }}>Menu A for 1 Pax</Typography>
+            <Typography sx={{ fontFamily: "Poppins", fontWeight: "Bold", fontSize: "21px" }}>{menuTitle}</Typography>
             <Box
               sx={{
                 display: "flex",
@@ -117,8 +139,8 @@ export default function CardMenu({ menu, image, price }) {
                 },
               }}
             >
-              <Typography sx={{ color: "#313440", fontWeight: "bold" }}>Discount Price</Typography>
-              <Typography sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993" }}>Normal Price</Typography>
+              <Typography sx={{ color: "#313440", fontWeight: "bold" }}>{discountPrice}</Typography>
+              <Typography sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993" }}>{normalPrice}</Typography>
               <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "6px" }} />
             </Box>
             <Box
@@ -135,9 +157,7 @@ export default function CardMenu({ menu, image, price }) {
               <img src={likeImg} alt="" style={{ width: "20px", height: "20px" }} />
               <Typography sx={{ color: "#FF5353" }}>Recommended</Typography>
             </Box>
-            <Typography sx={{ marginTop: "17px", fontSize: "14px", paddingBottom: "24px" }}>
-              Scramble egg with tomato / Stir-fried String Beans ( Choose 1 ) + Chicken In Sichuan Chili Oil Sauce / Sliced Beef and Ox tongue in Chill Sauce ( Choose 1 ) + Rice + Homemade Honey Black Tea
-            </Typography>
+            <Typography sx={{ marginTop: "17px", fontSize: "14px", paddingBottom: "24px" }}>{nameMenu}</Typography>
           </Container>
 
           <ThemeProvider theme={theme}>
@@ -177,7 +197,7 @@ export default function CardMenu({ menu, image, price }) {
                 rows={4}
                 value={newComment}
                 onChange={(event) => {
-                  setNewComment(event.target.value); 
+                  setNewComment(event.target.value);
                 }}
                 sx={{
                   width: "447px",
@@ -193,7 +213,34 @@ export default function CardMenu({ menu, image, price }) {
               <Typography sx={{ padding: "5px", cursor: "pointer", fontSize: "20px" }} onClick={incrementCounter}>
                 +
               </Typography>
-              <ButtonAddCart />
+              <Button
+                sx={{
+                  color: "#FFFFFF",
+                  padding: "10px",
+                  width: "333px",
+                  fontWeight: "bold",
+                  borderRadius: "9px",
+                  backgroundColor: "#FF5353",
+                  textTransform: "unset",
+                  textDecoration: "none",
+                  boxShadow: "none",
+                  marginLeft: "23px",
+                  "&:hover": {
+                    backgroundColor: "#ff5e5e",
+                    boxShadow: "none",
+                  },
+                }}
+                onClick={handleClickAlert}
+                variant="contained"
+              >
+                Add to Cart
+              </Button>
+
+              <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+                <Alert onClose={handleCloseAlert} severity="success" sx={{ width: "100%" }}>
+                  {counter} item added to cart
+                </Alert>
+              </Snackbar>
             </Box>
           </ThemeProvider>
         </DialogContent>

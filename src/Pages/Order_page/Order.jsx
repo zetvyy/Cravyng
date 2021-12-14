@@ -1,27 +1,26 @@
 import { useState } from "react";
-import logo from "./assets/logo.png";
 import Styles from "./assets/order.module.scss";
 import { BsShopWindow, BsFillPersonFill } from "react-icons/bs";
 import CardDetail from "../../Components/Card_detail_payment/CardDetail";
 import { Button } from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { MdStars } from "react-icons/md";
+import CheckoutCart from "../../Components/checkout-cart/checkout-cart";
 
 const Order = () => {
   const [text, setText] = useState("How about our services?");
 
-  const ratingChanged = (newRating) => {
+  const ratingChanged = newRating => {
     console.log(newRating);
   };
 
   const handleSubmit = () => {
     setText("Thank You!");
   };
+  
   return (
     <>
-      <nav>
-        <img src={logo} alt="logo" />
-      </nav>
+      <CheckoutCart />
       <div className={Styles.header}>
         <div>
           <h1>Heavenly Taste</h1>

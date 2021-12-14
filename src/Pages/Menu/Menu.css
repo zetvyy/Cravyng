@@ -7,43 +7,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.header-wrap {
-  background: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 302px;
-}
-
-.image {
-  width: 100%;
-  object-fit: cover;
-  opacity: 0.5;
-  position: absolute;
-  height: 302px;
-}
-
-.text {
-  position: relative;
-  text-align: center;
-  color: white;
-  padding-top: 96px;
-}
-
-.text h1 {
-  font-family: "Poppins";
-}
-
-.rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 24px;
-}
-
-.rating p {
-  margin-left: 14px;
-  font-family: "Poppins";
-}
-
 #recommended {
   display: flex;
   margin-top: 72px;

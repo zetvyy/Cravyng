@@ -5,8 +5,8 @@ import as from "./assets/appstore.png";
 
 const Footer = () => {
   const Login = window.location.pathname === "/" || 
-                window.location.pathname === "/Signup" || 
-                window.location.pathname === "/Signin";
+                window.location.pathname === "/sign-up" || 
+                window.location.pathname === "/sign-in";
   return (
     <div className={Login ? Styles.container : Styles.container_login}>
       <img className={Styles.logo2} src={logo2} alt="logo2" />

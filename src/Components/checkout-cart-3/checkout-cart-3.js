@@ -3,6 +3,7 @@ import Styles from "../checkout-cart-3/css/cart.module.scss";
 import foto from "../checkout-cart-3/assets/logo.png";
 import foto2 from "../checkout-cart-3/assets/wavy.png";
 import { IoMdCheckmarkCircle } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function Checkoutcart3() {
   return (
@@ -33,7 +34,9 @@ function Checkoutcart3() {
             </div>
           </div>
           <div className={Styles.button}>
-            <button> Input New Order </button>
+            <Link to="/menu">
+              <button > Input New Order </button>
+            </Link>
           </div>
         </div>
       </div>

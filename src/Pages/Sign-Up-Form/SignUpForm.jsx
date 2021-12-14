@@ -119,7 +119,7 @@ function SignUpForm() {
               </div>
               <p className={Styles.href}>
                 Already have an account?
-                <Link to="/Signin">
+                <Link to="/sign-in">
                   <span href="#"> Sign in</span>
                 </Link>
               </p>
