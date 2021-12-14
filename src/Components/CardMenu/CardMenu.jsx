@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardMedia, CardActionArea, Box, CssBaseline, Container, Dialog, DialogContent, TextField } from "@mui/material";
-import menuImage from "./assets/Rectangle 4.png";
+// import menuImage from "./assets/Rectangle 4.png";
 import { useState } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -17,7 +17,7 @@ import * as React from 'react';
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-export default function CardMenu({ menu, image, price }) {
+export default function CardMenu({ menuName, menuImage, discountPrice, normalPrice }) {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
@@ -53,7 +53,7 @@ export default function CardMenu({ menu, image, price }) {
     decrementCounter = () => setCounter(0);
   }
 
-    // alert snackbar
+  // alert snackbar
   const [openAlert, setOpenAlert] = useState(false);
 
   const handleClickAlert = () => {
@@ -62,13 +62,13 @@ export default function CardMenu({ menu, image, price }) {
 
   const handleCloseAlert = (event, reason) => {
     if (reason === 'clickaway') {
-        return;
-      }
+      return;
+    }
 
-      setOpenAlert(false);
-    };
-    
-  
+    setOpenAlert(false);
+  };
+
+
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
@@ -98,29 +98,28 @@ export default function CardMenu({ menu, image, price }) {
         },
       }}
     >
-      {["Menu A for 1 Pax", "Menu B for 2 Pax", "Menu 3 for 1 Pax", "Menu B for 3 Pax", "Menu C for 3 Pax"].map((item, index) => {
-        return (
-          <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: '20px' }} onClick={handleOpen("body")}>
-            <CardActionArea>
-              <CardMedia component="img" height="200" image={menuImage} alt="menu" />
-              <CardContent sx={{ padding: 0, marginTop: 2, marginLeft: 1, marginBottom: 2, marginRight: 1 }}>
-                <Typography variant="body2" sx={{ width: 272, fontWeight: "bold", fonSize: 16, color: "#000000", marginTop: 1, fontFamily: "Poppins" }}>
-                  {item}
-                </Typography>
-                <Box sx={{ display: "flex", "& > :not(style)": { marginRight: "5px" } }}>
-                  <Typography variant="caption" sx={{ fonSize: 12, color: "#313440", fontWeight: "bold", marginTop: 1, fontFamily: "Poppins" }}>
-                    Rp 176.000
-                  </Typography>
-                  <Typography variant="caption" sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993", marginTop: 1, fontFamily: "Poppins" }}>
-                    Rp 196.000
-                  </Typography>
-                  <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "13px" }} />
-                </Box>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        );
-      })}
+
+      <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: '20px' }} onClick={handleOpen("body")}>
+        <CardActionArea>
+          <CardMedia component="img" height="200" image={menuImage} alt="menu" />
+          <CardContent sx={{ padding: 0, marginTop: 2, marginLeft: 1, marginBottom: 2, marginRight: 1 }}>
+            <Typography variant="body2" sx={{ width: 272, fontWeight: "bold", fonSize: 16, color: "#000000", marginTop: 1, fontFamily: "Poppins" }}>
+              {menuName}
+            </Typography>
+            <Box sx={{ display: "flex", "& > :not(style)": { marginRight: "5px" } }}>
+              <Typography variant="caption" sx={{ fonSize: 12, color: "#313440", fontWeight: "bold", marginTop: 1, fontFamily: "Poppins" }}>
+                {discountPrice}
+              </Typography>
+              <Typography variant="caption" sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993", marginTop: 1, fontFamily: "Poppins" }}>
+                {normalPrice}
+              </Typography>
+              <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "13px" }} />
+            </Box>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+
+
 
       {/* modal/dialog detail menu */}
       <Dialog open={open} onClose={handleClose} scroll={scroll} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
@@ -214,9 +213,9 @@ export default function CardMenu({ menu, image, price }) {
               </Typography>
               <Typography sx={{ marginRight: "18px", padding: "10px", fontWeight: "bold" }}> {counter} </Typography>
               <Typography sx={{ padding: "5px", cursor: "pointer", fontSize: "20px" }} onClick={incrementCounter}>
-                + 
+                +
               </Typography>
-              <Button 
+              <Button
                 sx={{
                   color: '#FFFFFF',
                   padding: '10px',
@@ -233,13 +232,13 @@ export default function CardMenu({ menu, image, price }) {
                     boxShadow: 'none'
                   },
                 }}
-                onClick={handleClickAlert} 
+                onClick={handleClickAlert}
                 variant="contained" >Add to Cart</Button>
-              
+
               <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
-                  <Alert  onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
-                    {counter} item added to cart
-                  </Alert>
+                <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
+                  {counter} item added to cart
+                </Alert>
               </Snackbar>
             </Box>
           </ThemeProvider>
