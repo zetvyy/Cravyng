@@ -1,9 +1,9 @@
 import Styles from "./assets/checkout.module.scss";
 import logo from "./assets/logo.png";
 import { BsShopWindow, BsFillPersonFill } from "react-icons/bs";
-import CardDetail from "../../components/Card_detail_payment/CardDetail";
-import CardPayment from "../../components/Card_payment/CardPayment";
-import Coupon from "../../components/Coupon/Coupon";
+import CardDetail from "../../Components/Card_detail_payment/CardDetail";
+import CardPayment from "../../Components/Card_payment/CardPayment";
+import Coupon from "../../Components/Coupon/Coupon";
 
 const Checkout = () => {
   return (
