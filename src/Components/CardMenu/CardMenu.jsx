@@ -87,7 +87,10 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   });
  
   
-
+  // const iconCategory = ({category}) => {
+  //   if(category === "Recommended") return <img src={likeImg} alt="" style={{ width: "20px", height: "20px" }} />
+  //   if(category !== "Recommended") return <img src={likeImg} alt="" style={{ width: "20px", height: "20px", display: 'none' }} />
+  // }
   
 
 
