@@ -1,27 +1,26 @@
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardMedia, CardActionArea, Box, CssBaseline, Container, Dialog, DialogContent, TextField } from "@mui/material";
 // import menuImage from "./assets/Rectangle 4.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import discountImg from "./assets/Vector (2).png";
-import detailImg from "./assets/image 23.png";
+// import detailImg from "./assets/image 23.png";
 import likeImg from "./assets/Exclude.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
+import { getDetailMenu } from "../../redux/action/menuAction";
+import { useParams } from "react-router-dom";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-<<<<<<< HEAD
-export default function CardMenu({ menu, image, price, detailImg, menuTitle, normalPrice, nameMenu, discountPrice }) {
-=======
-export default function CardMenu({ menuName, menuImage, discountPrice, normalPrice }) {
->>>>>>> 03e907077a1297d86d70307c2be9a747a95079c5
+export default function CardMenu({ menuName, menuImage, discountPrice, normalPrice, nameMenu, detailImg, menuTitle, priceDiscount, priceNormal }) {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
@@ -30,7 +29,7 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
     setScroll(scrollType);
   };
   const handleClose = () => setOpen(false);
-
+  const dispatch = useDispatch();
   //Radio Button
   const [value, setValue] = useState();
 
@@ -65,25 +64,28 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
   };
 
   const handleCloseAlert = (event, reason) => {
-<<<<<<< HEAD
     if (reason === "clickaway") {
-=======
-    if (reason === 'clickaway') {
->>>>>>> 03e907077a1297d86d70307c2be9a747a95079c5
       return;
     }
 
     setOpenAlert(false);
   };
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 03e907077a1297d86d70307c2be9a747a95079c5
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
+  // const { getdetailMenu } = useSelector((state) => state.menuReducer);
+  // const [detailMenu, setdetailMenu] = useState({});
+  // // const params = useParams();
+
+  // useEffect(() => {
+  //   // const detailMenuFound = getdetailMenu.find((item) => item.id === Number(params.detailMenuId));
+  //   // if (detailMenuFound) {
+  //   //   setdetailMenu(detailMenuFound);
+  //   // }
+  //   dispatch(getDetailMenu());
+  // }, []);
   return (
     // <div>
     //   <div className={Styles.Container}>
@@ -109,8 +111,7 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
         },
       }}
     >
-
-      <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: '20px' }} onClick={handleOpen("body")}>
+      <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: "20px" }} onClick={handleOpen("body")}>
         <CardActionArea>
           <CardMedia component="img" height="200" image={menuImage} alt="menu" />
           <CardContent sx={{ padding: 0, marginTop: 2, marginLeft: 1, marginBottom: 2, marginRight: 1 }}>
@@ -130,15 +131,13 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
         </CardActionArea>
       </Card>
 
-
-
       {/* modal/dialog detail menu */}
       <Dialog open={open} onClose={handleClose} scroll={scroll} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
         <DialogContent maxWidth sx={{ padding: "0", width: "500px" }}>
-          <img src={detailImg} alt="" style={{ objectFit: "cover" }} />
+          <img src={menuImage} alt="" style={{ objectFit: "cover", height: "275px", width: "500px" }} />
           <CssBaseline />
           <Container maxWidth="xl" dividers={scroll === "paper"} sx={{ marginTop: "24px", borderBottom: "10px solid #FAF9FF" }}>
-            <Typography sx={{ fontFamily: "Poppins", fontWeight: "Bold", fontSize: "21px" }}>{menuTitle}</Typography>
+            <Typography sx={{ fontFamily: "Poppins", fontWeight: "Bold", fontSize: "21px" }}>{menuName}</Typography>
             <Box
               sx={{
                 display: "flex",
@@ -242,7 +241,6 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
                   },
                 }}
                 onClick={handleClickAlert}
-<<<<<<< HEAD
                 variant="contained"
               >
                 Add to Cart
@@ -250,12 +248,6 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
 
               <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
                 <Alert onClose={handleCloseAlert} severity="success" sx={{ width: "100%" }}>
-=======
-                variant="contained" >Add to Cart</Button>
-
-              <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
-                <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
->>>>>>> 03e907077a1297d86d70307c2be9a747a95079c5
                   {counter} item added to cart
                 </Alert>
               </Snackbar>
