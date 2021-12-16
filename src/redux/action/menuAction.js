@@ -14,7 +14,7 @@ export const getMenu = () => {
     return async (dispatch) => {
         dispatch({ type: `${GET_MENU}_LOADING` });
         try {
-            const response = await axios('https://cravyngteam.herokuapp.com/menu/home/');
+            const response = await axios.get('https://cravyngteam.herokuapp.com/menu/home/');
             dispatch({
                 type: `${GET_MENU}_FULFILLED`,
                 payload: response.data.data,
@@ -29,16 +29,17 @@ export const getMenu = () => {
     }
 }
 
+
 export const getMenuCategories = (id) => {
     return async (dispatch) => {
         dispatch({ type: `${GET_MENU_CAT}_LOADING` });
         try {
-            const response = await axios('https://cravyngteam.herokuapp.com/menu/category/' + id);
+            const response = await axios.get('https://cravyngteam.herokuapp.com/menu/category/' + id);
             
-            // dispatch({
-            //     type: `${GET_MENU_CAT}_FULFILLED`,
-            //     payload: response.data.data,
-            // });
+            dispatch({
+                type: `${GET_MENU_CAT}_FULFILLED`,
+                payload: response.data.data,
+            });
             if(id === 1) {
                 dispatch({
                 type: `${GET_MENU_CAT_RECOMMENDED}_FULFILLED`,

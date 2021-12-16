@@ -1,5 +1,5 @@
 import { 
-    GET_MENU, 
+    GET_MENU,
     GET_MENU_CAT_RECOMMENDED, 
     GET_MENU_CAT_MOST_FAVORITE,
     GET_MENU_CAT_APPETIZER,
@@ -10,6 +10,7 @@ import {
 
 const initialState = {
     data: [],
+    dataDetailMenu: [],
     dataRecommended : [],
     dataMostFavorite: [],
     dataAppetizer: [],
@@ -153,6 +154,8 @@ const menuReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: error.message,
             };
+        
+            
         default:
             return {
                 ...state

@@ -15,6 +15,8 @@ import Header from "../../Components/Header/Header";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMenu, getMenuCategories } from '../../redux/action/menuAction'
+import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
+
 
 const Menu = () => {
   // const [menuTitle, setMenuTitle] = useState();
@@ -29,7 +31,7 @@ const Menu = () => {
     dataSeafood,
     dataVegetable,
     dataStaple } = useSelector(
-    (state) => state.menuReducer
+    (state) => state.menu
   );
   
 
@@ -43,7 +45,7 @@ const Menu = () => {
     dispatch(getMenuCategories(6));
     dispatch(getMenuCategories(7));
   
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 
 
@@ -89,7 +91,7 @@ const Menu = () => {
         <Discount />
 
         {/* tabs menu */}
-
+        
         <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", marginTop: "40px", position: 'sticky', top: 0, zIndex: '1' }}>
           <ThemeProvider theme={theme}>
             <Tabs
@@ -115,6 +117,7 @@ const Menu = () => {
 
         {/* menu item */}
 
+        <ScrollToTop showBelow={250} />
 
         <div id="recommended" className="categories">
           <img className="logo" src={logo1} alt="" />
@@ -125,10 +128,15 @@ const Menu = () => {
           {dataRecommended.map((item) => (
 
             <CardMenu
+           
               menuName={item.food}
               menuImage={item.image}
               discountPrice={item.specialPrice}
-              normalPrice={item.price} />
+              normalPrice={item.price}
+              idMenu= {item.id}
+              menuInfo={item.description}
+               />
+              
           ))}
         </div>
 
@@ -143,7 +151,9 @@ const Menu = () => {
               menuName={item.food}
               menuImage={item.image}
               discountPrice={item.specialPrice}
-              normalPrice={item.price} />
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description} />
           ))}
         </div>
 
@@ -158,7 +168,9 @@ const Menu = () => {
               menuName={item.food}
               menuImage={item.image}
               discountPrice={item.specialPrice}
-              normalPrice={item.price} />
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description} />
           ))}
         </div>
 
@@ -173,7 +185,9 @@ const Menu = () => {
               menuName={item.food}
               menuImage={item.image}
               discountPrice={item.specialPrice}
-              normalPrice={item.price} />
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description} />
           ))}
         </div>
 
@@ -188,7 +202,9 @@ const Menu = () => {
               menuName={item.food}
               menuImage={item.image}
               discountPrice={item.specialPrice}
-              normalPrice={item.price} />
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description} />
           ))}
         </div>
 
@@ -203,7 +219,9 @@ const Menu = () => {
               menuName={item.food}
               menuImage={item.image}
               discountPrice={item.specialPrice}
-              normalPrice={item.price} />
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description} />
           ))}
         </div>
 
@@ -212,13 +230,17 @@ const Menu = () => {
           <h3>Staple</h3>
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          
           {dataStaple.map((item) => (
-
+            
             <CardMenu
               menuName={item.food}
               menuImage={item.image}
               discountPrice={item.specialPrice}
-              normalPrice={item.price} />
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description} />
+              
           ))}
         </div>
       </Container>
