@@ -1,4 +1,4 @@
-import { GET_MENU, GET_DETAIL_MENU, GET_MENU_CAT_RECOMMENDED, GET_MENU_CAT_MOST_FAVORITE, GET_MENU_CAT_APPETIZER, GET_MENU_CAT_HOT_DISHES, GET_MENU_CAT_SEAFOOD, GET_MENU_CAT_VEGETABLE, GET_MENU_CAT_STAPLE } from "../types";
+import { GET_MENU, GET_MENU_CAT_RECOMMENDED, GET_MENU_CAT_MOST_FAVORITE, GET_MENU_CAT_APPETIZER, GET_MENU_CAT_HOT_DISHES, GET_MENU_CAT_SEAFOOD, GET_MENU_CAT_VEGETABLE, GET_MENU_CAT_STAPLE } from "../types";
 
 const initialState = {
   data: [],
@@ -9,7 +9,6 @@ const initialState = {
   dataSeafood: [],
   dataVegetable: [],
   dataStaple: [],
-  detailMenu: [],
   isLoading: true,
   error: null,
 };
@@ -146,23 +145,7 @@ const menuReducer = (state = initialState, action) => {
         isLoading: false,
         error: error.message,
       };
-    case `${GET_DETAIL_MENU}_LOADING`:
-      return {
-        ...state,
-        detailMenu: { loading: true, error: null },
-      };
-    case `${GET_DETAIL_MENU}_FULFILLED`:
-      return {
-        ...state,
-        data: payload,
-        isLoading: false,
-        detailMenu: { loading: false, error: null, details: payload },
-      };
-    case `${GET_DETAIL_MENU}_ERROR`:
-      return {
-        ...state,
-        detailMenu: { loading: false, error: error, details: [] },
-      };
+
     default:
       return {
         ...state,

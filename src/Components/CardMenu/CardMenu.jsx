@@ -15,16 +15,23 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
-import { getDetailMenu } from "../../redux/action/menuAction";
-import { useParams } from "react-router-dom";
+import { getMenuDetail } from "../../redux/action/menuDetailAction";
+import { useDispatch, useSelector } from "react-redux";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-export default function CardMenu({ menuName, menuImage, discountPrice, normalPrice, nameMenu, detailImg, menuTitle, priceDiscount, priceNormal }) {
+const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo }) => {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
+
+  const dispatch = useDispatch();
+
+  const { dataDetailMenu } = useSelector((state) => state.menuDetail);
+  console.log(dataDetailMenu);
+
   const handleOpen = (scrollType) => () => {
+    dispatch(getMenuDetail(idMenu));
     setOpen(true);
     setScroll(scrollType);
   };
@@ -74,6 +81,11 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
+
+  // const iconCategory = ({category}) => {
+  //   if(category === "Recommended") return <img src={likeImg} alt="" style={{ width: "20px", height: "20px" }} />
+  //   if(category !== "Recommended") return <img src={likeImg} alt="" style={{ width: "20px", height: "20px", display: 'none' }} />
+  // }
 
   // const { getdetailMenu } = useSelector((state) => state.menuReducer);
   // const [detailMenu, setdetailMenu] = useState({});
@@ -132,9 +144,10 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
       </Card>
 
       {/* modal/dialog detail menu */}
+
       <Dialog open={open} onClose={handleClose} scroll={scroll} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
         <DialogContent maxWidth sx={{ padding: "0", width: "500px" }}>
-          <img src={menuImage} alt="" style={{ objectFit: "cover", height: "275px", width: "500px" }} />
+          <img src={menuImage} alt="" style={{ objectFit: "cover", width: "500px", height: "275px" }} />
           <CssBaseline />
           <Container maxWidth="xl" dividers={scroll === "paper"} sx={{ marginTop: "24px", borderBottom: "10px solid #FAF9FF" }}>
             <Typography sx={{ fontFamily: "Poppins", fontWeight: "Bold", fontSize: "21px" }}>{menuName}</Typography>
@@ -167,25 +180,28 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
               <img src={likeImg} alt="" style={{ width: "20px", height: "20px" }} />
               <Typography sx={{ color: "#FF5353" }}>Recommended</Typography>
             </Box>
-            <Typography sx={{ marginTop: "17px", fontSize: "14px", paddingBottom: "24px" }}>{nameMenu}</Typography>
+            <Typography sx={{ marginTop: "17px", fontSize: "14px", paddingBottom: "24px" }}>{menuInfo}</Typography>
           </Container>
 
           <ThemeProvider theme={theme}>
-            <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }}>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}>Choice of Veg</Typography>
-                <Typography sx={{ color: "#616BC8", fontSize: "14px" }}>*Required</Typography>
-              </Box>
-              <Typography sx={{ marginTop: "4px", color: "#868993" }}>Select 1</Typography>
-              <FormControl component="fieldset" sx={{ marginTop: "17.5px" }}>
-                <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={value} onChange={handleChange}>
-                  <FormControlLabel value="food1" control={<Radio />} label="Scrambled Egg with Tomato" />
-                  <FormControlLabel value="food2" control={<Radio />} label="Stir-fried String Beans" />
-                </RadioGroup>
-              </FormControl>
-            </Container>
-
-            <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "10px solid #FAF9FF" }}>
+            {dataDetailMenu.variants &&
+              dataDetailMenu.variants.length > 0 &&
+              dataDetailMenu.variants.map((item) => (
+                <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }}>
+                  <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}>{item.label}</Typography>
+                    <Typography sx={{ color: "#616BC8", fontSize: "14px" }}>*Required</Typography>
+                  </Box>
+                  <Typography sx={{ marginTop: "4px", color: "#868993" }}>Select 1</Typography>
+                  <FormControl component="fieldset" sx={{ marginTop: "17.5px" }}>
+                    <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={value} onChange={handleChange}>
+                      {item.variantOptions.length > 0 && item.variantOptions.map((option) => <FormControlLabel value={option.label} control={<Radio />} label={option.label} />)}
+                      {/* <FormControlLabel value="food2" control={<Radio />} label="Stir-fried String Beans" /> */}
+                    </RadioGroup>
+                  </FormControl>
+                </Container>
+              ))}
+            {/* <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "10px solid #FAF9FF" }}>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}>Choice of Meat</Typography>
                 <Typography sx={{ color: "#616BC8", fontSize: "14px" }}>*Optional</Typography>
@@ -197,7 +213,7 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
                   <FormControlLabel value="food4" control={<Radio />} label="Sliced Beed and Ox Tongue in Chili Sauce" />
                 </RadioGroup>
               </FormControl>
-            </Container>
+            </Container> */}
             <Container maxWidth="xl" sx={{ marginTop: "24px" }}>
               <Typography sx={{ fontWeight: "bold" }}>Special Instructions</Typography>
               <Typography sx={{ color: "#868993", marginTop: "4px" }}>Any specific preferences? Let us know.</Typography>
@@ -259,4 +275,5 @@ export default function CardMenu({ menuName, menuImage, discountPrice, normalPri
     // </div>
     // </div>
   );
-}
+};
+export default CardMenu;

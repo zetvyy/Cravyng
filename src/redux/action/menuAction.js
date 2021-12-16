@@ -1,35 +1,11 @@
 import axios from "axios";
-import { GET_MENU, GET_MENU_CAT, GET_DETAIL_MENU, GET_MENU_CAT_RECOMMENDED, GET_MENU_CAT_MOST_FAVORITE, GET_MENU_CAT_APPETIZER, GET_MENU_CAT_HOT_DISHES, GET_MENU_CAT_SEAFOOD, GET_MENU_CAT_VEGETABLE, GET_MENU_CAT_STAPLE } from "../types";
-
-export const getDetailMenu = (id) => {
-  return (dispatch) => {
-    dispatch({ type: `${GET_DETAIL_MENU}_LOADING` });
-
-    axios({
-      method: "GET",
-      url: `https://cravyngteam.herokuapp.com/menu/${id}`,
-    })
-      .then((response) => {
-        console.log(response.data.data);
-        dispatch({
-          type: `${GET_DETAIL_MENU}_FULFILLED`,
-          payload: response.data.data,
-        });
-      })
-      .catch((error) => {
-        dispatch({
-          type: `${GET_DETAIL_MENU}_ERROR`,
-          error: error.message,
-        });
-      });
-  };
-};
+import { GET_MENU, GET_MENU_CAT, GET_MENU_CAT_RECOMMENDED, GET_MENU_CAT_MOST_FAVORITE, GET_MENU_CAT_APPETIZER, GET_MENU_CAT_HOT_DISHES, GET_MENU_CAT_SEAFOOD, GET_MENU_CAT_VEGETABLE, GET_MENU_CAT_STAPLE } from "../types";
 
 export const getMenu = () => {
   return async (dispatch) => {
     dispatch({ type: `${GET_MENU}_LOADING` });
     try {
-      const response = await axios("https://cravyngteam.herokuapp.com/menu/home/");
+      const response = await axios.get("https://cravyngteam.herokuapp.com/menu/home/");
       dispatch({
         type: `${GET_MENU}_FULFILLED`,
         payload: response.data.data,
@@ -47,12 +23,12 @@ export const getMenuCategories = (id) => {
   return async (dispatch) => {
     dispatch({ type: `${GET_MENU_CAT}_LOADING` });
     try {
-      const response = await axios("https://cravyngteam.herokuapp.com/menu/category/" + id);
+      const response = await axios.get("https://cravyngteam.herokuapp.com/menu/category/" + id);
 
-      // dispatch({
-      //     type: `${GET_MENU_CAT}_FULFILLED`,
-      //     payload: response.data.data,
-      // });
+      dispatch({
+        type: `${GET_MENU_CAT}_FULFILLED`,
+        payload: response.data.data,
+      });
       if (id === 1) {
         dispatch({
           type: `${GET_MENU_CAT_RECOMMENDED}_FULFILLED`,

@@ -16,9 +16,10 @@ export default function Routes() {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/sign-up" component={SignUpForm} />
         <Route exact path="/sign-in" component={SignIn} />
-        <Route path="/menu" component={Menu} />
-        <Route path="/cart" component={Checkoutcart3} />
-        <Route path="/profile-empty" component={Profile4} />
+        <Route exact path="/menu" component={Menu} />
+        {/* <Route exact path="/menu/:id" component={Menu}/> */}
+        <Route exact path="/cart" component={Checkoutcart3} />
+        <Route exact path="/profile-empty" component={Profile4} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/order" component={Order} />
         <Route exact path="/profile" component={Profile} />
