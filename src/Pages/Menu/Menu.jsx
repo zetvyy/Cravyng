@@ -35,7 +35,7 @@ const Menu = () => {
     dispatch(getMenuCategories(7));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const [value, setValue] = useState(0);
+  const [valueTab, setValueTab] = useState(0);
 
   const theme = createTheme({
     palette: {
@@ -60,7 +60,7 @@ const Menu = () => {
   `;
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValueTab(newValue);
   };
 
   return (
@@ -77,8 +77,21 @@ const Menu = () => {
 
         <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", marginTop: "40px", position: "sticky", top: 0, zIndex: "1" }}>
           <ThemeProvider theme={theme}>
+<<<<<<< HEAD
             <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" textColor="secondary" aria-label="scrollable auto tabs example" font-family="Poppins">
               <CustomTab label="Recommended" href="#recommended" />
+=======
+            <Tabs
+              value={valueTab}
+              onChange={handleChange}
+              variant="scrollable"
+              scrollButtons="auto"
+              textColor="secondary"
+              aria-label="scrollable auto tabs example"
+              font-family="Poppins"
+            >
+              <CustomTab label="Recommended" href="#recommended"  />
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
               <CustomTab label="Most Favorite" href="#most-favorite" />
               <CustomTab label="Appetizer" href="#appetizer" />
               <CustomTab label="Hot Dishes" href="#hot-dishes" />
@@ -113,7 +126,22 @@ const Menu = () => {
         */}
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataRecommended.map((item) => (
+<<<<<<< HEAD
             <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} />
+=======
+
+            <CardMenu
+           
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu= {item.id}
+              menuInfo={item.description}
+              category={item.category.name}
+               />
+              
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
           ))}
         </div>
         <div id="most-favorite" className="categories">
@@ -122,7 +150,19 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataMostFavorite.map((item) => (
+<<<<<<< HEAD
             <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} />
+=======
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description}
+              category={item.category.name} />
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
           ))}
         </div>
         <div id="appetizer" className="categories">
@@ -130,7 +170,19 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataAppetizer.map((item) => (
+<<<<<<< HEAD
             <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} />
+=======
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description}
+              category={item.category.name} />
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
           ))}
         </div>
         <div id="hot-dishes" className="categories">
@@ -138,7 +190,19 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataHotDishes.map((item) => (
+<<<<<<< HEAD
             <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} />
+=======
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description}
+              category={item.category.name} />
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
           ))}
         </div>
         <div id="seafood" className="categories">
@@ -146,7 +210,19 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataSeafood.map((item) => (
+<<<<<<< HEAD
             <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} />
+=======
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description}
+              category={item.category.name} />
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
           ))}
         </div>
         <div id="vegetable" className="categories">
@@ -154,7 +230,19 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataVegetable.map((item) => (
+<<<<<<< HEAD
             <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} />
+=======
+
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description}
+              category={item.category.name} />
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
           ))}
         </div>
         <div id="staple" className="categories">
@@ -162,7 +250,20 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataStaple.map((item) => (
+<<<<<<< HEAD
             <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} />
+=======
+            
+            <CardMenu
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu ={item.id}
+              menuInfo={item.description}
+              category={item.category.name}/>
+              
+>>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
           ))}
         </div>
       </Container>
