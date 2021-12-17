@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardMedia, CardActionArea, Box, CssBaseline, Container, Dialog, DialogContent, TextField } from "@mui/material";
 // import menuImage from "./assets/Rectangle 4.png";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -16,7 +16,6 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
 import { getMenuDetail } from "../../redux/action/menuDetailAction";
-import { useDispatch, useSelector } from "react-redux";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
@@ -36,7 +35,6 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
     setScroll(scrollType);
   };
   const handleClose = () => setOpen(false);
-  const dispatch = useDispatch();
   //Radio Button
   const [value, setValue] = useState();
 
