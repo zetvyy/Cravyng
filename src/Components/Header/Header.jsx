@@ -1,17 +1,29 @@
 import Styles from "./header.module.scss";
-import {MdStars} from 'react-icons/md';
+import { MdStars } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getDetailUser } from "../../redux/action/authAction";
 
 const Header = () => {
-    return (
-        <div className={Styles.header}>
-            <div>
-                <h1>Heavenly Taste</h1>
-                <p>
-                    <MdStars className={Styles.star_icon}/>
-                    <span>4.7</span>
-                </p>
-            </div>
+  const dispatch = useDispatch();
+  const users = useSelector(state => state.authReducer.data);
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(getDetailUser());
+    }, 300);
+  }, [dispatch]);
+
+  return (
+    <div className={Styles.header}>
+      <div className={Styles.info_profile}>
+        <h1>{users.name}</h1>
+        <div className={Styles.rating}>
+          <MdStars className={Styles.star_icon} />
+          <p>4.7</p>
+        </div>
       </div>
-    )
-}
-export default Header
+    </div>
+  );
+};
+export default Header;

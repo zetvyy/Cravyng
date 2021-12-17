@@ -19,28 +19,14 @@ import { getMenuDetail } from "../../redux/action/menuDetailAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-<<<<<<< HEAD
-const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo }) => {
-=======
 const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category }) => {
-  
->>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
   const { dataDetailMenu } = useSelector((state) => state.menuDetail);
-  console.log(dataDetailMenu);
-=======
-  const { 
-    dataDetailMenu } = useSelector(
-    (state) => state.menuDetail
-  );
-  
->>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
 
   const handleOpen = (scrollType) => () => {
     dispatch(getMenuDetail(idMenu));
@@ -79,7 +65,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
 
   const handleClickAlert = () => {
     setOpenAlert(dataCart);
-    console.log(dataCart)
+    console.log(dataCart);
   };
 
   const handleCloseAlert = (event, reason) => {
@@ -93,25 +79,15 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-<<<<<<< HEAD
 
-  // const iconCategory = ({category}) => {
-  //   if(category === "Recommended") return <img src={likeImg} alt="" style={{ width: "20px", height: "20px" }} />
-  //   if(category !== "Recommended") return <img src={likeImg} alt="" style={{ width: "20px", height: "20px", display: 'none' }} />
-  // }
-=======
- 
-  
   const dataCart = {
     menuName,
     discountPrice,
     normalPrice,
     newComment,
     counter,
-    value
-  }
-  
->>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
+    value,
+  };
 
   // const { getdetailMenu } = useSelector((state) => state.menuReducer);
   // const [detailMenu, setdetailMenu] = useState({});
@@ -161,19 +137,18 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
                 {discountPrice}
               </Typography>
               {discountPrice !== null ? (
-              <Typography variant="caption" sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993", marginTop: 1, fontFamily: "Poppins" }}>
-                {normalPrice}
-              </Typography>
+                <Typography variant="caption" sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993", marginTop: 1, fontFamily: "Poppins" }}>
+                  {normalPrice}
+                </Typography>
               ) : (
                 <Typography variant="caption" sx={{ fonSize: 12, color: "#313440", fontWeight: "bold", marginTop: 1, fontFamily: "Poppins" }}>
-                {normalPrice}
-              </Typography>
+                  {normalPrice}
+                </Typography>
               )}
-              {discountPrice !== null ? ( 
-              
-              <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "13px" }} />
+              {discountPrice !== null ? (
+                <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "13px" }} />
               ) : (
-              <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "13px", display: 'none' }} />  
+                <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "13px", display: "none" }} />
               )}
             </Box>
           </CardContent>
@@ -200,21 +175,20 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
               }}
             >
               <Typography sx={{ color: "#313440", fontWeight: "bold" }}>{discountPrice}</Typography>
-              
+
               {discountPrice !== null ? (
-              <Typography variant="caption" sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993", fontFamily: "Poppins" }}>
-                {normalPrice}
-              </Typography>
+                <Typography variant="caption" sx={{ textDecoration: "line-through", fonSize: 12, color: "#868993", fontFamily: "Poppins" }}>
+                  {normalPrice}
+                </Typography>
               ) : (
                 <Typography variant="caption" sx={{ fonSize: 12, color: "#313440", fontWeight: "bold", fontFamily: "Poppins" }}>
-                {normalPrice}
-              </Typography>
+                  {normalPrice}
+                </Typography>
               )}
-              {discountPrice !== null ? ( 
-              
-              <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "6px" }} />
+              {discountPrice !== null ? (
+                <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "6px" }} />
               ) : (
-              <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "6px", display: 'none' }} />  
+                <img src={discountImg} alt="" style={{ width: "10px", height: "10px", marginTop: "6px", display: "none" }} />
               )}
             </Box>
             <Box
@@ -228,12 +202,8 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
                 },
               }}
             >
-              {category === "Recommended" ? (
-                <img src={likeImg} alt="" style={{ width: "20px", height: "20px" }} />
-              ) : (
-                <img src={likeImg} alt="" style={{ width: "20px", height: "20px", display: 'none' }} />
-              )}
-              
+              {category === "Recommended" ? <img src={likeImg} alt="" style={{ width: "20px", height: "20px" }} /> : <img src={likeImg} alt="" style={{ width: "20px", height: "20px", display: "none" }} />}
+
               <Typography sx={{ color: "#FF5353" }}>{category}</Typography>
             </Box>
             <Typography sx={{ marginTop: "17px", fontSize: "14px", paddingBottom: "24px" }}>{menuInfo}</Typography>

@@ -8,8 +8,18 @@ import DateFilter from "../../Components/Date/DateFilter";
 import SalesSummary from "../../Components/SalesSummary/SalesSummary";
 import TableOrder from "../../Components/TableProfile/TableProfile";
 import Checkout from "../../Components/checkout-cart/checkout-cart";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getDetailUser } from "../../redux/action/authAction";
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const users = useSelector(state => state.authReducer.data);
+
+  useEffect(() => {
+  	dispatch(getDetailUser());
+  },[dispatch])
+
   return (
     <>
       <Checkout />
@@ -21,9 +31,9 @@ const Profile = () => {
           <ButtonSignOut />
 
           <div className="title">
-            <h1>Heavenly Taste</h1>
+            <h1>{users.name}</h1>
             <div className="info-profile">
-              <p>hi@heavenly.taste</p>
+              <p>{users.email}</p>
               <p style={{ margin: "0 24px" }}>|</p>
               <div className="rating-wrap">
                 <img src={rating} alt="" />

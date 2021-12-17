@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Styles from "../checkout-cart/css/checkout.module.scss";
 import foto from "../checkout-cart/assets/logo.png";
 import { RiAccountCircleFill } from "react-icons/ri";
@@ -8,6 +8,8 @@ import { FiPlus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
 import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getDetailUser } from "../../redux/action/authAction";
 
 function CheckoutCart() {
   const [visible, setVisible] = useState(false);
@@ -16,6 +18,17 @@ function CheckoutCart() {
   };
 
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleNavigate = () => {
+    history.push("/profile");
+  };
+
+  const users = useSelector(state => state.authReducer.data);
+
+  useEffect(() => {
+    dispatch(getDetailUser());
+  }, [dispatch]);
 
   return (
     <div>
@@ -27,9 +40,9 @@ function CheckoutCart() {
           </div>
 
           <div className={Styles.cart_container}>
-            <div className={Styles.Cart} onClick={() => history.push("/profile")}>
+            <div className={Styles.Cart} onClick={() => handleNavigate()}>
               <RiAccountCircleFill className={Styles.icon_account} />
-              Heavenly Taste
+              {users.name}
             </div>
 
             <div className={Styles.Cart2} onClick={() => toggleMenu()}>

@@ -6,8 +6,12 @@ import { Button } from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { MdStars } from "react-icons/md";
 import CheckoutCart from "../../Components/checkout-cart/checkout-cart";
+import { useHistory } from "react-router-dom";
+import ButtonSignOut from "../../Components/ButtonSignOut";
 
 const Order = () => {
+  const history = useHistory();
+
   const [text, setText] = useState("How about our services?");
 
   const ratingChanged = newRating => {
@@ -17,7 +21,7 @@ const Order = () => {
   const handleSubmit = () => {
     setText("Thank You!");
   };
-  
+
   return (
     <>
       <CheckoutCart />
@@ -29,6 +33,9 @@ const Order = () => {
             <span>4.7</span>
           </p>
         </div>
+      </div>
+      <div className={Styles.btn_signout}>
+        <ButtonSignOut />
       </div>
       <div className={Styles.container}>
         <div className={Styles.checkout}>
@@ -45,7 +52,9 @@ const Order = () => {
         </div>
         <CardDetail />
         <CardDetail />
-        <Button className={Styles.btn_order}>Make new Order</Button>
+        <Button className={Styles.btn_order} onClick={() => history.push("/menu")}>
+          Make new Order
+        </Button>
         <div className={Styles.rating}>
           <div className={Styles.text}>
             <h3>{text}</h3>
