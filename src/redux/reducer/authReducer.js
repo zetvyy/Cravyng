@@ -1,7 +1,10 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL } from "../types";
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, GET_DETAIL_USER, LOGIN_FAIL, UPDATE_PROFILE } from "../types";
 
 const initialState = {
-  data: []
+  data: [],
+  token: localStorage.getItem("token") || false,
+  role: localStorage.getItem("role") || false,
+  error: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -15,8 +18,30 @@ const authReducer = (state = initialState, action) => {
     case REGISTER_FAIL:
       return {
         ...state,
+        error: payload
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        role: payload.role,
+        token: payload.token
+      };
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        error: payload
+      };
+    case GET_DETAIL_USER:
+      return {
+        ...state,
         data: payload
       };
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        data: payload
+      };
+
     default: {
       return {
         ...state,

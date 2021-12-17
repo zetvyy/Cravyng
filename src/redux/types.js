@@ -1,6 +1,10 @@
-export const GET_MENU = 'GET_MENU'
+export const GET_MENU = "GET_MENU";
+
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+
+export const GET_DETAIL_USER = "GET_DETAIL_USER";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
