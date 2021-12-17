@@ -14,7 +14,7 @@ const menuDetailReducer = (state = initialState, action) => {
                 ...state,
             };
         case `${GET_MENU_DETAIL}_FULFILLED`:
-            console.log(payload)
+            // console.log(payload)
             return {
                 ...state,
                 dataDetailMenu: payload,

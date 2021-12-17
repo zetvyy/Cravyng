@@ -10,7 +10,6 @@ import {
 
 const initialState = {
     data: [],
-    dataDetailMenu: [],
     dataRecommended : [],
     dataMostFavorite: [],
     dataAppetizer: [],

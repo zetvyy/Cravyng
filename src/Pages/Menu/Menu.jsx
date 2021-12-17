@@ -49,7 +49,7 @@ const Menu = () => {
 
 
 
-  const [value, setValue] = useState(0);
+  const [valueTab, setValueTab] = useState(0);
 
   const theme = createTheme({
     palette: {
@@ -74,7 +74,7 @@ const Menu = () => {
   `;
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValueTab(newValue);
   };
 
 
@@ -95,7 +95,7 @@ const Menu = () => {
         <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", marginTop: "40px", position: 'sticky', top: 0, zIndex: '1' }}>
           <ThemeProvider theme={theme}>
             <Tabs
-              value={value}
+              value={valueTab}
               onChange={handleChange}
               variant="scrollable"
               scrollButtons="auto"
@@ -135,6 +135,7 @@ const Menu = () => {
               normalPrice={item.price}
               idMenu= {item.id}
               menuInfo={item.description}
+              category={item.category.name}
                />
               
           ))}
@@ -153,7 +154,8 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu ={item.id}
-              menuInfo={item.description} />
+              menuInfo={item.description}
+              category={item.category.name} />
           ))}
         </div>
 
@@ -170,7 +172,8 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu ={item.id}
-              menuInfo={item.description} />
+              menuInfo={item.description}
+              category={item.category.name} />
           ))}
         </div>
 
@@ -187,7 +190,8 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu ={item.id}
-              menuInfo={item.description} />
+              menuInfo={item.description}
+              category={item.category.name} />
           ))}
         </div>
 
@@ -204,7 +208,8 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu ={item.id}
-              menuInfo={item.description} />
+              menuInfo={item.description}
+              category={item.category.name} />
           ))}
         </div>
 
@@ -221,7 +226,8 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu ={item.id}
-              menuInfo={item.description} />
+              menuInfo={item.description}
+              category={item.category.name} />
           ))}
         </div>
 
@@ -239,7 +245,8 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu ={item.id}
-              menuInfo={item.description} />
+              menuInfo={item.description}
+              category={item.category.name}/>
               
           ))}
         </div>
