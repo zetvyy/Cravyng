@@ -12,9 +12,9 @@ import { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CheckoutCart from "../../Components/checkout-cart/checkout-cart";
 import Header from "../../Components/Header/Header";
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getMenu, getMenuCategories } from '../../redux/action/menuAction'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMenu, getMenuCategories } from "../../redux/action/menuAction";
 import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
 
 
@@ -46,10 +46,7 @@ const Menu = () => {
     dispatch(getMenuCategories(5));
     dispatch(getMenuCategories(6));
     dispatch(getMenuCategories(7));
-  
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [valueTab, setValueTab] = useState(0);
 
@@ -79,8 +76,6 @@ const Menu = () => {
     setValueTab(newValue);
   };
 
-
-
   return (
     <>
       <CheckoutCart />
@@ -91,21 +86,12 @@ const Menu = () => {
       <CssBaseline />
       <Container maxWidth="md" sx={{ marginTop: "24px" }}>
         <Discount />
-
         {/* tabs menu */}
-        
-        <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", marginTop: "40px", position: 'sticky', top: 0, zIndex: '1' }}>
+
+        <Box sx={{ maxWidth: "100%", bgcolor: "background.paper", marginTop: "40px", position: "sticky", top: 0, zIndex: "1" }}>
           <ThemeProvider theme={theme}>
-            <Tabs
-              value={valueTab}
-              onChange={handleChange}
-              variant="scrollable"
-              scrollButtons="auto"
-              textColor="secondary"
-              aria-label="scrollable auto tabs example"
-              font-family="Poppins"
-            >
-              <CustomTab label="Recommended" href="#recommended"  />
+            <Tabs value={valueTab} onChange={handleChange} variant="scrollable" scrollButtons="auto" textColor="secondary" aria-label="scrollable auto tabs example" font-family="Poppins">
+              <CustomTab label="Recommended" href="#recommended" />
               <CustomTab label="Most Favorite" href="#most-favorite" />
               <CustomTab label="Appetizer" href="#appetizer" />
               <CustomTab label="Hot Dishes" href="#hot-dishes" />
@@ -116,7 +102,6 @@ const Menu = () => {
             </Tabs>
           </ThemeProvider>
         </Box>
-
         {/* menu item */}
 
         <ScrollToTop showBelow={250} />
@@ -124,9 +109,22 @@ const Menu = () => {
         <div id="recommended" className="categories">
           <img className="logo" src={logo1} alt="" />
           <h3>Recommended</h3>
-
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {/* {detailMenu.map((item) => (
+          
+        ))}
+        {/* {detailMenu.details && (
+          <CardMenu
+            detailImg={detailMenu.details.image}
+            menuImage={detailMenu.details.image}
+            menuName={detailMenu.details.food}
+            normalPrice={detailMenu.details.price}
+            nameMenu={detailMenu.details.description}
+            priceDiscount={detailMenu.details.specialPrice}
+          />
+        )}{" "}
+        */}
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataRecommended.map((item) => (
 
             <CardMenu
@@ -136,120 +134,115 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu= {item.id}
+              variantsId= {item.variants.id}
+              variantOptionsId= {item.variantOptions.id}
               menuInfo={item.description}
               category={item.category.name}
                /> )
               
           )}
         </div>
-
         <div id="most-favorite" className="categories">
           <img className="logo" src={logo2} alt="" />
           <h3>Most Favorite</h3>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataMostFavorite.map((item) => (
-
-            <CardMenu
-              menuName={item.food}
-              menuImage={item.image}
-              discountPrice={item.specialPrice}
-              normalPrice={item.price}
-              idMenu ={item.id}
-              menuInfo={item.description}
-              category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            variantsId= {item.variants.id}
+            variantOptionsId= {item.variantOptions.id} 
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
-
         <div id="appetizer" className="categories">
-          
           <h3>Appetizer</h3>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataAppetizer.map((item) => (
-
-            <CardMenu
-              menuName={item.food}
-              menuImage={item.image}
-              discountPrice={item.specialPrice}
-              normalPrice={item.price}
-              idMenu ={item.id}
-              menuInfo={item.description}
-              category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            variantsId= {item.variants.id}
+            variantOptionsId= {item.variantOptions.id} 
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
-
         <div id="hot-dishes" className="categories">
-          
           <h3>Hot Dishes</h3>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataHotDishes.map((item) => (
-
-            <CardMenu
-              menuName={item.food}
-              menuImage={item.image}
-              discountPrice={item.specialPrice}
-              normalPrice={item.price}
-              idMenu ={item.id}
-              menuInfo={item.description}
-              category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            variantsId= {item.variants.id}
+            variantOptionsId= {item.variantOptions.id} 
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
-
         <div id="seafood" className="categories">
-          
           <h3>Seafood Dishes and Others</h3>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataSeafood.map((item) => (
-
-            <CardMenu
-              menuName={item.food}
-              menuImage={item.image}
-              discountPrice={item.specialPrice}
-              normalPrice={item.price}
-              idMenu ={item.id}
-              menuInfo={item.description}
-              category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            variantsId= {item.variants.id}
+            variantOptionsId= {item.variantOptions.id} 
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
-
         <div id="vegetable" className="categories">
-          
           <h3>Vegetable</h3>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataVegetable.map((item) => (
-
-            <CardMenu
-              menuName={item.food}
-              menuImage={item.image}
-              discountPrice={item.specialPrice}
-              normalPrice={item.price}
-              idMenu ={item.id}
-              menuInfo={item.description}
-              category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            variantsId= {item.variants.id}
+            variantOptionsId= {item.variantOptions.id} 
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
-
         <div id="staple" className="categories">
-          
           <h3>Staple</h3>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataStaple.map((item) => (
-            
-            <CardMenu
-              menuName={item.food}
-              menuImage={item.image}
-              discountPrice={item.specialPrice}
-              normalPrice={item.price}
-              idMenu ={item.id}
-              menuInfo={item.description}
-              category={item.category.name}/>
-              
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            variantsId= {item.variants.id}
+            variantOptionsId= {item.variantOptions.id} 
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
       </Container>
