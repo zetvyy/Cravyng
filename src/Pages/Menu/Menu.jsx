@@ -18,6 +18,7 @@ import { getMenu, getMenuCategories } from '../../redux/action/menuAction'
 import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
 
 
+
 const Menu = () => {
   // const [menuTitle, setMenuTitle] = useState();
   // const [price, setPrice] = useState();
@@ -30,7 +31,8 @@ const Menu = () => {
     dataHotDishes,
     dataSeafood,
     dataVegetable,
-    dataStaple } = useSelector(
+    dataStaple,
+    } = useSelector(
     (state) => state.menu
   );
   
@@ -136,9 +138,9 @@ const Menu = () => {
               idMenu= {item.id}
               menuInfo={item.description}
               category={item.category.name}
-               />
+               /> )
               
-          ))}
+          )}
         </div>
 
         <div id="most-favorite" className="categories">

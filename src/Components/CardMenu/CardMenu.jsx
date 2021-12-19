@@ -16,6 +16,7 @@ import MuiAlert from '@mui/material/Alert';
 import * as React from 'react';
 import { getMenuDetail } from "../../redux/action/menuDetailAction";
 import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../../redux/action/addCartAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
@@ -68,10 +69,17 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
 
   // alert snackbar
   const [openAlert, setOpenAlert] = useState(false);
+  
 
   const handleClickAlert = () => {
-    setOpenAlert(dataCart);
-    console.log(dataCart)
+    const dataCart = {
+      menuId: idMenu,
+      orderId: 4,
+      quantity: counter,
+      variantId: 9,
+      variantOptionId: 10
+    }
+    dispatch(addCart(dataCart))
   };
 
   const handleCloseAlert = (event, reason) => {
@@ -88,14 +96,14 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   });
  
   
-  const dataCart = {
-    menuName,
-    discountPrice,
-    normalPrice,
-    newComment,
-    counter,
-    value
-  }
+  // const dataCart = {
+  //   menuName,
+  //   discountPrice,
+  //   normalPrice,
+  //   newComment,
+  //   counter,
+  //   value
+  // }
   
 
 
@@ -124,7 +132,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
         },
       }}
     >
-
+      
       <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: '20px' }} onClick={handleOpen("body")}>
         <CardActionArea>
           <CardMedia component="img" height="200" image={menuImage} alt="menu" />
@@ -229,7 +237,8 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
               <Typography sx={{ marginTop: "4px", color: "#868993" }}>Select 1</Typography>
               <FormControl component="fieldset" sx={{ marginTop: "17.5px" }}>
                 <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={value} onChange={handleChange}>
-                  {item.variantOptions.length > 0 && item.variantOptions.map ((option) => ( 
+                  {item.variantOptions.length > 0 && item.variantOptions.map ((option) => (
+                     
                   <FormControlLabel value={option.label} control={<Radio />} label={option.label} />
                   ))}
                   {/* <FormControlLabel value="food2" control={<Radio />} label="Stir-fried String Beans" /> */}
@@ -296,7 +305,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
                 onClick={handleClickAlert}
                 variant="contained" >Add to Cart</Button>
 
-              <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+              <Snackbar open={openAlert} autoHideDuration={2000} onClose={handleCloseAlert}>
                 <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
                   {counter} item added to cart
                 </Alert>
