@@ -20,3 +20,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const GET_DETAIL_MENU = "GET_DETAIL_MENU";
 export const GET_DETAIL_USER = "GET_DETAIL_USER";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+
+export const ADD_TO_CART = "ADD_TO_CART";

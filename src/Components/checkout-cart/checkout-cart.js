@@ -10,6 +10,7 @@ import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetailUser } from "../../redux/action/authAction";
+import { addCart } from "../../redux/action/addCartAction";
 
 function CheckoutCart() {
   const [visible, setVisible] = useState(false);
@@ -24,10 +25,12 @@ function CheckoutCart() {
     history.push("/profile");
   };
 
-  const users = useSelector(state => state.authReducer.data);
+  const { addCart } = useSelector((state) => state.menuDetail);
+  const users = useSelector((state) => state.authReducer.data);
 
   useEffect(() => {
     dispatch(getDetailUser());
+    dispatch(addCart());
   }, [dispatch]);
 
   return (
@@ -35,7 +38,7 @@ function CheckoutCart() {
       <div className={Styles.Container}>
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
-            <img src={foto} alt="Cravyng Logo" />
+            <img src={foto} alt="Cravyng Logo" onClick={() => history.push("/menu")} style={{ cursor: "pointer" }} />
             {/* <a href="#">Continue as merchant</a> */}
           </div>
 

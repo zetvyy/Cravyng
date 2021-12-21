@@ -16,6 +16,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
 import { getMenuDetail } from "../../redux/action/menuDetailAction";
+import { addCart } from "../../redux/action/addCartAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
@@ -27,7 +28,9 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   const dispatch = useDispatch();
 
   const { dataDetailMenu } = useSelector((state) => state.menuDetail);
-
+  console.log(dataDetailMenu);
+  console.log(dataDetailMenu.variants ? dataDetailMenu.variants[0].id : "");
+  // console.log(dataDetailMenu?.variants.variantsOption.id);
   const handleOpen = (scrollType) => () => {
     dispatch(getMenuDetail(idMenu));
     setOpen(true);
@@ -35,10 +38,11 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   };
   const handleClose = () => setOpen(false);
   //Radio Button
-  const [value, setValue] = useState();
+  const [variantsOptionId, setvariantsOptionId] = useState("");
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setvariantsOptionId(event.target.value);
+    console.log(event.target.value);
   };
 
   //style font
@@ -62,9 +66,16 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
 
   // alert snackbar
   const [openAlert, setOpenAlert] = useState(false);
-
+  const order = useSelector((state) => state.authReducer.Order);
   const handleClickAlert = () => {
-    setOpenAlert(dataCart);
+    const dataCart = {
+      menuId: idMenu,
+      orderId: ~~order,
+      quantity: counter,
+      variantId: dataDetailMenu.variants[0].id,
+      variantOptionId: ~~variantsOptionId,
+    };
+    dispatch(addCart(dataCart));
     console.log(dataCart);
   };
 
@@ -80,14 +91,14 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-  const dataCart = {
-    menuName,
-    discountPrice,
-    normalPrice,
-    newComment,
-    counter,
-    value,
-  };
+  // const dataCart = {
+  //   menuName,
+  //   discountPrice,
+  //   normalPrice,
+  //   newComment,
+  //   counter,
+  //   value,
+  // };
 
   // const { getdetailMenu } = useSelector((state) => state.menuReducer);
   // const [detailMenu, setdetailMenu] = useState({});
@@ -220,8 +231,8 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
                   </Box>
                   <Typography sx={{ marginTop: "4px", color: "#868993" }}>Select 1</Typography>
                   <FormControl component="fieldset" sx={{ marginTop: "17.5px" }}>
-                    <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={value} onChange={handleChange}>
-                      {item.variantOptions.length > 0 && item.variantOptions.map((option) => <FormControlLabel value={option.label} control={<Radio />} label={option.label} />)}
+                    <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={variantsOptionId} onChange={handleChange}>
+                      {item.variantOptions.length > 0 && item.variantOptions.map((option) => <FormControlLabel value={option.id} control={<Radio />} label={option.label} />)}
                       {/* <FormControlLabel value="food2" control={<Radio />} label="Stir-fried String Beans" /> */}
                     </RadioGroup>
                   </FormControl>
