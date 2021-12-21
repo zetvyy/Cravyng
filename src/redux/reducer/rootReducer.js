@@ -5,8 +5,8 @@ import menuDetailReducer from "./menuDetailReducer";
 import addCartReducer from "./addCartReducer";
 
 export default combineReducers({
+  authReducer,
   menu: menuReducer,
   menuDetail: menuDetailReducer,
-  authReducer,
-  addCart: addCartReducer,
+  addCartMenu: addCartReducer,
 });

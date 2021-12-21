@@ -17,12 +17,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMenu, getMenuCategories } from "../../redux/action/menuAction";
 import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
 
+
+
+
 const Menu = () => {
   // const [menuTitle, setMenuTitle] = useState();
   // const [price, setPrice] = useState();
+  
   const dispatch = useDispatch();
 
-  const { dataRecommended, dataMostFavorite, dataAppetizer, dataHotDishes, dataSeafood, dataVegetable, dataStaple } = useSelector((state) => state.menu);
+  const { 
+    dataRecommended, 
+    dataMostFavorite, 
+    dataAppetizer,
+    dataHotDishes,
+    dataSeafood,
+    dataVegetable,
+    dataStaple,
+    } = useSelector(
+    (state) => state.menu
+  );
+  
 
   useEffect(() => {
     dispatch(getMenu());
@@ -113,8 +128,20 @@ const Menu = () => {
         */}
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataRecommended.map((item) => (
-            <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} category={item.category.name} />
-          ))}
+
+            <CardMenu
+           
+              menuName={item.food}
+              menuImage={item.image}
+              discountPrice={item.specialPrice}
+              normalPrice={item.price}
+              idMenu= {item.id}
+              
+              menuInfo={item.description}
+              category={item.category.name}
+               /> )
+              
+          )}
         </div>
         <div id="most-favorite" className="categories">
           <img className="logo" src={logo2} alt="" />
@@ -122,7 +149,15 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataMostFavorite.map((item) => (
-            <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
         <div id="appetizer" className="categories">
@@ -130,7 +165,15 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataAppetizer.map((item) => (
-            <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
         <div id="hot-dishes" className="categories">
@@ -138,7 +181,15 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataHotDishes.map((item) => (
-            <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
         <div id="seafood" className="categories">
@@ -146,7 +197,15 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataSeafood.map((item) => (
-            <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
         <div id="vegetable" className="categories">
@@ -154,7 +213,15 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataVegetable.map((item) => (
-            <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
         <div id="staple" className="categories">
@@ -162,7 +229,15 @@ const Menu = () => {
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {dataStaple.map((item) => (
-            <CardMenu menuName={item.food} menuImage={item.image} discountPrice={item.specialPrice} normalPrice={item.price} idMenu={item.id} menuInfo={item.description} category={item.category.name} />
+            <CardMenu 
+            menuName={item.food} 
+            menuImage={item.image} 
+            discountPrice={item.specialPrice} 
+            normalPrice={item.price} 
+            idMenu={item.id}
+            
+            menuInfo={item.description} 
+            category={item.category.name} />
           ))}
         </div>
       </Container>

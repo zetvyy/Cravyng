@@ -16,7 +16,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
 import { getMenuDetail } from "../../redux/action/menuDetailAction";
-import { addCart } from "../../redux/action/addCartAction";
+import { addToCart } from "../../redux/action/addCartAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
@@ -25,24 +25,44 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
+  //Radio Button
+  const [variantsOptionId, setVariantsOptionId] = useState("");
+
+  //input
+  const [newComment, setNewComment] = useState("");
+
+  //increment & decrement
+  const [counter, setCounter] = useState(0);
+
+  //snackbar
+  const [openAlert, setOpenAlert] = useState(false);
+
   const dispatch = useDispatch();
 
   const { dataDetailMenu } = useSelector((state) => state.menuDetail);
-  console.log(dataDetailMenu);
+
   console.log(dataDetailMenu.variants ? dataDetailMenu.variants[0].id : "");
-  // console.log(dataDetailMenu?.variants.variantsOption.id);
+
+  const order = useSelector((state) => state.authReducer.Order);
+
   const handleOpen = (scrollType) => () => {
     dispatch(getMenuDetail(idMenu));
     setOpen(true);
     setScroll(scrollType);
   };
+
+  // useEffect (() => {
+  //   dispatch(getMenuDetail(id))
+  // }, [dispatch])
+
   const handleClose = () => setOpen(false);
   //Radio Button
   const [variantsOptionId, setvariantsOptionId] = useState("");
 
+  //Radio Button
+
   const handleChange = (event) => {
-    setvariantsOptionId(event.target.value);
-    console.log(event.target.value);
+    setVariantsOptionId(event.target.value);
   };
 
   //style font
@@ -52,11 +72,8 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
     },
   });
 
-  //input
-  const [newComment, setNewComment] = useState("");
-
   //increment, decrement
-  const [counter, setCounter] = useState(0);
+
   const incrementCounter = () => setCounter(counter + 1);
   let decrementCounter = () => setCounter(counter - 1);
 
@@ -75,7 +92,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
       variantId: dataDetailMenu.variants[0].id,
       variantOptionId: ~~variantsOptionId,
     };
-    dispatch(addCart(dataCart));
+    dispatch(addToCart(dataCart));
     console.log(dataCart);
   };
 
@@ -91,26 +108,6 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-  // const dataCart = {
-  //   menuName,
-  //   discountPrice,
-  //   normalPrice,
-  //   newComment,
-  //   counter,
-  //   value,
-  // };
-
-  // const { getdetailMenu } = useSelector((state) => state.menuReducer);
-  // const [detailMenu, setdetailMenu] = useState({});
-  // // const params = useParams();
-
-  // useEffect(() => {
-  //   // const detailMenuFound = getdetailMenu.find((item) => item.id === Number(params.detailMenuId));
-  //   // if (detailMenuFound) {
-  //   //   setdetailMenu(detailMenuFound);
-  //   // }
-  //   dispatch(getDetailMenu());
-  // }, []);
   return (
     // <div>
     //   <div className={Styles.Container}>
@@ -224,7 +221,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
             {dataDetailMenu.variants &&
               dataDetailMenu.variants.length > 0 &&
               dataDetailMenu.variants.map((item) => (
-                <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }}>
+                <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }} key={item.id}>
                   <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                     <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}>{item.label}</Typography>
                     <Typography sx={{ color: "#616BC8", fontSize: "14px" }}>*Required</Typography>
@@ -299,7 +296,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
                 Add to Cart
               </Button>
 
-              <Snackbar open={openAlert} autoHideDuration={6000} onClose={handleCloseAlert}>
+              <Snackbar open={openAlert} autoHideDuration={2000} onClose={handleCloseAlert}>
                 <Alert onClose={handleCloseAlert} severity="success" sx={{ width: "100%" }}>
                   {counter} item added to cart
                 </Alert>

@@ -145,6 +145,7 @@ const menuReducer = (state = initialState, action) => {
         isLoading: false,
         error: error.message,
       };
+    
 
     default:
       return {
