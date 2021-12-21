@@ -4,6 +4,7 @@ const initialState = {
   data: [],
   token: localStorage.getItem("token") || false,
   role: localStorage.getItem("role") || false,
+  Order: localStorage.getItem("Order") || false,
   error: null
 };
 
@@ -24,7 +25,8 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         role: payload.role,
-        token: payload.token
+        token: payload.token,
+        Order: payload.Order.id,
       };
     case LOGIN_FAIL:
       return {

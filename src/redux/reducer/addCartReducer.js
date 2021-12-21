@@ -1,12 +1,13 @@
-import { ADD_TO_CART } from "../types";
+import { ADD_TO_CART, UPDATE_CHECKOUT } from "../types";
 
 const initialState =  {
-    addCart: {},
+    addCart: [],
+    dataCheckout: [],
     isLoading: true,
     error: null,
 };
 
-const addCArtReducer = (state = initialState, action) => {
+const addCartReducer = (state = initialState, action) => {
     const { type, payload, error } = action;
     switch (type) {
 
@@ -18,7 +19,10 @@ const addCArtReducer = (state = initialState, action) => {
         case `${ADD_TO_CART}_FULFILLED`:
                 return {
                   ...state,
-                  addToCart: payload,
+                  addCart: [
+                    ...state.addCart,
+                    payload
+                  ],
                   isLoading: false,
                 };
         case `${ADD_TO_CART}_ERROR`:
@@ -27,10 +31,28 @@ const addCArtReducer = (state = initialState, action) => {
                   isLoading: false,
                   error: error,
                 };
+        case `${UPDATE_CHECKOUT}_LOADING`:
+                return {
+                  ...state,
+                  isLoading: true,
+                };
+        case `${UPDATE_CHECKOUT}_FULFILLED`:
+                return {
+                  ...state,
+                  dataCheckout: payload,
+                  isLoading: false,
+                };
+        case `${UPDATE_CHECKOUT}_ERROR`:
+                return {
+                  ...state,
+                  isLoading: false,
+                  error: error,
+                };
+        
             default:
                 return {
                     ...state
                 }
         }
     }
-    export default addCArtReducer
+    export default addCartReducer

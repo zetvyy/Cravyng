@@ -1,4 +1,4 @@
-import { GET_MENU_DETAIL, ADD_TO_CART } from "../types";
+import { GET_MENU_DETAIL } from "../types";
 
 const initialState =  {
     dataDetailMenu: {},
@@ -14,7 +14,7 @@ const menuDetailReducer = (state = initialState, action) => {
                 ...state,
             };
         case `${GET_MENU_DETAIL}_FULFILLED`:
-            // console.log(payload)
+            console.log(payload)
             return {
                 ...state,
                 dataDetailMenu: payload,
@@ -27,23 +27,6 @@ const menuDetailReducer = (state = initialState, action) => {
                 error: error.message,
             };
 
-        case `${ADD_TO_CART}_LOADING`:
-                return {
-                  ...state,
-                  isLoading: true,
-                };
-        case `${ADD_TO_CART}_FULFILLED`:
-                return {
-                  ...state,
-                  addToCart: payload,
-                  isLoading: false,
-                };
-        case `${ADD_TO_CART}_ERROR`:
-                return {
-                  ...state,
-                  isLoading: false,
-                  error: error,
-                };
             default:
                 return {
                     ...state

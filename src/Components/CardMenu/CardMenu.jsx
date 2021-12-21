@@ -16,33 +16,54 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import * as React from "react";
 import { getMenuDetail } from "../../redux/action/menuDetailAction";
-import { useDispatch, useSelector } from "react-redux";
-import { addCart } from "../../redux/action/addCartAction";
+import { addToCart } from "../../redux/action/addCartAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, variantsId, variantOptionsId, menuInfo, category }) => {
+const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category }) => {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
 
+  //Radio Button
+  const [variantsOptionId, setVariantsOptionId] = useState("")
+  
+  
+
+  //input
+  const [newComment, setNewComment] = useState("");
+
+  //increment & decrement
+  const [counter, setCounter] = useState(0);
+
+  //snackbar
+  const [openAlert, setOpenAlert] = useState(false);
+
   const dispatch = useDispatch();
 
   const { dataDetailMenu } = useSelector((state) => state.menuDetail);
+  
+  console.log(dataDetailMenu.variants ? dataDetailMenu.variants[0].id : "")
+  
+  const order = useSelector(state => state.authReducer.Order);
+  
 
   const handleOpen = (scrollType) => () => {
-    dispatch(getMenuDetail(idMenu, variantsId, variantOptionsId));
+    dispatch(getMenuDetail(idMenu));
     setOpen(true);
     setScroll(scrollType);
   };
-  console.log(getMenuDetail)
   
-  const handleClose = () => setOpen(false);
-  //Radio Button
-  const [value, setValue] = useState();
+  // useEffect (() => {
+  //   dispatch(getMenuDetail(id))
+  // }, [dispatch])
 
+  const handleClose = () => setOpen(false);
+
+  //Radio Button
+  
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setVariantsOptionId(event.target.value);
   };
 
   //style font
@@ -52,11 +73,10 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, var
     },
   });
 
-  //input
-  const [newComment, setNewComment] = useState("");
+  
 
   //increment, decrement
-  const [counter, setCounter] = useState(0);
+  
   const incrementCounter = () => setCounter(counter + 1);
   let decrementCounter = () => setCounter(counter - 1);
 
@@ -65,18 +85,17 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, var
   }
 
   // alert snackbar
-  const [openAlert, setOpenAlert] = useState(false);
   
-
   const handleClickAlert = () => {
     const dataCart = {
       menuId: idMenu,
-      orderId: 4,
+      orderId: ~~order,
       quantity: counter,
-      variantId: 9,
-      variantOptionId: 10
+      variantId: dataDetailMenu.variants[0].id, 
+      variantOptionId: ~~variantsOptionId,
     }
-    dispatch(addCart(dataCart))
+    dispatch(addToCart(dataCart))
+    console.log(dataCart)
   };
 
   const handleCloseAlert = (event, reason) => {
@@ -92,27 +111,8 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, var
   });
  
   
-  // const dataCart = {
-  //   menuName,
-  //   discountPrice,
-  //   normalPrice,
-  //   newComment,
-  //   counter,
-  //   value
-  // }
   
-
-  // const { getdetailMenu } = useSelector((state) => state.menuReducer);
-  // const [detailMenu, setdetailMenu] = useState({});
-  // // const params = useParams();
-
-  // useEffect(() => {
-  //   // const detailMenuFound = getdetailMenu.find((item) => item.id === Number(params.detailMenuId));
-  //   // if (detailMenuFound) {
-  //   //   setdetailMenu(detailMenuFound);
-  //   // }
-  //   dispatch(getDetailMenu());
-  // }, []);
+  
   return (
     // <div>
     //   <div className={Styles.Container}>
@@ -225,17 +225,17 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, var
 
           <ThemeProvider theme={theme}>
             {dataDetailMenu.variants && dataDetailMenu.variants.length > 0 && dataDetailMenu.variants.map((item) => ( 
-            <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }}>
+            <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }} key={item.id}>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}>{item.label}</Typography>
+                <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}  >{item.label}</Typography>
                 <Typography sx={{ color: "#616BC8", fontSize: "14px" }}>*Required</Typography>
               </Box>
               <Typography sx={{ marginTop: "4px", color: "#868993" }}>Select 1</Typography>
               <FormControl component="fieldset" sx={{ marginTop: "17.5px" }}>
-                <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={value} onChange={handleChange}>
+                <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={variantsOptionId} onChange={handleChange}>
                   {item.variantOptions.length > 0 && item.variantOptions.map ((option) => (
                      
-                  <FormControlLabel value={option.label} control={<Radio />} label={option.label} />
+                  <FormControlLabel  value={option.id} control={<Radio />} label={option.label} />
                   ))}
                   {/* <FormControlLabel value="food2" control={<Radio />} label="Stir-fried String Beans" /> */}
 

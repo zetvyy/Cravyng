@@ -1,7 +1,6 @@
 import { GET_MENU, GET_MENU_CAT_RECOMMENDED, GET_MENU_CAT_MOST_FAVORITE, GET_MENU_CAT_APPETIZER, GET_MENU_CAT_HOT_DISHES, GET_MENU_CAT_SEAFOOD, GET_MENU_CAT_VEGETABLE, GET_MENU_CAT_STAPLE } from "../types";
 
 const initialState = {
-<<<<<<< HEAD
   data: [],
   dataRecommended: [],
   dataMostFavorite: [],
@@ -12,18 +11,6 @@ const initialState = {
   dataStaple: [],
   isLoading: true,
   error: null,
-=======
-    data: [],
-    dataRecommended : [],
-    dataMostFavorite: [],
-    dataAppetizer: [],
-    dataHotDishes: [],
-    dataSeafood: [],
-    dataVegetable: [],
-    dataStaple: [],
-    isLoading: true,
-    error: null,
->>>>>>> 753a0007a844d51ecec795549329c93ec9b958c6
 };
 
 const menuReducer = (state = initialState, action) => {
@@ -158,6 +145,7 @@ const menuReducer = (state = initialState, action) => {
         isLoading: false,
         error: error.message,
       };
+    
 
     default:
       return {

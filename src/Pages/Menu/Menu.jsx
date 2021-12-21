@@ -19,9 +19,11 @@ import ScrollToTop from "../../Components/ScrollToTop/ScrollToTop";
 
 
 
+
 const Menu = () => {
   // const [menuTitle, setMenuTitle] = useState();
   // const [price, setPrice] = useState();
+  
   const dispatch = useDispatch();
 
   const { 
@@ -134,8 +136,7 @@ const Menu = () => {
               discountPrice={item.specialPrice}
               normalPrice={item.price}
               idMenu= {item.id}
-              variantsId= {item.variants.id}
-              variantOptionsId= {item.variantOptions.id}
+              
               menuInfo={item.description}
               category={item.category.name}
                /> )
@@ -154,8 +155,7 @@ const Menu = () => {
             discountPrice={item.specialPrice} 
             normalPrice={item.price} 
             idMenu={item.id}
-            variantsId= {item.variants.id}
-            variantOptionsId= {item.variantOptions.id} 
+            
             menuInfo={item.description} 
             category={item.category.name} />
           ))}
@@ -171,8 +171,7 @@ const Menu = () => {
             discountPrice={item.specialPrice} 
             normalPrice={item.price} 
             idMenu={item.id}
-            variantsId= {item.variants.id}
-            variantOptionsId= {item.variantOptions.id} 
+            
             menuInfo={item.description} 
             category={item.category.name} />
           ))}
@@ -188,8 +187,7 @@ const Menu = () => {
             discountPrice={item.specialPrice} 
             normalPrice={item.price} 
             idMenu={item.id}
-            variantsId= {item.variants.id}
-            variantOptionsId= {item.variantOptions.id} 
+            
             menuInfo={item.description} 
             category={item.category.name} />
           ))}
@@ -205,8 +203,7 @@ const Menu = () => {
             discountPrice={item.specialPrice} 
             normalPrice={item.price} 
             idMenu={item.id}
-            variantsId= {item.variants.id}
-            variantOptionsId= {item.variantOptions.id} 
+
             menuInfo={item.description} 
             category={item.category.name} />
           ))}
@@ -222,8 +219,7 @@ const Menu = () => {
             discountPrice={item.specialPrice} 
             normalPrice={item.price} 
             idMenu={item.id}
-            variantsId= {item.variants.id}
-            variantOptionsId= {item.variantOptions.id} 
+            
             menuInfo={item.description} 
             category={item.category.name} />
           ))}
@@ -239,8 +235,7 @@ const Menu = () => {
             discountPrice={item.specialPrice} 
             normalPrice={item.price} 
             idMenu={item.id}
-            variantsId= {item.variants.id}
-            variantOptionsId= {item.variantOptions.id} 
+            
             menuInfo={item.description} 
             category={item.category.name} />
           ))}
