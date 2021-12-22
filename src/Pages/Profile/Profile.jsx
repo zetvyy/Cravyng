@@ -1,6 +1,6 @@
 import "./Profile.css";
 import image from "./assets/Rectangle 5.png";
-import rating from "./assets/Vector (2).png";
+import ratingStar from "./assets/Vector (2).png";
 import ButtonSignOut from "../../Components/ButtonSignOut";
 import ButtonUpload from "../../Components/ButtonUpload";
 import { Container, CssBaseline, Typography } from "@mui/material";
@@ -11,21 +11,25 @@ import Checkout from "../../Components/checkout-cart/checkout-cart";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getDetailUser } from "../../redux/action/authAction";
+import DatePeriod from "../../Components/Date/DatePeriod";
+import { getSalesSummary } from "../../redux/action/profileAction";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const users = useSelector(state => state.authReducer.data);
+  const rating = useSelector(state => state.profile.rating)
 
   useEffect(() => {
-  	dispatch(getDetailUser());
-  },[dispatch])
+    dispatch(getDetailUser());
+    dispatch(getSalesSummary());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <Checkout />
       {/* // header profile */}
       <div className="container">
-        <img className="image" src={image} alt="" />
+        <img className="image" src={users.image || image} alt="" />
 
         <div className="profile-wrap">
           <ButtonSignOut />
@@ -36,8 +40,8 @@ const Profile = () => {
               <p>{users.email}</p>
               <p style={{ margin: "0 24px" }}>|</p>
               <div className="rating-wrap">
-                <img src={rating} alt="" />
-                <p>4.7</p>
+                <img src={ratingStar} alt="" />
+                <p>{rating[0] ? Math.round(rating[0]["Average Rating"]) : 0 }</p>
               </div>
             </div>
             <ButtonUpload />
@@ -48,8 +52,12 @@ const Profile = () => {
       <Container maxWidth="lg" sx={{ marginTop: "61px" }}>
         <Typography sx={{ fontFamily: "Poppins", fontWeight: "700", fontSize: "24px" }}>Sales Summary</Typography>
 
-        <DateFilter />
-
+        <DateFilter /> 
+       
+        <DatePeriod label="From"/>
+      
+        <DatePeriod label="To"/>
+      
         <SalesSummary />
 
         <TableOrder />

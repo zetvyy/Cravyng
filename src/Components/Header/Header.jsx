@@ -15,7 +15,11 @@ const Header = () => {
   }, [dispatch]);
 
   return (
-    <div className={Styles.header}>
+    <div 
+      className={Styles.header} 
+      style={users.image && 
+        { backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${users.image})` }}
+    >
       <div className={Styles.info_profile}>
         <h1>{users.name}</h1>
         <div className={Styles.rating}>

@@ -107,7 +107,7 @@ function CheckoutCart() {
       <div className={Styles.Container}>
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
-            <img src={foto} alt="Cravyng Logo" onClick={() => history.push("/menu")} style={{ cursor: "pointer" }} />
+            <img src={foto} alt="Cravyng Logo" onClick={() => history.push("/menu")} style={{cursor:"pointer"}}/>
             {/* <a href="#">Continue as merchant</a> */}
           </div>
 
