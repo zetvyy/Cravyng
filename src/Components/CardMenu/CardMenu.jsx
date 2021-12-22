@@ -57,7 +57,6 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
 
   const handleClose = () => setOpen(false);
   //Radio Button
-  const [variantsOptionId, setvariantsOptionId] = useState("");
 
   //Radio Button
 
@@ -82,8 +81,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   }
 
   // alert snackbar
-  const [openAlert, setOpenAlert] = useState(false);
-  const order = useSelector((state) => state.authReducer.Order);
+
   const handleClickAlert = () => {
     const dataCart = {
       menuId: idMenu,
@@ -274,6 +272,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
                 +
               </Typography>
               <Button
+                disabled={counter === 0}
                 sx={{
                   color: "#FFFFFF",
                   padding: "10px",

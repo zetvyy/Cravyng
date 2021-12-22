@@ -6,6 +6,7 @@ import { MdShoppingBasket } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
+import { Button } from "@mui/material";
 // import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -34,7 +35,34 @@ function CheckoutCart() {
   const IdCheckout = useSelector((state) => state.authReducer.Order);
 
   const { addCart } = useSelector((state) => state.addCartMenu);
-  console.log(addCart);
+
+  const [cartData, setCartData] = useState([]);
+
+  useEffect(() => {
+    setCartData(addCart);
+  }, [addCart]);
+
+  const handleIncrement = (itemId) => {
+    setCartData([
+      ...cartData.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      }),
+    ]);
+  };
+
+  const handleDecrement = (itemId) => {
+    setCartData([
+      ...cartData.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      }),
+    ]);
+  };
 
   const total = () => {
     let totalVal = 0;
@@ -100,19 +128,16 @@ function CheckoutCart() {
             <div className={Styles.tl2}>
               <h3>Start adding items to your cart</h3>
             </div>
-            {addCart.map((item) => (
+            {cartData.map((item) => (
               <>
                 <div className={Styles.pax}>
                   <p>{item.menu.food}</p>
-
                   <h4>
-                    <span>
-                      <FaTrash />
-                    </span>
+                    <Button onClick={() => handleDecrement(item.id)}> {item.quantity === 1 ? <FaTrash /> : "-"}</Button>
                     {item.quantity}
-                    <span>
+                    <Button onClick={() => handleIncrement(item.id)}>
                       <FiPlus />
-                    </span>
+                    </Button>
                   </h4>
                 </div>
                 <div className={Styles.addition}>
