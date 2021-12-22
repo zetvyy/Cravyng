@@ -6,7 +6,6 @@ export const registerSuccess = registerData => {
   return async dispatch => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL_API}/user/signup`, registerData);
-      console.log(response);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: response.data.result.data
@@ -25,10 +24,8 @@ export const loginSuccess = loginData => {
   return async dispatch => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL_API}/user/signin`, loginData);
-      console.log(response);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.role);
-
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { role: response.data.role, token: response.data.token }
@@ -55,7 +52,6 @@ export const getDetailUser = () => {
           token: currentToken
         }
       });
-      console.log(response);
       dispatch({
         type: GET_DETAIL_USER,
         payload: response.data.data
@@ -66,10 +62,10 @@ export const getDetailUser = () => {
   };
 };
 
-const formdata = new FormData();
-// formdata.append("image", );
+export const updateProfile = imgData => {
+  const formdata = new FormData();
+  formdata.append("image", imgData);
 
-export const updateProfile = () => {
   return async dispatch => {
     try {
       const response = await axios({
@@ -78,9 +74,8 @@ export const updateProfile = () => {
         headers: {
           token: currentToken
         },
-        body: formdata
+        data: formdata
       });
-      console.log(response);
       dispatch({
         type: UPDATE_PROFILE,
         payload: response.data.data

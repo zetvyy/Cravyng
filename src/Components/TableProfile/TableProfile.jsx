@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from '@mui/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TablePagination from '@mui/material/TablePagination';
+import { useDispatch, useSelector } from "react-redux";
+import { getSalesSummary } from "../../redux/action/profileAction";
+import moment from 'moment';
 // import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
@@ -14,31 +17,6 @@ const useStyles = makeStyles({
     minWidth: 650
   }
 });
-
-function createData(orderDate, orderId, totalOrder, status, ) {
-  return { orderDate, orderId, totalOrder, status,  };
-}
-
-//ini dummy doang
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 'paid', ),
-  createData("Ice cream sandwich", 237, 9.0, 'paid', ),
-  createData("Eclair", 262, 16.0, 'unpaid', ),
-  createData("Cupcake", 305, 3.7, 'paid', ),
-  createData("Gingerbread", 356, 16.0, 'unpaid', ),
-  createData("Gingerbread2", 356, 16.0, 'paid', ),
-  createData("Gingerbread3", 356, 16.0, 'unpaid', ),
-  createData("Gingerbread4", 356, 16.0, 'paid', ),
-  createData("Gingerbread5", 356, 16.0, 'paid', ),
-  createData("Gingerbread6", 356, 16.0, 'unpaid', ),
-  createData("Gingerbread7", 356, 16.0, 'paid', ),
-  createData("Gingerbread8", 356, 16.0, 'unpaid', ),
-  createData("Gingerbread9", 356, 16.0, 'paid', ),
-  createData("Gingerbread10", 356, 16.0, 'unpaid', ),
-  createData("Gingerbread11", 356, 16.0, 'paid', ),
-  createData("Gingerbread12", 356, 16.0, 'unpaid', ),
-  createData("Gingerbread13", 356, 16.0, 'paid', )
-];
 
 export default function TableOrder() {
   const classes = useStyles();
@@ -48,12 +26,19 @@ export default function TableOrder() {
     setPage(newPage);
   };
 
+
+  const data = useSelector(state => state.profile.data)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSalesSummary())
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleChangeRowsPerPage = event => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
   return (
     <TableContainer sx={{marginBottom: '30px'}} >
@@ -68,16 +53,31 @@ export default function TableOrder() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {data
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((item, index) => (
+            .map((item) => (
               <TableRow key={item.name}>
                 <TableCell component="th" scope="row">
-                28/03/21
+                {moment(item["order.createdAt"]).format("DD/MM/YY")} 
                 </TableCell>
-                <TableCell align="right">#927467375</TableCell>
-                <TableCell align="right">Rp 157.600</TableCell>
-                <TableCell align="right" sx={{fontWeight:'bold'}}>{item.status}</TableCell>
+                <TableCell align="right">
+                  {item.orderId}
+                </TableCell>
+                <TableCell align="right">
+                  { new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" })
+                    .format(item.totalOrder)
+                  }   
+                </TableCell>
+                <TableCell 
+                  align="right" 
+                  sx={item["order.status"] === "paid" ? 
+                        {color:"green", fontWeight:'bold'} 
+                        : 
+                        {color:"red", fontWeight:'bold'}
+                     }
+                >
+                  {item["order.status"]}
+                </TableCell>
                 
               </TableRow>
             ))}
@@ -91,7 +91,7 @@ export default function TableOrder() {
       <TablePagination
         rowsPerPageOptions={[5, 10,]}
         component="div"
-        count={rows.length}
+        count={data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

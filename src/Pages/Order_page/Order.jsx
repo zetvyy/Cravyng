@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import Styles from "./assets/order.module.scss";
 import { BsShopWindow, BsFillPersonFill } from "react-icons/bs";
 import CardDetail from "../../Components/Card_detail_payment/CardDetail";
@@ -8,9 +8,16 @@ import { MdStars } from "react-icons/md";
 import CheckoutCart from "../../Components/checkout-cart/checkout-cart";
 import { useHistory } from "react-router-dom";
 import ButtonSignOut from "../../Components/ButtonSignOut";
+import { useSelector, useDispatch } from "react-redux";
+import { getDetailUser } from "../../redux/action/authAction";
+import { getOrderHistory } from "../../redux/action/profileAction";
 
 const Order = () => {
   const history = useHistory();
+  const dispatch = useDispatch()
+
+  const merchant = useSelector(state => state.authReducer.data);
+  const users = useSelector(state => state.profile.data);
 
   const [text, setText] = useState("How about our services?");
 
@@ -22,16 +29,22 @@ const Order = () => {
     setText("Thank You!");
   };
 
+  useEffect(() => {
+    dispatch(getDetailUser());
+    dispatch(getOrderHistory())
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+
   return (
     <>
       <CheckoutCart />
       <div className={Styles.header}>
-        <div>
-          <h1>Heavenly Taste</h1>
-          <p>
+        <div className={Styles.info_profile}>
+          <h1>{users[0] ? users[0].menu.user.name : ""}</h1>
+          <div className={Styles.rating}>
             <MdStars className={Styles.star_icon} />
             <span>4.7</span>
-          </p>
+          </div>
         </div>
       </div>
       <div className={Styles.btn_signout}>
@@ -43,15 +56,20 @@ const Order = () => {
           <p>Order #927467375</p>
           <div className={Styles.role}>
             <BsShopWindow className={Styles.icon} />
-            <span>Heavenly Taste</span>
+            <span>{users[0] ? users[0].menu.user.name : ""}</span>
           </div>
           <div className={Styles.role}>
             <BsFillPersonFill className={Styles.icon} />
-            <span>Rara Sekar</span>
+            <span>{merchant.name}</span>
           </div>
         </div>
-        <CardDetail />
-        <CardDetail />
+
+        {users.map(user => (
+          <div key={user.id}>
+            <CardDetail user={user}/>
+          </div>
+        ))}
+
         <Button className={Styles.btn_order} onClick={() => history.push("/menu")}>
           Make new Order
         </Button>
