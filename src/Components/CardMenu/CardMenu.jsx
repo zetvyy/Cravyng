@@ -26,9 +26,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   const [scroll, setScroll] = useState("paper");
 
   //Radio Button
-  const [variantsOptionId, setVariantsOptionId] = useState("")
-  
-  
+  const [variantsOptionId, setVariantsOptionId] = useState("");
 
   //input
   const [newComment, setNewComment] = useState("");
@@ -53,15 +51,16 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
     setOpen(true);
     setScroll(scrollType);
   };
-  
+
   // useEffect (() => {
   //   dispatch(getMenuDetail(id))
   // }, [dispatch])
 
   const handleClose = () => setOpen(false);
+  //Radio Button
 
   //Radio Button
-  
+
   const handleChange = (event) => {
     setVariantsOptionId(event.target.value);
   };
@@ -73,10 +72,8 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
     },
   });
 
-  
-
   //increment, decrement
-  
+
   const incrementCounter = () => setCounter(counter + 1);
   let decrementCounter = () => setCounter(counter - 1);
 
@@ -85,13 +82,13 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   }
 
   // alert snackbar
-  
+
   const handleClickAlert = () => {
     const dataCart = {
       menuId: idMenu,
       orderId: ~~order,
       quantity: counter,
-      variantId: dataDetailMenu.variants[0].id, 
+      variantId: dataDetailMenu.variants[0].id,
       variantOptionId: ~~variantsOptionId,
     }
     dispatch(addToCart(dataCart))
@@ -110,10 +107,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
- 
-  
-  
-  
+
   return (
     // <div>
     //   <div className={Styles.Container}>
@@ -139,8 +133,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
         },
       }}
     >
-      
-      <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: '20px' }} onClick={handleOpen("body")}>
+      <Card sx={{ maxWidth: 200, boxShadow: "none", marginTop: "24px", paddingBottom: "20px" }} onClick={handleOpen("body")}>
         <CardActionArea>
           <CardMedia component="img" height="200" image={menuImage} alt="menu" />
           <CardContent sx={{ padding: 0, marginTop: 2, marginLeft: 1, marginBottom: 2, marginRight: 1 }}>
@@ -225,24 +218,22 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
           </Container>
 
           <ThemeProvider theme={theme}>
-            {dataDetailMenu.variants && dataDetailMenu.variants.length > 0 && dataDetailMenu.variants.map((item) => ( 
-            <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }} key={item.id}>
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}  >{item.label}</Typography>
-                <Typography sx={{ color: "#616BC8", fontSize: "14px" }}>*Required</Typography>
-              </Box>
-              <Typography sx={{ marginTop: "4px", color: "#868993" }}>Select 1</Typography>
-              <FormControl component="fieldset" sx={{ marginTop: "17.5px" }}>
-                <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={variantsOptionId} onChange={handleChange}>
-                  {item.variantOptions.length > 0 && item.variantOptions.map ((option) => (
-                     
-                  <FormControlLabel  value={option.id} control={<Radio />} label={option.label} />
-                  ))}
-                  {/* <FormControlLabel value="food2" control={<Radio />} label="Stir-fried String Beans" /> */}
-
-                </RadioGroup>
-              </FormControl>
-            </Container>
+            {dataDetailMenu.variants &&
+              dataDetailMenu.variants.length > 0 &&
+              dataDetailMenu.variants.map((item) => (
+                <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "1px solid #D3D9FF" }} key={item.id}>
+                  <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                    <Typography sx={{ fontWeight: "bold", fontSize: "16px" }}>{item.label}</Typography>
+                    <Typography sx={{ color: "#616BC8", fontSize: "14px" }}>*Required</Typography>
+                  </Box>
+                  <Typography sx={{ marginTop: "4px", color: "#868993" }}>Select 1</Typography>
+                  <FormControl component="fieldset" sx={{ marginTop: "17.5px" }}>
+                    <RadioGroup aria-label="foodChoice1" name="controlled-radio-buttons-group" value={variantsOptionId} onChange={handleChange}>
+                      {item.variantOptions.length > 0 && item.variantOptions.map((option) => <FormControlLabel value={option.id} control={<Radio />} label={option.label} />)}
+                      {/* <FormControlLabel value="food2" control={<Radio />} label="Stir-fried String Beans" /> */}
+                    </RadioGroup>
+                  </FormControl>
+                </Container>
               ))}
             {/* <Container maxWidth="xl" sx={{ marginTop: "24px", paddingBottom: "25.5px", borderBottom: "10px solid #FAF9FF" }}>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -283,6 +274,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
                 +
               </Typography>
               <Button
+                disabled={counter === 0}
                 sx={{
                   color: "#FFFFFF",
                   padding: "10px",
@@ -306,7 +298,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
               </Button>
 
               <Snackbar open={openAlert} autoHideDuration={2000} onClose={handleCloseAlert}>
-                <Alert onClose={handleCloseAlert} severity="success" sx={{ width: '100%' }}>
+                <Alert onClose={handleCloseAlert} severity="success" sx={{ width: "100%" }}>
                   {counter} item added to cart
                 </Alert>
               </Snackbar>

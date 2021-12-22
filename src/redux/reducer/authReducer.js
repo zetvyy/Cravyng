@@ -5,7 +5,7 @@ const initialState = {
   token: localStorage.getItem("token") || false,
   role: localStorage.getItem("role") || false,
   Order: localStorage.getItem("Order") || false,
-  error: null
+  error: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -14,12 +14,12 @@ const authReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS:
       return {
         ...state,
-        data: payload
+        data: payload,
       };
     case REGISTER_FAIL:
       return {
         ...state,
-        error: payload
+        error: payload,
       };
     case LOGIN_SUCCESS:
       return {
@@ -31,23 +31,23 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_FAIL:
       return {
         ...state,
-        error: payload
+        error: payload,
       };
     case GET_DETAIL_USER:
       return {
         ...state,
-        data: payload
+        data: payload,
       };
     case UPDATE_PROFILE:
       return {
         ...state,
-        data: payload
+        data: payload,
       };
 
     default: {
       return {
         ...state,
-        payload
+        payload,
       };
     }
   }

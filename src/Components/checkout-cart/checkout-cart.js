@@ -113,7 +113,7 @@ function CheckoutCart() {
               <h3>Start adding items to your cart</h3>
             </div>
             <div style={{overflow: 'auto', height: 'auto'}}>
-            {addCart?.map((item) => (
+            {addCart.map((item) => (
             <>   
             <div className={Styles.pax}>
               
