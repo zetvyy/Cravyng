@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_TO_CART, UPDATE_CHECKOUT } from "../types";
+import { ADD_TO_CART, UPDATE_CHECKOUT, UPDATE_CART } from "../types";
 
 export const addToCart = (data) => {
   return async (dispatch) => {
@@ -50,6 +50,29 @@ export const updateCheckout = (id, data) => {
       console.log(err);
       dispatch({
         type: `${UPDATE_CHECKOUT}_ERROR`,
+        error: err,
+      });
+    }
+  };
+};
+
+export const updateCart = (id, data) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(`https://cravyngteam.herokuapp.com/ordersmenu/${id}`, data, {
+        headers: {
+          token,
+        },
+      });
+
+      dispatch({
+        type: `${UPDATE_CART}_FULFILLED`,
+        payload: response.data.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: `${UPDATE_CART}_ERROR`,
         error: err,
       });
     }
