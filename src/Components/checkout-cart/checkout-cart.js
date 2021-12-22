@@ -10,15 +10,16 @@ import { FaClipboardList } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetailUser } from "../../redux/action/authAction";
-import { addToCart, updateCheckout } from "../../redux/action/addCartAction";
+import { addToCart, getAllCart } from "../../redux/action/addCartAction";
+import { updateCheckout } from "../../redux/action/orderAction";
 
 
 function CheckoutCart() {
   const [visible, setVisible] = useState(false);
   
-  const [cartTotal, setCartTotal] = useState(0);
+  // const [cartTotal, setCartTotal] = useState(0);
   const [items, setItems] = useState(0);
-  const [priceTotal, setPriceTotal] = useState(0);
+  // const [priceTotal, setPriceTotal] = useState(0);
 
   
   
@@ -38,15 +39,16 @@ function CheckoutCart() {
   const IdCheckout = useSelector(state => state.authReducer.Order);
   
   const { addCart } = useSelector((state) => state.addCartMenu)
-  console.log(addCart)
+
   
-  const total = () => {
-      let totalVal = 0;
-      for(let i = 0; i < addCart.length; i++) {
-        totalVal += addCart[i].subTotalPrice;
-      }
-      setCartTotal(totalVal)
-    }
+
+  // const total = () => {
+  //     let totalVal = 0;
+  //     for(let i = 0; i < addCart.length; i++) {
+  //       totalVal += addCart[i].subTotalPrice;
+  //     }
+  //     setCartTotal(totalVal)
+  //   }
   
   const countItems = () => {
     let totalItem = 0;
@@ -57,15 +59,15 @@ function CheckoutCart() {
 
   }
   
-  const normalPrice = () => {
-    let totalPrice = 0;
-    for(let i = 0; i < addCart.length; i++) {
-      totalPrice += addCart[i].menu.price;
-    }
-    setPriceTotal(totalPrice)
-  }
+  // const normalPrice = () => {
+  //   let totalPrice = 0;
+  //   for(let i = 0; i < addCart.length; i++) {
+  //     totalPrice += addCart[i].menu.price;
+  //   }
+  //   setPriceTotal(totalPrice)
+  // }
 
-  const handleCheckout = (data) => {
+  const handleCheckout = () => {
     history.push("/checkout");
     dispatch(updateCheckout(IdCheckout));
     console.log(IdCheckout);
@@ -75,9 +77,10 @@ function CheckoutCart() {
   useEffect(() => {
     dispatch(getDetailUser());
     dispatch(addToCart());
-    total();
+    dispatch(getAllCart());
+    // total();
     countItems();
-    normalPrice();
+    // normalPrice();
   }, [addCart]); // eslint-disable-line react-hooks/exhaustive-deps
   
   
@@ -86,7 +89,7 @@ function CheckoutCart() {
     <div>
       <div className={Styles.Container}>
         <nav className={Styles.nav}>
-          <div className={Styles.Logo}>
+          <div className={Styles.Logo} onClick={() => history.push('/menu')}>
             <img src={foto} alt="Cravyng Logo" />
             {/* <a href="#">Continue as merchant</a> */}
           </div>
@@ -99,6 +102,7 @@ function CheckoutCart() {
             
             <div className={Styles.Cart2} onClick={() => toggleMenu()}>
               <MdShoppingBasket className={Styles.icon_cart} /> {items} Items
+              {/* <MdShoppingBasket className={Styles.icon_cart} /> {items} Items */}
             </div>
           </div>
         </nav>
@@ -108,7 +112,8 @@ function CheckoutCart() {
             <div className={Styles.tl2}>
               <h3>Start adding items to your cart</h3>
             </div>
-            {addCart.map((item) => (
+            <div style={{overflow: 'auto', height: 'auto'}}>
+            {addCart?.map((item) => (
             <>   
             <div className={Styles.pax}>
               
@@ -125,12 +130,16 @@ function CheckoutCart() {
                 </span>
               </h4>
             </div>
+            
             <div className={Styles.addition}>
+            {item.menu.specialPrice !== null ? (
               <h4 className={Styles.paxSide}>
-                Rp {item.menu.specialPrice} <span> Rp {item.menu.price} </span>
+                Rp {item.menu.specialPrice} <span> Rp {item.menu.price} </span> 
               </h4>
+            ) : <h4> Rp {item.menu.price} </h4> }
               <p className={Styles.add}>
                 <FiPlus /> {item.menu.variants[0].variantOptions[0].label}
+
               </p>
               {/* <p className={Styles.add}>
                 <FiPlus /> Chicken in Sichuan Chili Oil Sauce
@@ -165,18 +174,25 @@ function CheckoutCart() {
             
             </>
             ))}
+            </div>
+            
             <div className={Styles.tl1}>
               <p>Price </p>
-              <p>Rp {priceTotal*items}</p>
+              <p>Rp {addCart?.reduce((total, item)=> total+(item?.menu?.price*item?.quantity),0)}</p>
             </div>
             <div className={Styles.tl1}>
               <p>Discount </p>
-              <p>-Rp 88.000</p>
+              <p>-Rp {addCart?.reduce((total, item)=> {
+                if(item?.menu?.specialPrice){
+                  return total+((item?.menu?.price-item?.menu?.specialPrice)*item?.quantity)
+                }
+                return total
+              },0)}</p>
             </div>
             <hr />
             <div className={Styles.tl3}>
               <p>Total payment </p>
-              <p>Rp {cartTotal} </p>
+              <p>Rp {addCart?.reduce((total, item)=> total+item?.subTotalPrice,0)} </p>
             </div>
             <div className={Styles.buttonCheck} onClick={handleCheckout}>
               <button> Go to Checkout </button>

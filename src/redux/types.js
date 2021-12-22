@@ -12,7 +12,13 @@ export const GET_MENU_CAT_STAPLE = "GET_MENU_CAT_STAPLE";
 export const GET_MENU_DETAIL = 'GET_MENU_DETAIL';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
-export const UPDATE_CHECKOUT = 'UPDATE_CHECKOUT'
+export const GET_ALL_CART = 'GET_ALL_CART';
+export const UPDATE_CART = 'UPDATE_CART';
+export const DELETE_CART = 'DELETE_CART';
+export const UPDATE_CHECKOUT = 'UPDATE_CHECKOUT';
+
+export const GET_ORDER = 'GET_ORDER';
+export const CREATE_NEW_ORDER = 'CREATE_NEW_ORDER';
 
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";

@@ -16,6 +16,7 @@ import { useState } from "react"
 import loadingLogo from "./assets/Group 4615.svg"
 import { useHistory } from "react-router";
 
+
 const CardPayment = () => {
 
   const style = {
@@ -32,7 +33,9 @@ const CardPayment = () => {
 
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     setLoading(true);
 

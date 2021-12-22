@@ -20,7 +20,7 @@ import { addToCart } from "../../redux/action/addCartAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category }) => {
+const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category, }) => {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
@@ -43,7 +43,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
 
   const { dataDetailMenu } = useSelector((state) => state.menuDetail);
   
-  console.log(dataDetailMenu.variants ? dataDetailMenu.variants[0].id : "")
+  // console.log(dataDetailMenu.variants ? dataDetailMenu.variants[0].id : "")
   
   const order = useSelector(state => state.authReducer.Order);
   
@@ -96,6 +96,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
     }
     dispatch(addToCart(dataCart))
     console.log(dataCart)
+    setOpenAlert(true)
   };
 
   const handleCloseAlert = (event, reason) => {
