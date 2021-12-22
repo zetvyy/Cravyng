@@ -29,3 +29,8 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const GET_DETAIL_MENU = "GET_DETAIL_MENU";
 export const GET_DETAIL_USER = "GET_DETAIL_USER";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+
+export const UPDATE_CART = "UPDATE_CART";
+
+export const GET_SALES_SUMMARY = "GET_SALES_SUMMARY";
+export const GET_ORDER_HISTORY = "GET_ORDER_HISTORY";
