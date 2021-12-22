@@ -6,6 +6,7 @@ import { MdShoppingBasket } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
+import { Button } from "@mui/material";
 // import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,8 +22,6 @@ function CheckoutCart() {
   const [items, setItems] = useState(0);
   // const [priceTotal, setPriceTotal] = useState(0);
 
-  
-  
 
   const toggleMenu = () => {
     setVisible(!visible);
@@ -40,7 +39,31 @@ function CheckoutCart() {
   
   const { addCart } = useSelector((state) => state.addCartMenu)
 
+  const [cartData, setCartData] = useState([]);
+
   
+
+  const handleIncrement = (itemId) => {
+    setCartData([
+      ...cartData.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      }),
+    ]);
+  };
+
+  const handleDecrement = (itemId) => {
+    setCartData([
+      ...cartData.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      }),
+    ]);
+  };
 
   // const total = () => {
   //     let totalVal = 0;
@@ -78,6 +101,7 @@ function CheckoutCart() {
     dispatch(getDetailUser());
     dispatch(addToCart());
     dispatch(getAllCart());
+    setCartData(addCart);
     // total();
     countItems();
     // normalPrice();
@@ -113,7 +137,7 @@ function CheckoutCart() {
               <h3>Start adding items to your cart</h3>
             </div>
             <div style={{overflow: 'auto', height: 'auto'}}>
-            {addCart.map((item) => (
+            {cartData.map((item) => (
             <>   
             <div className={Styles.pax}>
               
@@ -121,13 +145,11 @@ function CheckoutCart() {
               
               
               <h4>
-                <span>
-                  <FaTrash />
-                </span>
-                {item.quantity}
-                <span>
-                  <FiPlus />
-                </span>
+              <Button onClick={() => handleDecrement(item.id)}> {item.quantity === 1 ? <FaTrash /> : "-"}</Button>
+                    {item.quantity}
+              <Button onClick={() => handleIncrement(item.id)}>
+                <FiPlus />
+              </Button>
               </h4>
             </div>
             
