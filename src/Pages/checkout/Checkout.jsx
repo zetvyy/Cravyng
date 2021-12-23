@@ -5,7 +5,11 @@ import CardDetail from "../../Components/Card_detail_payment/CardDetail";
 import CardPayment from "../../Components/Card_payment/CardPayment";
 import Coupon from "../../Components/Coupon/Coupon";
 
+
 const Checkout = () => {
+
+  
+
   return (
     <>
       <nav>
@@ -24,7 +28,7 @@ const Checkout = () => {
             <span>Rara Sekar</span>
           </div>
           <CardDetail />
-          <CardDetail />
+          
           <Coupon />
         </div>
         <div className={Styles.card_payment}>

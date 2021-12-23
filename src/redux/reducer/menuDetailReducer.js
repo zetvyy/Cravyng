@@ -1,4 +1,4 @@
-import { GET_MENU_DETAIL, ADD_TO_CART } from "../types";
+import { GET_MENU_DETAIL } from "../types";
 
 const initialState = {
   dataDetailMenu: {},

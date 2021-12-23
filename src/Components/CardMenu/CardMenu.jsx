@@ -20,7 +20,7 @@ import { addToCart } from "../../redux/action/addCartAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category }) => {
+const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category, }) => {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
@@ -40,10 +40,11 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   const dispatch = useDispatch();
 
   const { dataDetailMenu } = useSelector((state) => state.menuDetail);
-
-  console.log(dataDetailMenu.variants ? dataDetailMenu.variants[0].id : "");
-
-  const order = useSelector((state) => state.authReducer.Order);
+  
+  // console.log(dataDetailMenu.variants ? dataDetailMenu.variants[0].id : "")
+  
+  const order = useSelector(state => state.authReducer.Order);
+  
 
   const handleOpen = (scrollType) => () => {
     dispatch(getMenuDetail(idMenu));
@@ -89,9 +90,10 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
       quantity: counter,
       variantId: dataDetailMenu.variants[0].id,
       variantOptionId: ~~variantsOptionId,
-    };
-    dispatch(addToCart(dataCart));
-    console.log(dataCart);
+    }
+    dispatch(addToCart(dataCart))
+    console.log(dataCart)
+    setOpenAlert(true)
   };
 
   const handleCloseAlert = (event, reason) => {

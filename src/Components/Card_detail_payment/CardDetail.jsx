@@ -1,29 +1,37 @@
 import Styles from "./assets/carddetail.module.scss";
-import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/action/addCartAction";
 import { useEffect } from "react";
-import { getOrderHistory } from "../../redux/action/profileAction";
+import { useDispatch, useSelector } from "react-redux";
 
-const CardDetail = ({ user }) => {
+const CardDetail = () => {
   const dispatch = useDispatch();
+  const { addCart } = useSelector((state) => state.addCartMenu);
 
   useEffect(() => {
-    dispatch(getOrderHistory());
+    dispatch(addToCart());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      <div className={Styles.card}>
-        <h3>{user?.quantity}x</h3>
-        <div className={Styles.card_content}>
-          <h3>{user?.menu.food}</h3>
-          <p className={Styles.price}>
-            Rp. {user?.menu.specialPrice} <span> {user?.menu.price}</span>
-          </p>
-          <p>+ {user?.variantId}</p>
-          <p>+ {user?.variantOptionId}</p>
-          <p className={Styles.note}>Note: no mayo</p>
+      {addCart?.map((item) => (
+        <div className={Styles.card}>
+          <h3>{item.quantity}x</h3>
+          <div className={Styles.card_content}>
+            <h3>{item.menu.food}</h3>
+            {item?.menu.specialPrice !== null ? (
+              <p className={Styles.price}>
+                Rp {item.menu.specialPrice} <span> Rp {item.menu.price}</span>
+              </p>
+            ) : (
+              <p> Rp {item.menu.price} </p>
+            )}
+
+            <p>+ {item.menu.variants[0].variantOptions[0].label}</p>
+            {/* <p>+ Chicken in Sichuan Chili Oil Sauce</p> */}
+            <p className={Styles.note}>Note: no mayo</p>
+          </div>
         </div>
-      </div>
+      ))}
     </>
   );
 };

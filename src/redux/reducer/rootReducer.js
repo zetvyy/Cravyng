@@ -3,6 +3,7 @@ import menuReducer from "./menuReducer";
 import authReducer from "./authReducer";
 import menuDetailReducer from "./menuDetailReducer";
 import addCartReducer from "./addCartReducer";
+import getOrderReducer from "./getOrderReducer";
 import profileReducer from "./profileReducer";
 
 export default combineReducers({
@@ -10,6 +11,6 @@ export default combineReducers({
   menu: menuReducer,
   menuDetail: menuDetailReducer,
   addCartMenu: addCartReducer,
-  authReducer,
+  getOrderMenu: getOrderReducer,
   profile: profileReducer,
 });

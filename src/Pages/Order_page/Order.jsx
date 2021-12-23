@@ -64,11 +64,11 @@ const Order = () => {
           </div>
         </div>
 
-        {users.map(user => (
-          <div key={user.id}>
-            <CardDetail user={user}/>
+        {/* {users.map(user => ( */}
+          <div >
+            <CardDetail />
           </div>
-        ))}
+        {/* ))} */}
 
         <Button className={Styles.btn_order} onClick={() => history.push("/menu")}>
           Make new Order

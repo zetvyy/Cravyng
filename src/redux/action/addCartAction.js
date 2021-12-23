@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_TO_CART, UPDATE_CHECKOUT, UPDATE_CART, CREATE_NEW_CART, CREATE_NEW_ORDER, CLEAR_CART } from "../types";
+import { ADD_TO_CART, GET_ALL_CART, UPDATE_CART, CREATE_NEW_ORDER, CLEAR_CART, DELETE_CART } from "../types";
 
 export const addToCart = (data) => {
   return async (dispatch) => {
@@ -32,25 +32,20 @@ export const addToCart = (data) => {
   };
 };
 
-export const updateCheckout = (id, data) => {
+export const getAllCart = () => {
   return async (dispatch) => {
+    dispatch({ type: `${GET_ALL_CART}_LOADING` });
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.put(`https://cravyngteam.herokuapp.com/order/${id}`, data, {
-        headers: {
-          token,
-        },
-      });
+      const response = await axios.get(`https://cravyngteam.herokuapp.com/ordersmenu/`);
 
       dispatch({
-        type: `${UPDATE_CHECKOUT}_FULFILLED`,
+        type: `${GET_ALL_CART}_FULFILLED`,
         payload: response.data.data,
       });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
       dispatch({
-        type: `${UPDATE_CHECKOUT}_ERROR`,
-        error: err,
+        type: `${GET_ALL_CART}_ERROR`,
+        error: error.message,
       });
     }
   };
@@ -59,20 +54,35 @@ export const updateCheckout = (id, data) => {
 export const updateCart = (id, data) => {
   return async (dispatch) => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.delete(`https://cravyngteam.herokuapp.com/ordersmenu/${id}`, data, {
-        headers: {
-          token,
-        },
-      });
+      await axios.put(`https://cravyngteam.herokuapp.com/ordersmenu/${id}`, data);
 
       dispatch({
         type: `${UPDATE_CART}_FULFILLED`,
-        payload: response.data.data,
       });
+      dispatch(addToCart());
     } catch (err) {
+      console.log(err);
       dispatch({
         type: `${UPDATE_CART}_ERROR`,
+        error: err,
+      });
+    }
+  };
+};
+
+export const deleteCart = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`https://cravyngteam.herokuapp.com/ordersmenu/${id}`);
+
+      dispatch({
+        type: `${DELETE_CART}_FULFILLED`,
+      });
+      dispatch(addToCart());
+    } catch (err) {
+      console.log(err);
+      dispatch({
+        type: `${DELETE_CART}_ERROR`,
         error: err,
       });
     }
