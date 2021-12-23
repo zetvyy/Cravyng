@@ -1,42 +1,34 @@
 import Styles from "./assets/cardpayment.module.scss";
-import { 
-    TextField, 
-    FormControl, 
-    FormLabel, 
-    RadioGroup, 
-    FormControlLabel, 
-    Radio,
-    Button,
-    Modal,
-    Box,
-    Typography,
-    
-} from "@mui/material";
-import { useState } from "react"
-import loadingLogo from "./assets/Group 4615.svg"
+import { TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Modal, Box, Typography } from "@mui/material";
+import { useState } from "react";
+import loadingLogo from "./assets/Group 4615.svg";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../redux/action/addCartAction";
 
 const CardPayment = () => {
-
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: 'background.paper',
+    bgcolor: "background.paper",
     p: 4,
-    fontFamily: 'Poppins',
-    textAlign: 'center',
+    fontFamily: "Poppins",
+    textAlign: "center",
   };
 
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
     setTimeout(() => {
+      dispatch(clearCart());
       setLoading(false);
       history.push("/cart");
     }, 3000);
@@ -61,51 +53,37 @@ const CardPayment = () => {
       <div>
         <h3>Send Receipt</h3>
         <p>Please input an email address to send the receipt</p>
-        <TextField 
-        id="outlined-basic" 
-        label="Email" 
-        variant="outlined"
-        type="email"
-        sx={{width:"325px"}}
-        />
+        <TextField id="outlined-basic" label="Email" variant="outlined" type="email" sx={{ width: "325px" }} />
       </div>
       <div>
         <h3>Payment Method</h3>
         <FormControl component="fieldset">
-            <FormLabel component="legend">Select payment method</FormLabel>
-            <RadioGroup
-                aria-label="gender"
-                defaultValue="Bank Transfer"
-                name="radio-buttons-group"
-            >
-                <FormControlLabel value="Bank Transfer" control={<Radio />} label="Bank Transfer" />
-                <FormControlLabel value="Credit/Debit card" control={<Radio />} label="Credit/Debit card" />
-            </RadioGroup>
+          <FormLabel component="legend">Select payment method</FormLabel>
+          <RadioGroup aria-label="gender" defaultValue="Bank Transfer" name="radio-buttons-group">
+            <FormControlLabel value="Bank Transfer" control={<Radio />} label="Bank Transfer" />
+            <FormControlLabel value="Credit/Debit card" control={<Radio />} label="Credit/Debit card" />
+          </RadioGroup>
         </FormControl>
       </div>
-        <Button onClick={handleSubmit} className={Styles.btn_pay}>Pay</Button>
+      <Button onClick={handleSubmit} className={Styles.btn_pay}>
+        Pay
+      </Button>
 
-        {/* loading loading */}
-        <Modal
+      {/* loading loading */}
+      <Modal
         open={loading}
         // onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography            
-          >
+          <Typography>
             <img src={loadingLogo} alt="" />
-            <Typography>
-              Hold on. Don’t close your browser
-            </Typography>
+            <Typography>Hold on. Don’t close your browser</Typography>
           </Typography>
-        
-      </Box>
+        </Box>
       </Modal>
     </div>
-
-    
   );
 };
 

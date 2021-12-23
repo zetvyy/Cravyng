@@ -28,3 +28,7 @@ export const UPDATE_CART = "UPDATE_CART";
 
 export const GET_SALES_SUMMARY = "GET_SALES_SUMMARY";
 export const GET_ORDER_HISTORY = "GET_ORDER_HISTORY";
+
+export const CREATE_NEW_ORDER = "CREATE_NEW_ORDER";
+
+export const CLEAR_CART = "CLEAR_CART";
