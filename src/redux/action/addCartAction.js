@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_TO_CART, GET_ALL_CART, UPDATE_CART, CREATE_NEW_ORDER, CLEAR_CART, DELETE_CART } from "../types";
+import { ADD_TO_CART, GET_ALL_CART, UPDATE_CART, MAKE_NEW_ORDER, CLEAR_CART, DELETE_CART } from "../types";
 
 export const addToCart = (data) => {
   return async (dispatch) => {
@@ -100,12 +100,12 @@ export const newOrder = (id, data) => {
       });
 
       dispatch({
-        type: `${CREATE_NEW_ORDER}_FULFILLED`,
+        type: `${MAKE_NEW_ORDER}_FULFILLED`,
         payload: response.data.data,
       });
     } catch (err) {
       dispatch({
-        type: `${CREATE_NEW_ORDER}_ERROR`,
+        type: `${MAKE_NEW_ORDER}_ERROR`,
         error: err,
       });
     }

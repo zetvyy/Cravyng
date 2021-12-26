@@ -1,4 +1,4 @@
-import { ADD_TO_CART, UPDATE_CHECKOUT, UPDATE_CART, CREATE_NEW_ORDER, CLEAR_CART, GET_ALL_CART, DELETE_CART } from "../types";
+import { ADD_TO_CART, UPDATE_CART, MAKE_NEW_ORDER, CLEAR_CART, GET_ALL_CART, DELETE_CART } from "../types";
 
 const initialState = {
   dataAllCart: [],
@@ -76,17 +76,17 @@ const addCartReducer = (state = initialState, action) => {
         isLoading: false,
         error: error,
       };
-    case `${CREATE_NEW_ORDER}_LOADING`:
+    case `${MAKE_NEW_ORDER}_LOADING`:
       return {
         ...state,
         isLoading: true,
       };
-    case `${CREATE_NEW_ORDER}_FULFILLED`:
+    case `${MAKE_NEW_ORDER}_FULFILLED`:
       return {
         ...state,
         isLoading: true,
       };
-    case `${CREATE_NEW_ORDER}_ERROR`:
+    case `${MAKE_NEW_ORDER}_ERROR`:
       return {
         ...state,
         isLoading: false,
