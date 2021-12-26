@@ -4,18 +4,25 @@ import foto from "../checkout-cart-3/assets/logo.png";
 import foto2 from "../checkout-cart-3/assets/wavy.png";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { createNewOrder } from "../../redux/action/orderAction";
-import { useDispatch, useSelector } from "react-redux"
+import { createNewOrder,  } from "../../redux/action/orderAction";
+import { useDispatch,  } from "react-redux"
+
+import { useEffect } from "react"
 
 
 function Checkoutcart3() {
 
   const dispatch = useDispatch();
-  const orderId = useSelector(state => state.authReducer.Order);
+  
+
   const handleNewOrder = () => {
-    dispatch(createNewOrder(orderId))
+    dispatch(createNewOrder());
+    
   };
 
+  useEffect(() => {
+    dispatch(createNewOrder());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
 
   return (

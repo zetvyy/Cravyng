@@ -7,6 +7,8 @@ import { FaTrash } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
 import { Button } from "@mui/material";
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 // import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +16,14 @@ import { getDetailUser } from "../../redux/action/authAction";
 import { addToCart, getAllCart } from "../../redux/action/addCartAction";
 import { updateCheckout } from "../../redux/action/orderAction";
 
+function MyComponent() {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+  return <span style={{display:'none'}}>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
+}
+
+const theme = createTheme();
 
 function CheckoutCart() {
   const [visible, setVisible] = useState(false);
@@ -35,10 +45,11 @@ function CheckoutCart() {
   };
 
   const users = useSelector(state => state.authReducer.data);
+  
   const IdCheckout = useSelector(state => state.authReducer.Order);
   
   const { addCart } = useSelector((state) => state.addCartMenu)
-
+  
   const [cartData, setCartData] = useState([]);
 
   
@@ -65,13 +76,7 @@ function CheckoutCart() {
     ]);
   };
 
-  // const total = () => {
-  //     let totalVal = 0;
-  //     for(let i = 0; i < addCart.length; i++) {
-  //       totalVal += addCart[i].subTotalPrice;
-  //     }
-  //     setCartTotal(totalVal)
-  //   }
+  
   
   const countItems = () => {
     let totalItem = 0;
@@ -82,15 +87,10 @@ function CheckoutCart() {
 
   }
   
-  // const normalPrice = () => {
-  //   let totalPrice = 0;
-  //   for(let i = 0; i < addCart.length; i++) {
-  //     totalPrice += addCart[i].menu.price;
-  //   }
-  //   setPriceTotal(totalPrice)
-  // }
+  
 
   const handleCheckout = () => {
+    
     history.push("/checkout");
     dispatch(updateCheckout(IdCheckout));
     console.log(IdCheckout);
@@ -102,15 +102,14 @@ function CheckoutCart() {
     dispatch(addToCart());
     dispatch(getAllCart());
     setCartData(addCart);
-    // total();
     countItems();
-    // normalPrice();
   }, [addCart]); // eslint-disable-line react-hooks/exhaustive-deps
   
   
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
+      <MyComponent />
       <div className={Styles.Container}>
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
@@ -131,6 +130,7 @@ function CheckoutCart() {
           </div>
         </nav>
         {visible && (
+          
           <div className={Styles.sideCart}>
             <h2>Your Cart</h2>
             <div className={Styles.tl2}>
@@ -222,7 +222,7 @@ function CheckoutCart() {
           </div>
         )}
       </div>
-    </div>
+      </ThemeProvider>
   );
 }
 

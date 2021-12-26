@@ -1,4 +1,16 @@
-import { GET_MENU, GET_MENU_CAT_RECOMMENDED, GET_MENU_CAT_MOST_FAVORITE, GET_MENU_CAT_APPETIZER, GET_MENU_CAT_HOT_DISHES, GET_MENU_CAT_SEAFOOD, GET_MENU_CAT_VEGETABLE, GET_MENU_CAT_STAPLE } from "../types";
+import { 
+  GET_MENU, 
+  GET_MENU_CAT_RECOMMENDED, 
+  GET_MENU_CAT_MOST_FAVORITE, 
+  GET_MENU_CAT_APPETIZER, 
+  GET_MENU_CAT_HOT_DISHES, 
+  GET_MENU_CAT_SEAFOOD, 
+  GET_MENU_CAT_VEGETABLE, 
+  GET_MENU_CAT_STAPLE,
+  GET_MENU_CAT_FRIED,
+  GET_MENU_CAT_DESSERTS,
+  GET_MENU_CAT_SOUP,
+  GET_MENU_CAT_BEVERAGES } from "../types";
 
 const initialState = {
   data: [],
@@ -9,6 +21,10 @@ const initialState = {
   dataSeafood: [],
   dataVegetable: [],
   dataStaple: [],
+  dataFried: [],
+  dataDesserts: [],
+  dataSoup: [],
+  dataBeverages: [],
   isLoading: true,
   error: null,
 };
@@ -144,6 +160,30 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: error.message,
+      };
+    case `${GET_MENU_CAT_FRIED}_FULFILLED`:
+      return {
+        ...state,
+        dataFried: payload,
+        isLoading: false,
+      };
+    case `${GET_MENU_CAT_DESSERTS}_FULFILLED`:
+      return {
+        ...state,
+        dataDesserts: payload,
+        isLoading: false,
+      };
+    case `${GET_MENU_CAT_SOUP}_FULFILLED`:
+      return {
+        ...state,
+        dataSoup: payload,
+        isLoading: false,
+      };
+    case `${GET_MENU_CAT_BEVERAGES}_FULFILLED`:
+      return {
+        ...state,
+        dataBeverages: payload,
+        isLoading: false,
       };
 
     default:

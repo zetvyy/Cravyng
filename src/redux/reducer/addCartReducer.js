@@ -38,17 +38,17 @@ const addCartReducer = (state = initialState, action) => {
                 return {
                   ...state,
                   addCart: [
-                    ...state.addCart,
-                    payload
+                  ...state.addCart,
+                  payload
                   ],
                   isLoading: false,
                 };
-                case `${ADD_TO_CART}_ERROR`:
-                  return {
-                    ...state,
-                    isLoading: false,
-                    error: error,
-                  };
+        case `${ADD_TO_CART}_ERROR`:
+                return {
+                ...state,
+                isLoading: false,
+                error: error,
+                };        
         case `${UPDATE_CART}_LOADING`:
                 return {
                   ...state,
