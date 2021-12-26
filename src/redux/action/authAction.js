@@ -20,14 +20,20 @@ export const registerSuccess = (registerData) => {
   };
 };
 
-export const loginSuccess = (loginData) => {
+export const loginSuccess = (loginData, redirectToMenu, setLoading) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL_API}/user/signin`, loginData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.role);
       localStorage.setItem("Order", response.data.Order.id);
-
+      if (response.data.token && response.data.role) {
+          setLoading(false)
+          redirectToMenu()
+          window.location.reload()
+        } else {
+          alert("email or password invalid")
+        }
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { role: response.data.role, token: response.data.token, Order: response.data.Order.id },
@@ -64,26 +70,27 @@ export const getDetailUser = () => {
   };
 };
 
-export const updateProfile = (imgData) => {
-  return async (dispatch) => {
-    const formdata = new FormData();
-    formdata.append("image", imgData);
+export const updateProfile = imgData => {
+  const formdata = new FormData();
+  formdata.append("image", imgData);
+
+  return async dispatch => {
     try {
       const response = await axios({
         url: `${process.env.REACT_APP_BASE_URL_API}/user/`,
         method: "PUT",
         headers: {
-          token: currentToken,
+          token: currentToken
         },
-        body: formdata,
-        data: formdata,
+        data: formdata
       });
       dispatch({
         type: UPDATE_PROFILE,
-        payload: response.data.data,
-      });
-    } catch (err) {
+        payload: response.data.data
+      })
+    } catch(err) {
       console.log(err);
     }
   };
 };
+

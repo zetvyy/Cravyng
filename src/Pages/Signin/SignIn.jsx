@@ -42,23 +42,17 @@ const SignIn = () => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
 
+  const redirectToMenu = () => {
+    history.push("/menu")
+  }
+
   const submitLogin = async e => {
     e.preventDefault();
     setLoading(true);
 
     setTimeout(() => {
       if (login.email && login.password) {
-        dispatch(loginSuccess(login))
-        if (token && role) {
-          setLoading(false);
-          setTimeout(() => {
-            history.push("/menu")
-            window.location.reload();
-          },300)
-          } else {
-            alert("email or password invalid")
-            setLoading(false);
-          }
+        dispatch(loginSuccess(login, redirectToMenu, setLoading))
       } else {
           alert("field cannot be empty")
           setLoading(false);
