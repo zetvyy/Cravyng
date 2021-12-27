@@ -5,18 +5,21 @@ import foto2 from "../checkout-cart-3/assets/wavy.png";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { createNewOrder } from "../../redux/action/orderAction";
-import { useDispatch, useSelector } from "react-redux"
-
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../redux/action/addCartAction";
+import { useEffect } from "react";
 
 function Checkoutcart3() {
-
   const dispatch = useDispatch();
-  const orderId = useSelector(state => state.authReducer.Order);
+
   const handleNewOrder = () => {
-    dispatch(createNewOrder(orderId))
+    dispatch(createNewOrder());
+    dispatch(clearCart());
   };
 
-  
+  useEffect(() => {
+    dispatch(createNewOrder());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
@@ -24,7 +27,7 @@ function Checkoutcart3() {
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
             <img src={foto} alt="Cravyng Logo" />
-            <span >Checkout</span>
+            <span>Checkout</span>
           </div>
         </nav>
         <div className={Styles.Hero}>
@@ -47,7 +50,7 @@ function Checkoutcart3() {
           </div>
           <div className={Styles.button}>
             <Link to="/menu">
-              <button onClick={handleNewOrder} > Input New Order </button>
+              <button onClick={handleNewOrder}> Input New Order </button>
             </Link>
           </div>
         </div>

@@ -1,5 +1,18 @@
 import axios from "axios";
-import { GET_MENU, GET_MENU_CAT, GET_MENU_CAT_RECOMMENDED, GET_MENU_CAT_MOST_FAVORITE, GET_MENU_CAT_APPETIZER, GET_MENU_CAT_HOT_DISHES, GET_MENU_CAT_SEAFOOD, GET_MENU_CAT_VEGETABLE, GET_MENU_CAT_STAPLE } from "../types";
+import { 
+  GET_MENU, 
+  GET_MENU_CAT, 
+  GET_MENU_CAT_RECOMMENDED, 
+  GET_MENU_CAT_MOST_FAVORITE,
+  GET_MENU_CAT_APPETIZER, 
+  GET_MENU_CAT_HOT_DISHES, 
+  GET_MENU_CAT_SEAFOOD, 
+  GET_MENU_CAT_VEGETABLE, 
+  GET_MENU_CAT_STAPLE,
+  GET_MENU_CAT_FRIED,
+  GET_MENU_CAT_DESSERTS,
+  GET_MENU_CAT_SOUP,
+  GET_MENU_CAT_BEVERAGES  } from "../types";
 
 export const getMenu = () => {
   return async (dispatch) => {
@@ -62,6 +75,26 @@ export const getMenuCategories = (id) => {
       } else if (id === 7) {
         dispatch({
           type: `${GET_MENU_CAT_STAPLE}_FULFILLED`,
+          payload: response.data.data,
+        });
+      } else if (id === 8) {
+        dispatch({
+          type: `${GET_MENU_CAT_FRIED}_FULFILLED`,
+          payload: response.data.data,
+        });
+      } else if (id === 9) {
+        dispatch({
+          type: `${GET_MENU_CAT_DESSERTS}_FULFILLED`,
+          payload: response.data.data,
+        });
+      } else if (id === 10) {
+        dispatch({
+          type: `${GET_MENU_CAT_SOUP}_FULFILLED`,
+          payload: response.data.data,
+        });
+      } else if (id === 11) {
+        dispatch({
+          type: `${GET_MENU_CAT_BEVERAGES}_FULFILLED`,
           payload: response.data.data,
         });
       }

@@ -28,7 +28,7 @@ const CardDetail = () => {
 
             <p>+ {item.menu.variants[0].variantOptions[0].label}</p>
             {/* <p>+ Chicken in Sichuan Chili Oil Sauce</p> */}
-            <p className={Styles.note}>Note: no mayo</p>
+            <p className={Styles.note}></p>
           </div>
         </div>
       ))}

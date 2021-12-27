@@ -73,12 +73,20 @@ export const updateCart = (id, data) => {
 export const deleteCart = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`https://cravyngteam.herokuapp.com/ordersmenu/${id}`);
-
+      const rest = await axios.delete(`https://cravyngteam.herokuapp.com/ordersmenu/${id}`);
+      console.log("rest", rest);
       dispatch({
         type: `${DELETE_CART}_FULFILLED`,
       });
-      dispatch(addToCart());
+      if (rest.data.message === "delete succes") {
+        console.log("succes");
+        await axios.get(`https://cravyngteam.herokuapp.com/ordersmenu/`).then((res) => dispatch({ type: `${GET_ALL_CART}_FULFILLED`, payload: res.data.data }));
+        // dispatch({
+        //   type: `${GET_ALL_CART}_FULFILLED`,
+        //   payload: response.data.data,
+        // });
+      }
+      // dispatch(addToCart());
     } catch (err) {
       console.log(err);
       dispatch({

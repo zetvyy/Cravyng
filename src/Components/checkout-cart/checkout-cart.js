@@ -7,6 +7,8 @@ import { FaTrash } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
 import { Button } from "@mui/material";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 // import { AiOutlineMinus } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +16,16 @@ import { getDetailUser } from "../../redux/action/authAction";
 import { addToCart, getAllCart } from "../../redux/action/addCartAction";
 import { updateCheckout } from "../../redux/action/orderAction";
 import { deleteCart } from "../../redux/action/addCartAction";
+import { DELETE_CART } from "../../redux/types";
+
+function MyComponent() {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
+  return <span style={{ display: "none" }}>{`theme.breakpoints.up('sm') matches: ${matches}`}</span>;
+}
+
+const theme = createTheme();
 
 function CheckoutCart() {
   const [visible, setVisible] = useState(false);
@@ -34,6 +46,7 @@ function CheckoutCart() {
   };
 
   const users = useSelector((state) => state.authReducer.data);
+
   const IdCheckout = useSelector((state) => state.authReducer.Order);
 
   const { addCart } = useSelector((state) => state.addCartMenu);
@@ -78,18 +91,6 @@ function CheckoutCart() {
     setItems(totalItem);
   };
 
-  // const normalPrice = () => {
-  //   let totalPrice = 0;
-  //   for(let i = 0; i < addCart.length; i++) {
-  //     totalPrice += addCart[i].menu.price;
-  //   }
-  //   setPriceTotal(totalPrice)
-  // }
-
-  const handleClick = (id) => {
-    dispatch(deleteCart(id));
-  };
-
   const handleCheckout = () => {
     history.push("/checkout");
     dispatch(updateCheckout(IdCheckout));
@@ -101,13 +102,12 @@ function CheckoutCart() {
     dispatch(addToCart());
     dispatch(getAllCart());
     setCartData(addCart);
-    // total();
     countItems();
-    // normalPrice();
   }, [addCart]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
+      <MyComponent />
       <div className={Styles.Container}>
         <nav className={Styles.nav}>
           <div className={Styles.Logo}>
@@ -140,7 +140,7 @@ function CheckoutCart() {
                     <p>{item?.menu?.food}</p>
 
                     <h4>
-                      <Button onClick={() => handleDecrement(item.id)}> {item.quantity === 1 ? <FaTrash onClick={() => handleClick(item.id)} /> : "-"}</Button>
+                      <Button onClick={item.quantity === 1 ? () => dispatch(deleteCart(item.id)) : () => handleDecrement(item.id)}> {item.quantity === 1 ? <FaTrash /> : "-"}</Button>
                       {item.quantity}
                       <Button onClick={() => handleIncrement(item.id)}>
                         <FiPlus />
@@ -219,7 +219,7 @@ function CheckoutCart() {
           </div>
         )}
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ORDER, CREATE_NEW_ORDER, UPDATE_CHECKOUT, } from "../types";
+import { GET_ORDER, CREATE_NEW_ORDER, UPDATE_CHECKOUT, POST_PAYMENT } from "../types";
 
 export const getOrder = () => {
     return async (dispatch) => {
@@ -24,15 +24,15 @@ export const createNewOrder = (data) => {
     dispatch({type: `${CREATE_NEW_ORDER}_LOADING`});
     try {
       const token = localStorage.getItem("token" );
-      await axios.post("https://cravyngteam.herokuapp.com/order", 
+      const response = await axios.post("https://cravyngteam.herokuapp.com/order", 
       data, {headers:
         {token,
         }});
       
       dispatch({
         type: `${CREATE_NEW_ORDER}_FULFILLED`,
+        payload: response.data.data
       });
-      dispatch(getOrder())
 
     } catch (error) {
       dispatch({
@@ -47,16 +47,16 @@ export const updateCheckout = (id, data) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem("token" );
-      await axios.put(`https://cravyngteam.herokuapp.com/order/${id}`, 
+      const response = await axios.put(`https://cravyngteam.herokuapp.com/order/${id}`, 
       data, {headers:{
             token,
       }});
       
       dispatch({
         type: `${UPDATE_CHECKOUT}_FULFILLED`,
-        
+        payload: response.data.data
       });
-      dispatch(getOrder());
+      
 
     } catch (err) {
       console.log(err);
@@ -67,3 +67,27 @@ export const updateCheckout = (id, data) => {
     }
   }
 }
+
+export const payment = (id) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem("token" );
+      const response = await axios.post(`https://cravyngteam.herokuapp.com/user/payment/${id}`,
+      {headers: {
+        token,
+        'Content-Type': 'application/json'}});
+
+      dispatch({
+        type: `${POST_PAYMENT}_FULFILLED`,
+        payload: response.data.data 
+      })
+
+    } catch (err) {
+      console.log(err, "err");
+      dispatch({
+        type: `${POST_PAYMENT}_ERROR`,
+        error: err
+      })
+    }
+  }
+} 

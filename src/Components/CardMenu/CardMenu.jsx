@@ -20,7 +20,7 @@ import { addToCart } from "../../redux/action/addCartAction";
 // import Styles from "../../checkout-cart/css/checkout-module.scss";
 // import React from "react";
 
-const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category, }) => {
+const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, menuInfo, category,   }) => {
   // const modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
@@ -57,7 +57,7 @@ const CardMenu = ({ menuName, menuImage, discountPrice, normalPrice, idMenu, men
   // }, [dispatch])
 
   const handleClose = () => setOpen(false);
-  //Radio Button
+ 
 
   //Radio Button
 
