@@ -24,16 +24,16 @@ const DateFilter = () => {
                 label="Date"
                 onChange={handleChange}
             >
-                <MenuItem value={moment().format("YYYY-MM-DD")}>
+                <MenuItem value={moment().format('YYYY-MM-DD 00:00:00')}>
                   Today
                 </MenuItem>
-                <MenuItem value={moment().subtract(1, "weeks").format("YYYY-MM-DD")}>
+                <MenuItem value={moment().subtract(1, "weeks").format('YYYY-MM-DD HH:mm:ss')}>
                   This Week
                 </MenuItem>
-                <MenuItem value={moment().subtract(1, "months").format("YYYY-MM-DD")}>
+                <MenuItem value={moment().subtract(1, "months").format('YYYY-MM-DD HH:mm:ss')}>
                   Last Month
                 </MenuItem>
-                <MenuItem value={moment().subtract(3, "months").format("YYYY-MM-DD")}>
+                <MenuItem value={moment().subtract(3, "months").format('YYYY-MM-DD HH:mm:ss')}>
                   Last 3 Month
                 </MenuItem>
                 <MenuItem value={50}>

@@ -5,7 +5,7 @@ import { BsGoogle, BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { Link, useHistory, useLocation} from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/action/authAction";
 import loadingLogo from './assets/loadingLogo.svg'
 
@@ -25,9 +25,6 @@ const SignIn = () => {
 	const history = useHistory();
 	const location = useLocation()
 	const rolee = location.pathname.split('/')[2]
-
-  const token = useSelector(state => state.authReducer.token);
-  const role = useSelector(state => state.authReducer.role);
 
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);

@@ -4,11 +4,11 @@ import moment from "moment"
 
 const currentToken = localStorage.getItem("token");
 
-export const getSalesSummary = (startDate = moment("1970-1-1").format("YYYY/MM/DD")) => {
+export const getSalesSummary = (startDate = moment("1970-1-1").format('YYYY-MM-DD HH:mm:ss')) => {
   return async dispatch => {
     try {
       const response = await axios({
-        url: `${process.env.REACT_APP_BASE_URL_API}/user/summary?from=${startDate}&to=${moment().format("YYYY/MM/DD")}`,
+        url: `${process.env.REACT_APP_BASE_URL_API}/user/summary?from=${startDate}&to=${moment().format('YYYY-MM-DD HH:mm:ss')}`,
         method: "GET",
         headers: {
           token: currentToken
