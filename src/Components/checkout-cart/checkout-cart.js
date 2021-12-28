@@ -13,7 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetailUser } from "../../redux/action/authAction";
-import { addToCart, getAllCart } from "../../redux/action/addCartAction";
+import { addToCart } from "../../redux/action/addCartAction";
 import { updateCheckout } from "../../redux/action/orderAction";
 import { deleteCart } from "../../redux/action/addCartAction";
 
@@ -106,7 +106,7 @@ function CheckoutCart() {
     dispatch(getDetailUser());
     dispatch(addToCart());
     // dispatch(getAllCart());
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <ThemeProvider theme={theme}>
       <MyComponent />

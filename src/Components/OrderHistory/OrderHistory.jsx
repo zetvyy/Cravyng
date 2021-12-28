@@ -14,7 +14,7 @@ const OrderHistory = ({ quantity, menuFood, menuSpecialPrice, menuPrice, variant
           ) : (
             <p> Rp {menuPrice} </p>
           )}
-          <p>+ {variantOptions}</p>
+          <p>{variantOptions}</p>
           {/* <p>+ Chicken in Sichuan Chili Oil Sauce</p> */}
           <p className={Styles.note}></p>
         </div>

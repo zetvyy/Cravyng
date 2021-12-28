@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Styles from "./assets/order.module.scss";
 import { BsShopWindow, BsFillPersonFill } from "react-icons/bs";
-import CardDetail from "../../Components/Card_detail_payment/CardDetail";
+// import CardDetail from "../../Components/Card_detail_payment/CardDetail";
 import { Button } from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { MdStars } from "react-icons/md";
@@ -20,7 +20,7 @@ const Order = () => {
   const merchant = useSelector((state) => state.authReducer.data);
   const users = useSelector((state) => state.profile.data);
   const { data } = useSelector((state) => state.profile);
-  const { addCart } = useSelector((state) => state.addCartMenu);
+  // const { addCart } = useSelector((state) => state.addCartMenu);
 
   const [text, setText] = useState("How about our services?");
 
@@ -67,7 +67,7 @@ const Order = () => {
             </div>
             {/* {users.map(user => ( */}
             <div>
-              <OrderHistory quantity={item.quantity} menuFood={item.menu.food} menuSpecialPrice={item.menu.specialPrice} menuPrice={item.menu.price} variantOptions={item.variantOptionId} />
+              <OrderHistory quantity={item.quantity} menuFood={item.menu.food} menuSpecialPrice={item.menu.specialPrice} menuPrice={item.menu.price}  />
             </div>
             {/* ))} */}
             <Button className={Styles.btn_order} onClick={() => history.push("/menu")}>
