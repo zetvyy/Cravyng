@@ -43,13 +43,17 @@ const SignIn = () => {
     history.push("/menu")
   }
 
+  const alertLogin = () => {
+    alert("email or password invalid")
+  }
+
   const submitLogin = async e => {
     e.preventDefault();
     setLoading(true);
 
     setTimeout(() => {
       if (login.email && login.password) {
-        dispatch(loginSuccess(login, redirectToMenu, setLoading))
+        dispatch(loginSuccess(login, redirectToMenu, setLoading, alertLogin))
       } else {
           alert("field cannot be empty")
           setLoading(false);

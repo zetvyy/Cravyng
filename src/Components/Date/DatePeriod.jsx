@@ -1,20 +1,13 @@
-import { useState }from "react";
 import { MobileDatePicker, LocalizationProvider } from "@mui/lab";
 import { TextField, FormControl} from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import { useDispatch } from "react-redux";
-import { getSalesSummary } from "../../redux/action/profileAction";
 
 const DatePeriod = (props) => {
-  const dispatch = useDispatch();
-
-  const [date, setDate] = useState("");
 
   const dateChange = (newValue) => {
-    setDate(newValue);
-    dispatch(getSalesSummary(newValue))
+    props.onChange(newValue)
   };
-
+  
   const label= props.label
 
   return (
@@ -23,7 +16,7 @@ const DatePeriod = (props) => {
           <MobileDatePicker 
             label={label} 
             inputFormat="yyyy/MM/dd" 
-            value={date} 
+            value={props.value} 
             onChange={dateChange} 
             renderInput={params => <TextField {...params} />} 
           />
