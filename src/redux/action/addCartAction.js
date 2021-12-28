@@ -77,15 +77,16 @@ export const deleteCart = (id) => {
       console.log("rest", rest);
       dispatch({
         type: `${DELETE_CART}_FULFILLED`,
+        payload: id,
       });
-      if (rest.data.message === "delete succes") {
-        console.log("succes");
-        await axios.get(`https://cravyngteam.herokuapp.com/ordersmenu/`).then((res) => dispatch({ type: `${GET_ALL_CART}_FULFILLED`, payload: res.data.data }));
-        // dispatch({
-        //   type: `${GET_ALL_CART}_FULFILLED`,
-        //   payload: response.data.data,
-        // });
-      }
+      // if (rest.data.message === "delete succes") {
+      //   console.log("succes");
+      //   await axios.get(`https://cravyngteam.herokuapp.com/ordersmenu/`).then((res) => dispatch({ type: `${GET_ALL_CART}_FULFILLED`, payload: res.data.data }));
+      //   // dispatch({
+      //   //   type: `${GET_ALL_CART}_FULFILLED`,
+      //   //   payload: response.data.data,
+      //   // });
+      // }
       // dispatch(addToCart());
     } catch (err) {
       console.log(err);

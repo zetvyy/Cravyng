@@ -18,7 +18,7 @@ const addCartReducer = (state = initialState, action) => {
     case `${GET_ALL_CART}_FULFILLED`:
       return {
         ...state,
-        dataAllCart: payload,
+        addCart: payload,
         isLoading: false,
       };
     case `${GET_ALL_CART}_ERROR`:
@@ -69,6 +69,7 @@ const addCartReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        addCart: [...state.addCart.filter((cart) => cart.id !== payload)],
       };
     case `${DELETE_CART}_ERROR`:
       return {

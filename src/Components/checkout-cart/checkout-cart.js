@@ -16,7 +16,6 @@ import { getDetailUser } from "../../redux/action/authAction";
 import { addToCart, getAllCart } from "../../redux/action/addCartAction";
 import { updateCheckout } from "../../redux/action/orderAction";
 import { deleteCart } from "../../redux/action/addCartAction";
-import { DELETE_CART } from "../../redux/types";
 
 function MyComponent() {
   const theme = useTheme();
@@ -98,13 +97,16 @@ function CheckoutCart() {
   };
 
   useEffect(() => {
+    setCartData(addCart);
+    countItems();
+    console.log(addCart);
+  }, [addCart]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     dispatch(getDetailUser());
     dispatch(addToCart());
     dispatch(getAllCart());
-    setCartData(addCart);
-    countItems();
-  }, [addCart]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <MyComponent />
@@ -149,7 +151,7 @@ function CheckoutCart() {
                   </div>
 
                   <div className={Styles.addition}>
-                    {item.menu.specialPrice !== null ? (
+                    {item?.menu?.specialPrice !== null ? (
                       <h4 className={Styles.paxSide}>
                         Rp {item.menu.specialPrice} <span> Rp {item.menu.price} </span>
                       </h4>
@@ -157,7 +159,7 @@ function CheckoutCart() {
                       <h4> Rp {item.menu.price} </h4>
                     )}
                     <p className={Styles.add}>
-                      <FiPlus /> {item.menu.variants[0].variantOptions[0].label}
+                      <FiPlus /> {item.menu && item.menu.variants && item.menu.variants[0].variantOptions && item?.menu?.variants[0]?.variantOptions[0]?.label}
                     </p>
                     {/* <p className={Styles.add}>
                 <FiPlus /> Chicken in Sichuan Chili Oil Sauce
