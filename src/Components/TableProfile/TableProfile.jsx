@@ -58,7 +58,7 @@ export default function TableOrder() {
             .map((item) => (
               <TableRow key={item.name}>
                 <TableCell component="th" scope="row">
-                {moment(item["order.createdAt"]).format("DD/MM/YY")} 
+                {moment.utc(item["order.createdAt"]).format("DD/MM/YY")} 
                 </TableCell>
                 <TableCell align="right">
                   {item.orderId}
@@ -98,6 +98,7 @@ export default function TableOrder() {
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{marginTop: '10px'}}
       />
+     
     </TableContainer>
   );
 }

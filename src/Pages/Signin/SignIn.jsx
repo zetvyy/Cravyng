@@ -5,7 +5,7 @@ import { BsGoogle, BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { Link, useHistory, useLocation} from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/action/authAction";
 import loadingLogo from './assets/loadingLogo.svg'
 
@@ -26,9 +26,6 @@ const SignIn = () => {
 	const location = useLocation()
 	const rolee = location.pathname.split('/')[2]
 
-  const token = useSelector(state => state.authReducer.token);
-  const role = useSelector(state => state.authReducer.role);
-
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [login, setLogin] = useState({
@@ -46,13 +43,17 @@ const SignIn = () => {
     history.push("/menu")
   }
 
+  const alertLogin = () => {
+    alert("email or password invalid")
+  }
+
   const submitLogin = async e => {
     e.preventDefault();
     setLoading(true);
 
     setTimeout(() => {
       if (login.email && login.password) {
-        dispatch(loginSuccess(login, redirectToMenu, setLoading))
+        dispatch(loginSuccess(login, redirectToMenu, setLoading, alertLogin))
       } else {
           alert("field cannot be empty")
           setLoading(false);

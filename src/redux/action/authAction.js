@@ -20,7 +20,7 @@ export const registerSuccess = (registerData) => {
   };
 };
 
-export const loginSuccess = (loginData, redirectToMenu, setLoading) => {
+export const loginSuccess = (loginData, redirectToMenu, setLoading, alertLogin) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL_API}/user/signin`, loginData);
@@ -32,7 +32,7 @@ export const loginSuccess = (loginData, redirectToMenu, setLoading) => {
           redirectToMenu()
           window.location.reload()
         } else {
-          alert("email or password invalid")
+          alertLogin()
         }
       dispatch({
         type: LOGIN_SUCCESS,
