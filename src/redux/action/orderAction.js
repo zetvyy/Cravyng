@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ORDER, CREATE_NEW_ORDER, UPDATE_CHECKOUT, POST_PAYMENT } from "../types";
+import { GET_ORDER, CREATE_NEW_ORDER, UPDATE_CHECKOUT, POST_PAYMENT, PUT_DISCOUNT } from "../types";
 
 export const getOrder = () => {
     return async (dispatch) => {
@@ -70,6 +70,32 @@ export const updateCheckout = (id, data) => {
   }
 }
 
+export const updateDiscount = (id, data) => {
+  return async (dispatch) => {
+      try {
+        const token = localStorage.getItem("token" );
+        const formdata = new FormData();
+        formdata.append("voucherCode", data)
+        const response = await axios.put(`https://cravyngteam.herokuapp.com/order/${id}`, 
+        formdata, {headers:{
+              token,
+        }});
+        
+        dispatch({
+          type: `${PUT_DISCOUNT}_FULFILLED`,
+          payload: response.data.data,
+        });
+        
+  
+      } catch (err) {
+        console.log(err);
+        dispatch({
+          type: `${PUT_DISCOUNT}_ERROR`,
+          error: err
+        })
+      }
+    }
+}
 
 
 export const payment = (id) => {

@@ -19,6 +19,7 @@ import { payment, updateCheckout } from "../../redux/action/orderAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addToCart } from "../../redux/action/addCartAction";
+import { updateDiscount } from "../../redux/action/discountAction";
 
 
 const CardPayment = () => {
@@ -40,8 +41,27 @@ const CardPayment = () => {
   const dispatch = useDispatch();
   const { addCart } = useSelector((state) => state.addCartMenu)
   const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu)
-  const { dataUpdateDiscount } = useSelector((state) => state.discountReducer)
+  // const { dataUpdateDiscount } = useSelector((state) => state.discountReducer)
   
+
+  const totalPrice = 
+    addCart?.reduce((total, item)=> total+(item?.menu?.price*item?.quantity),0)
+  
+
+  const totalPayment = 
+    addCart?.reduce((total, item)=> total+item?.subTotalPrice,0)
+  
+  console.log(addCart)
+
+  const discount = addCart?.reduce((total, item)=> {
+    if(item?.menu?.specialPrice){
+      return total+((item?.menu?.price-item?.menu?.specialPrice)*item?.quantity)
+    }
+    return total
+  },0)
+  // console.log(discount)
+
+  const specialOffers = totalPrice-discount-dataUpdateOrder.priceTotalAftDiscount
 
   const handleSubmit = (e) => {
     dispatch(payment(dataUpdateOrder.id));
@@ -59,29 +79,32 @@ const CardPayment = () => {
   useEffect(() => {
     dispatch(addToCart());
     dispatch(updateCheckout())
+    dispatch(updateDiscount())
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  
 
-  console.log(dataUpdateDiscount.priceTotalAftDiscount)
   return (
     <div className={Styles.card}>
       <p>
-        Price <span>Rp. {dataUpdateDiscount.priceTotal}</span>{" "}
+        Price <span>Rp. {totalPrice}</span>{" "}
       </p>
       <p>
-        Discount <span>Rp.  -{addCart?.reduce((total, item)=> {
-                if(item?.menu?.specialPrice){
-                  return total+((item?.menu?.price-item?.menu?.specialPrice)*item?.quantity)
-                }
-                return total
-              },0)}</span>{" "}
+        Discount <span>Rp.  -{discount}</span>{" "}
       </p>
-      {/* <p>
-        Special Offers <span>Rp. -20.000</span>{" "}
-      </p> */}
+      {dataUpdateOrder.priceTotalAftDiscount === null ? (
+        <p>
+          Special Offers <span>Rp. 0</span>{" "}
+        </p>
+      ) : (
+        <p>
+          Special Offers <span>Rp. -{specialOffers}</span>{" "}
+        </p>
+      )}
+      
       <hr style={{ width: "325px", color: "#d3d9ff", marginBottom: "30px" }} />
       <p className={Styles.total}>
-        Total Payment {dataUpdateDiscount.priceTotalAftDiscount === null ? (
-        <span>Rp. {dataUpdateDiscount.priceTotal}</span> ) : (<span>Rp. {dataUpdateDiscount.priceTotalAftDiscount}</span>)}
+        Total Payment {dataUpdateOrder.priceTotalAftDiscount === null ? (
+        <span>Rp. {totalPayment}</span> ) : (<span>Rp. {dataUpdateOrder.priceTotalAftDiscount}</span>)}
       </p>
       <div>
         <h3>Send Receipt</h3>

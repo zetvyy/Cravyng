@@ -13,7 +13,7 @@ function Checkoutcart3() {
 
   const dispatch = useDispatch();
   const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu);
-  const { dataUpdateDiscount } = useSelector((state) => state.discountReducer)
+  // const { dataUpdateDiscount } = useSelector((state) => state.discountReducer)
 
   const handleNewOrder = () => {
     dispatch(createNewOrder());
@@ -50,13 +50,13 @@ function Checkoutcart3() {
             </div>
             <div className={Styles.idOrder}>
               <p>#{dataUpdateOrder.id}</p>
-            {dataUpdateDiscount.priceTotalAftDiscount === null ? (
-              <p>Rp {dataUpdateDiscount.priceTotal}</p>
+            {dataUpdateOrder.priceTotalAftDiscount === null ? (
+              <p>Rp {dataUpdateOrder.priceTotal}</p>
             ) : (
-              <p>Rp {dataUpdateDiscount.priceTotalAftDiscount}</p>
+              <p>Rp {dataUpdateOrder.priceTotalAftDiscount}</p>
             )}
               
-            </div>
+            </div> 
           </div>
           <div className={Styles.button}>
             <Link to="/menu">

@@ -1,7 +1,7 @@
 import Styles from "./assets/coupon.module.scss";
 import { Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { updateDiscount } from "../../redux/action/discountAction";
+import { updateDiscount } from "../../redux/action/orderAction";
 import { useState } from "react";
 
 const Coupon = () => {
@@ -14,7 +14,6 @@ const Coupon = () => {
   }
   
   
-  
   const handleCoupon = () => {
     dispatch(updateDiscount(dataUpdateOrder.id, voucher))
   }
@@ -24,7 +23,8 @@ const Coupon = () => {
       <h3>Coupon Code</h3>
       <p>Please input an coupon code here and get the discount!</p>
       <input value={voucher} onChange= {handleChange} type="text" placeholder="Enter your coupon code here"/>
-      <Button className={Styles.button} onClick={handleCoupon}>Apply</Button>
+      
+      <Button disabled={!voucher} className={Styles.button} onClick={handleCoupon}>Apply</Button> 
     </div>
   );
 };
