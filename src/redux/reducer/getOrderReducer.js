@@ -1,8 +1,9 @@
-import { GET_ORDER, CREATE_NEW_ORDER, UPDATE_CHECKOUT, POST_PAYMENT } from "../types";
+import { GET_ORDER, CREATE_NEW_ORDER, UPDATE_CHECKOUT, POST_PAYMENT, PUT_DISCOUNT } from "../types";
 
 const initialState =  {
     dataOrder: [],
     dataUpdateOrder: [],
+    dataOrderId: [],
     isLoading: true,
     error: null,
 }
@@ -46,7 +47,23 @@ const getOrderReducer = (state = initialState, action) => {
                     isLoading: false,
                     error: error,
                 };
-
+                case `${PUT_DISCOUNT}_LOADING`:
+                  return {
+                      ...state,
+                      isLoading: true,
+                  };
+              case `${PUT_DISCOUNT}_FULFILLED`:
+                  return {
+                      ...state,
+                      dataUpdateOrder: payload,
+                      isLoading: true,
+                  };
+              case `${PUT_DISCOUNT}_ERROR`:
+                  return {
+                      ...state,
+                      isLoading: true,
+                      error: error,
+                  };
           case `${POST_PAYMENT}_LOADING`:
                 return {
                   ...state,

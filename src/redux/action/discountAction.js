@@ -24,9 +24,9 @@ export const updateDiscount = (id, data) => {
         try {
           const token = localStorage.getItem("token" );
           const formdata = new FormData();
-          formdata.set("voucherCode", data.voucherCode )
+          formdata.append("voucherCode", data)
           const response = await axios.put(`https://cravyngteam.herokuapp.com/order/${id}`, 
-          data, {headers:{
+          formdata, {headers:{
                 token,
           }});
           
