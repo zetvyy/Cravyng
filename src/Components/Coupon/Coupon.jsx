@@ -1,21 +1,33 @@
 import Styles from "./assets/coupon.module.scss";
 import { Button } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateDiscount } from "../../redux/action/discountAction";
+import { useState } from "react";
 
 const Coupon = () => {
-  const {dataDiscount} =  useSelector(state => state.discountReducer)
+  const [voucher, setVoucher] = useState("")
+  const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu)
+  const dispatch = useDispatch()
 
+  const handleChange = (event) => {
+    setVoucher(event.target.value)
+  }
+  console.log(handleChange)
+  
+
+  
+
+  const handleCoupon = () => {
+    
+    dispatch(updateDiscount(dataUpdateOrder.id, voucher))
+    
+  }
   return (
     <div className={Styles.coupon}>
       <h3>Coupon Code</h3>
       <p>Please input an coupon code here and get the discount!</p>
-      <input type="text" placeholder="Enter your cupon code here" />
-      {dataDiscount.code !== " " ? (
-        <Button className={Styles.button}>Apply</Button>
-      ): (
-        <Button>Apply</Button>
-      )}
-      
+      <input value={voucher} onChange= {handleChange} type="text" placeholder="Enter your coupon code here"/>
+      <Button className={Styles.button} onClick={handleCoupon}>Apply</Button>
     </div>
   );
 };

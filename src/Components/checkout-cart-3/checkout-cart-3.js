@@ -4,16 +4,15 @@ import foto from "../checkout-cart-3/assets/logo.png";
 import foto2 from "../checkout-cart-3/assets/wavy.png";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { createNewOrder,  } from "../../redux/action/orderAction";
-import { useDispatch,  } from "react-redux"
-
+import { createNewOrder, updateCheckout,  } from "../../redux/action/orderAction";
+import { useDispatch, useSelector  } from "react-redux"
 import { useEffect } from "react"
 
 
 function Checkoutcart3() {
 
   const dispatch = useDispatch();
-  
+  const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu)
 
   const handleNewOrder = () => {
     dispatch(createNewOrder());
@@ -22,6 +21,7 @@ function Checkoutcart3() {
 
   useEffect(() => {
     dispatch(createNewOrder());
+    dispatch(updateCheckout())
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
 
@@ -35,7 +35,7 @@ function Checkoutcart3() {
           </div>
         </nav>
         <div className={Styles.Hero}>
-          <img src={foto2} alt="Order Placed!" />
+          <img src={foto2} alt="Order Placed!"/>
           <div className={Styles.Caption}>
             <h3>
               <IoMdCheckmarkCircle /> Order Placed!
@@ -48,8 +48,8 @@ function Checkoutcart3() {
               <p>Total Payment</p>
             </div>
             <div className={Styles.idOrder}>
-              <p>#927467375</p>
-              <p>Rp 352.000</p>
+              <p>#{dataUpdateOrder.id}</p>
+              <p>Rp {dataUpdateOrder.priceTotal}</p>
             </div>
           </div>
           <div className={Styles.button}>

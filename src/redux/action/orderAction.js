@@ -19,16 +19,20 @@ export const getOrder = () => {
     };
   };
 
-export const createNewOrder = (data) => {
+const currentToken = localStorage.getItem("token" );
+
+export const createNewOrder = () => {
   return async (dispatch) => {
     dispatch({type: `${CREATE_NEW_ORDER}_LOADING`});
     try {
-      const token = localStorage.getItem("token" );
-      const response = await axios.post("https://cravyngteam.herokuapp.com/order", 
-      data, {headers:
-        {token,
-        }});
-      
+      const response = await axios({
+        url: "https://cravyngteam.herokuapp.com/order",
+        
+        method: "POST",
+        headers: {
+          token: currentToken,
+        }
+      });
       dispatch({
         type: `${CREATE_NEW_ORDER}_FULFILLED`,
         payload: response.data.data
@@ -43,21 +47,19 @@ export const createNewOrder = (data) => {
   }
 }
 
+
 export const updateCheckout = (id, data) => {
   return async (dispatch) => {
     try {
-      const token = localStorage.getItem("token" );
+      
       const response = await axios.put(`https://cravyngteam.herokuapp.com/order/${id}`, 
       data, {headers:{
-            token,
+            token: currentToken,
       }});
-      
       dispatch({
         type: `${UPDATE_CHECKOUT}_FULFILLED`,
         payload: response.data.data
       });
-      
-
     } catch (err) {
       console.log(err);
       dispatch({
@@ -68,14 +70,16 @@ export const updateCheckout = (id, data) => {
   }
 }
 
+
+
 export const payment = (id) => {
   return async (dispatch) => {
     try {
-      const token = localStorage.getItem("token" );
-      const response = await axios.post(`https://cravyngteam.herokuapp.com/user/payment/${id}`,
+      
+      const response = await axios.post(`https://cravyngteam.herokuapp.com/user/payment2/${id}`,
       {headers: {
-        token,
-        'Content-Type': 'application/json'}});
+        'Content-Type': 'application/json',
+        }});
 
       dispatch({
         type: `${POST_PAYMENT}_FULFILLED`,

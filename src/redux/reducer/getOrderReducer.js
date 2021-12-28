@@ -3,6 +3,7 @@ import { GET_ORDER, CREATE_NEW_ORDER, UPDATE_CHECKOUT, POST_PAYMENT } from "../t
 const initialState =  {
     dataOrder: [],
     dataUpdateOrder: [],
+    dataOrderId: [],
     isLoading: true,
     error: null,
 }

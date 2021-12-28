@@ -73,9 +73,9 @@ const CardPayment = () => {
                 return total
               },0)}</span>{" "}
       </p>
-      <p>
+      {/* <p>
         Special Offers <span>Rp. -20.000</span>{" "}
-      </p>
+      </p> */}
       <hr style={{ width: "325px", color: "#d3d9ff", marginBottom: "30px" }} />
       <p className={Styles.total}>
         Total Payment {dataUpdateOrder.priceTotalAftDiscount === null ? (
