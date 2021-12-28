@@ -40,6 +40,7 @@ const CardPayment = () => {
   const dispatch = useDispatch();
   const { addCart } = useSelector((state) => state.addCartMenu)
   const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu)
+  const { dataUpdateDiscount } = useSelector((state) => state.discountReducer)
   
 
   const handleSubmit = (e) => {
@@ -60,10 +61,11 @@ const CardPayment = () => {
     dispatch(updateCheckout())
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(dataUpdateDiscount.priceTotalAftDiscount)
   return (
     <div className={Styles.card}>
       <p>
-        Price <span>Rp. {dataUpdateOrder.priceTotal}</span>{" "}
+        Price <span>Rp. {dataUpdateDiscount.priceTotal}</span>{" "}
       </p>
       <p>
         Discount <span>Rp.  -{addCart?.reduce((total, item)=> {
@@ -78,8 +80,8 @@ const CardPayment = () => {
       </p> */}
       <hr style={{ width: "325px", color: "#d3d9ff", marginBottom: "30px" }} />
       <p className={Styles.total}>
-        Total Payment {dataUpdateOrder.priceTotalAftDiscount === null ? (
-        <span>Rp. {dataUpdateOrder.priceTotal}</span> ) : (<span>Rp. {dataUpdateOrder.priceTotalAftDiscount}</span>)}
+        Total Payment {dataUpdateDiscount.priceTotalAftDiscount === null ? (
+        <span>Rp. {dataUpdateDiscount.priceTotal}</span> ) : (<span>Rp. {dataUpdateDiscount.priceTotalAftDiscount}</span>)}
       </p>
       <div>
         <h3>Send Receipt</h3>

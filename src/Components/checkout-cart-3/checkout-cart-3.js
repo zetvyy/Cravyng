@@ -12,7 +12,8 @@ import { useEffect } from "react"
 function Checkoutcart3() {
 
   const dispatch = useDispatch();
-  const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu)
+  const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu);
+  const { dataUpdateDiscount } = useSelector((state) => state.discountReducer)
 
   const handleNewOrder = () => {
     dispatch(createNewOrder());
@@ -49,7 +50,12 @@ function Checkoutcart3() {
             </div>
             <div className={Styles.idOrder}>
               <p>#{dataUpdateOrder.id}</p>
-              <p>Rp {dataUpdateOrder.priceTotal}</p>
+            {dataUpdateDiscount.priceTotalAftDiscount === null ? (
+              <p>Rp {dataUpdateDiscount.priceTotal}</p>
+            ) : (
+              <p>Rp {dataUpdateDiscount.priceTotalAftDiscount}</p>
+            )}
+              
             </div>
           </div>
           <div className={Styles.button}>

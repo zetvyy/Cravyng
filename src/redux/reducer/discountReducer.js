@@ -2,6 +2,7 @@ import { GET_DISCOUNT, PUT_DISCOUNT } from "../types";
 
 const initialState = {
     dataDiscount: [],
+    dataUpdateDiscount: [],
     isLoading: true,
     error: null,
 }
@@ -34,7 +35,7 @@ const discountReducer = (state = initialState, action) => {
         case `${PUT_DISCOUNT}_FULFILLED`:
             return {
                 ...state,
-                // dataDiscount: payload,
+                dataUpdateDiscount: payload,
                 isLoading: true,
             };
         case `${PUT_DISCOUNT}_ERROR`:

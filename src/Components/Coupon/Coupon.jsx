@@ -12,16 +12,13 @@ const Coupon = () => {
   const handleChange = (event) => {
     setVoucher(event.target.value)
   }
-  console.log(handleChange)
   
-
   
-
+  
   const handleCoupon = () => {
-    
     dispatch(updateDiscount(dataUpdateOrder.id, voucher))
-    
   }
+
   return (
     <div className={Styles.coupon}>
       <h3>Coupon Code</h3>
