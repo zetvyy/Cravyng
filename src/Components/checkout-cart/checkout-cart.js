@@ -105,7 +105,7 @@ function CheckoutCart() {
   useEffect(() => {
     dispatch(getDetailUser());
     dispatch(addToCart());
-    dispatch(getAllCart());
+    // dispatch(getAllCart());
   }, []);
   return (
     <ThemeProvider theme={theme}>
@@ -116,7 +116,6 @@ function CheckoutCart() {
             <img src={foto} alt="Cravyng Logo" onClick={() => history.push("/menu")} style={{ cursor: "pointer" }} />
             {/* <a href="#">Continue as merchant</a> */}
           </div>
-
           <div className={Styles.cart_container}>
             <div className={Styles.Cart} onClick={() => handleNavigate()}>
               <RiAccountCircleFill className={Styles.icon_account} />
