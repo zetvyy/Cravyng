@@ -82,9 +82,7 @@ const CardPayment = () => {
           }, 0)}
         </span>{" "}
       </p>
-      <p>
-        Special Offers <span>Rp. -20.000</span> Discount <span>Rp. -{discount}</span>{" "}
-      </p>
+     
       {dataUpdateOrder.priceTotalAftDiscount === null ? (
         <p>
           Special Offers <span>Rp. 0</span>{" "}

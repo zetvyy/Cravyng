@@ -105,7 +105,7 @@ function CheckoutCart() {
   useEffect(() => {
     dispatch(getDetailUser());
     dispatch(addToCart());
-    dispatch(getAllCart());
+    // dispatch(getAllCart());
   }, []);
   return (
     <ThemeProvider theme={theme}>
