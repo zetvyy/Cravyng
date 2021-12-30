@@ -20,14 +20,14 @@ const CardPayment = () => {
     bgcolor: "background.paper",
     p: 4,
     fontFamily: "Poppins",
-    textAlign: "center",
+    textAlign: "center"
   };
 
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { addCart } = useSelector((state) => state.addCartMenu);
-  const { dataUpdateOrder } = useSelector((state) => state.getOrderMenu);
+  const { addCart } = useSelector(state => state.addCartMenu);
+  const { dataUpdateOrder } = useSelector(state => state.getOrderMenu);
 
   const totalPrice = addCart?.reduce((total, item) => total + item?.menu?.price * item?.quantity, 0);
 
@@ -45,7 +45,7 @@ const CardPayment = () => {
 
   const specialOffers = totalPrice - discount - dataUpdateOrder.priceTotalAftDiscount;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     dispatch(payment(dataUpdateOrder.id));
     e.preventDefault();
     setLoading(true);
@@ -82,7 +82,6 @@ const CardPayment = () => {
           }, 0)}
         </span>{" "}
       </p>
-     
       {dataUpdateOrder.priceTotalAftDiscount === null ? (
         <p>
           Special Offers <span>Rp. 0</span>{" "}

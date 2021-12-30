@@ -13,7 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetailUser } from "../../redux/action/authAction";
-import { addToCart, getAllCart } from "../../redux/action/addCartAction";
+import { addToCart } from "../../redux/action/addCartAction";
 import { updateCheckout } from "../../redux/action/orderAction";
 import { deleteCart } from "../../redux/action/addCartAction";
 
@@ -44,33 +44,33 @@ function CheckoutCart() {
     history.push("/profile");
   };
 
-  const users = useSelector((state) => state.authReducer.data);
+  const users = useSelector(state => state.authReducer.data);
 
-  const IdCheckout = useSelector((state) => state.authReducer.Order);
+  const IdCheckout = useSelector(state => state.authReducer.Order);
 
-  const { addCart } = useSelector((state) => state.addCartMenu);
+  const { addCart } = useSelector(state => state.addCartMenu);
 
   const [cartData, setCartData] = useState([]);
 
-  const handleIncrement = (itemId) => {
+  const handleIncrement = itemId => {
     setCartData([
-      ...cartData.map((item) => {
+      ...cartData.map(item => {
         if (item.id === itemId) {
           return { ...item, quantity: item.quantity + 1 };
         }
         return item;
-      }),
+      })
     ]);
   };
 
-  const handleDecrement = (itemId) => {
+  const handleDecrement = itemId => {
     setCartData([
-      ...cartData.map((item) => {
+      ...cartData.map(item => {
         if (item.id === itemId) {
           return { ...item, quantity: item.quantity - 1 };
         }
         return item;
-      }),
+      })
     ]);
   };
 
@@ -106,7 +106,7 @@ function CheckoutCart() {
     dispatch(getDetailUser());
     dispatch(addToCart());
     // dispatch(getAllCart());
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <ThemeProvider theme={theme}>
       <MyComponent />
@@ -116,7 +116,6 @@ function CheckoutCart() {
             <img src={foto} alt="Cravyng Logo" onClick={() => history.push("/menu")} style={{ cursor: "pointer" }} />
             {/* <a href="#">Continue as merchant</a> */}
           </div>
-
           <div className={Styles.cart_container}>
             <div className={Styles.Cart} onClick={() => handleNavigate()}>
               <RiAccountCircleFill className={Styles.icon_account} />
@@ -136,7 +135,7 @@ function CheckoutCart() {
               <h3>Start adding items to your cart</h3>
             </div>
             <div style={{ overflow: "auto", height: "auto" }}>
-              {cartData.map((item) => (
+              {cartData.map(item => (
                 <>
                   <div className={Styles.pax}>
                     <p>{item?.menu?.food}</p>
