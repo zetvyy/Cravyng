@@ -4,7 +4,7 @@ import foto from "../checkout-cart/assets/logo.png";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { MdShoppingBasket } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiMinus } from "react-icons/fi";
 import { FaClipboardList } from "react-icons/fa";
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
@@ -28,10 +28,7 @@ const theme = createTheme();
 
 function CheckoutCart() {
   const [visible, setVisible] = useState(false);
-
-  // const [cartTotal, setCartTotal] = useState(0);
   const [items, setItems] = useState(0);
-  // const [priceTotal, setPriceTotal] = useState(0);
 
   const toggleMenu = () => {
     setVisible(!visible);
@@ -52,35 +49,41 @@ function CheckoutCart() {
 
   const [cartData, setCartData] = useState([]);
 
-  const handleIncrement = itemId => {
-    setCartData([
-      ...cartData.map(item => {
-        if (item.id === itemId) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      })
-    ]);
+  const handleIncrement = product => {
+    const productExist = cartData.find(item => item.id === product.id);
+    if (productExist) {
+      setCartData(cartData.map(item => (item.id === product.id ? { ...productExist, quantity: productExist.quantity + 1 } : item)));
+    } else {
+      setCartData([...cartData, { ...product, quantity: 1 }]);
+    }
+    // setCartData([
+      // ...cartData.map(item => {
+      //   if (item.id === itemId) {
+      //     return { ...item, quantity: item.quantity + 1 };
+      //   }
+      //   return item;
+      // })
+    // ]);
   };
 
-  const handleDecrement = itemId => {
-    setCartData([
-      ...cartData.map(item => {
-        if (item.id === itemId) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      })
-    ]);
+  const handleDecrement = product => {
+    const productExist = cartData.find(item => item.id === product.id);
+    if (productExist.quantity === 1) {
+      setCartData(cartData.filter((item) => item.id !== product.id))
+    } else {
+      setCartData(
+        cartData.map(item => (item.id === product.id ? 
+          { ...productExist, quantity: productExist.quantity - 1 } : item)));
+    }
+    // setCartData([
+    //   ...cartData.map(item => {
+    //     if (item.id === itemId) {
+    //       return { ...item, quantity: item.quantity - 1 };
+    //     }
+    //     return item;
+    //   })
+    // ]);
   };
-
-  // const total = () => {
-  //     let totalVal = 0;
-  //     for(let i = 0; i < addCart.length; i++) {
-  //       totalVal += addCart[i].subTotalPrice;
-  //     }
-  //     setCartTotal(totalVal)
-  //   }
 
   const countItems = () => {
     let totalItem = 0;
@@ -99,7 +102,6 @@ function CheckoutCart() {
   useEffect(() => {
     setCartData(addCart);
     countItems();
-    console.log(addCart);
   }, [addCart]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -107,6 +109,16 @@ function CheckoutCart() {
     dispatch(addToCart());
     // dispatch(getAllCart());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const price = cartData?.reduce((total, item) => total + item?.menu?.price * item?.quantity, 0)
+
+  const discount = cartData?.reduce((total, item) => {
+    if (item?.menu?.specialPrice) {
+      return total + (item?.menu?.price - item?.menu?.specialPrice) * item?.quantity;
+    }
+    return total;
+  }, 0)
+
   return (
     <ThemeProvider theme={theme}>
       <MyComponent />
@@ -141,9 +153,17 @@ function CheckoutCart() {
                     <p>{item?.menu?.food}</p>
 
                     <h4>
-                      <Button onClick={item.quantity === 1 ? () => dispatch(deleteCart(item.id)) : () => handleDecrement(item.id)}> {item.quantity === 1 ? <FaTrash /> : "-"}</Button>
+                      <Button 
+                        onClick={item.quantity === 1 ? 
+                          () => dispatch(deleteCart(item.id)) : 
+                          () => handleDecrement(item)}
+                      > 
+                          {item.quantity === 1 ? <FaTrash /> : <FiMinus/>}
+                      </Button>
+
                       {item.quantity}
-                      <Button onClick={() => handleIncrement(item.id)}>
+
+                      <Button onClick={() => handleIncrement(item)}>
                         <FiPlus />
                       </Button>
                     </h4>
@@ -152,7 +172,7 @@ function CheckoutCart() {
                   <div className={Styles.addition}>
                     {item?.menu?.specialPrice !== null ? (
                       <h4 className={Styles.paxSide}>
-                        Rp {item.menu.specialPrice} <span> Rp {item.menu.price} </span>
+                        Rp {item?.menu?.specialPrice} <span> Rp {item?.menu?.price} </span>
                       </h4>
                     ) : (
                       <h4> Rp {item.menu.price} </h4>
@@ -160,34 +180,12 @@ function CheckoutCart() {
                     <p className={Styles.add}>
                       <FiPlus /> {item.menu && item.menu.variants && item.menu.variants[0].variantOptions && item?.menu?.variants[0]?.variantOptions[0]?.label}
                     </p>
-                    {/* <p className={Styles.add}>
-                <FiPlus /> Chicken in Sichuan Chili Oil Sauce
-              </p> */}
+                  
                     <p className={Styles.note}>
                       <FaClipboardList /> Note
                     </p>
                   </div>
                   <hr />
-                  {/* <div className={Styles.pax2}>
-              <p>Cucumber Salad</p>
-              <h4>
-                <span>
-                  <AiOutlineMinus />
-                </span>
-                2
-                <span>
-                  <FiPlus />
-                </span>
-              </h4>
-            </div>
-            <div className={Styles.addition2}>
-              <h4>
-                Rp 88.000 <span> Rp 110.000 </span>
-              </h4>
-              <p className={Styles.note}>
-                <FaClipboardList /> Note
-              </p>
-            </div> */}
                   <hr />
                 </>
               ))}
@@ -195,24 +193,21 @@ function CheckoutCart() {
 
             <div className={Styles.tl1}>
               <p>Price </p>
-              <p>Rp {addCart?.reduce((total, item) => total + item?.menu?.price * item?.quantity, 0)}</p>
+              <p>Rp {price}</p>
             </div>
             <div className={Styles.tl1}>
               <p>Discount </p>
               <p>
-                -Rp{" "}
-                {addCart?.reduce((total, item) => {
-                  if (item?.menu?.specialPrice) {
-                    return total + (item?.menu?.price - item?.menu?.specialPrice) * item?.quantity;
-                  }
-                  return total;
-                }, 0)}
+                -Rp {discount}
               </p>
             </div>
             <hr />
             <div className={Styles.tl3}>
               <p>Total payment </p>
-              <p>Rp {addCart?.reduce((total, item) => total + item?.subTotalPrice, 0)} </p>
+              <p>Rp 
+              {price - discount}
+              {/* {cartData?.reduce((total, item) => total + item.subTotalPrice , 0)}  */}
+              </p>
             </div>
             <div className={Styles.buttonCheck} onClick={handleCheckout}>
               <button> Go to Checkout </button>

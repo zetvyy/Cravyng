@@ -122,7 +122,10 @@
     padding-top: 15px;
     font-family: "Poppins";
     color: #313440;
-    span {
+    p {
+      max-width: 150px;
+    }
+    button {
       color: #ff5353;
       margin: 10px;
     }
