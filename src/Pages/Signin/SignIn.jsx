@@ -8,6 +8,24 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/action/authAction";
 import loadingLogo from './assets/loadingLogo.svg'
+import { useFormik } from "formik";
+
+const validate = values => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.password) {
+    errors.password = 'Required';
+  } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i.test(values.password)) {
+    errors.password = 'Must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character';
+  }
+
+  return errors;
+};
 
 const SignIn = () => {
   const style = {
@@ -28,16 +46,19 @@ const SignIn = () => {
 
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [login, setLogin] = useState({
-    email: "",
-    password: ""
-  });
+  
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validate,
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  })
 
   const dispatch = useDispatch();
-
-  const handleChangeInput = e => {
-    setLogin({ ...login, [e.target.name]: e.target.value });
-  };
 
   const redirectToMenu = () => {
     history.push("/menu")
@@ -48,12 +69,13 @@ const SignIn = () => {
   }
 
   const submitLogin = async e => {
+    const {email, password} = formik.values
     e.preventDefault();
     setLoading(true);
 
     setTimeout(() => {
-      if (login.email && login.password) {
-        dispatch(loginSuccess(login, redirectToMenu, setLoading, alertLogin))
+      if (email && password) {
+        dispatch(loginSuccess({email, password}, redirectToMenu, setLoading, alertLogin))
       } else {
           alert("field cannot be empty")
           setLoading(false);
@@ -74,17 +96,25 @@ const SignIn = () => {
           <input 
             type="email" 
             className={Styles.email_input} 
-            placeholder="Email" o
-            onChange={e => handleChangeInput(e)} 
+            placeholder="Email" 
+            onChange={formik.handleChange} 
             name="email" 
+            value={formik.values.email}
           />
+          {formik.errors.email ? 
+            <div style={{color:"red", marginLeft:"10px"}}>{formik.errors.email}</div> : null
+          }
           <div className={Styles.password_input}>
             <input 
                 type={showPassword ? "text" : "password"} 
                 placeholder="Password" 
-                onChange={e => handleChangeInput(e)} 
+                onChange={formik.handleChange} 
                 name="password" 
+                value={formik.values.password}                
             />
+            {formik.errors.password ? 
+              <div style={{color:"red", marginLeft:"10px"}}>{formik.errors.password}</div> : null
+            }
             {showPassword ? 
                 <BsFillEyeFill 
                 className={Styles.eye_icon} 
@@ -95,7 +125,7 @@ const SignIn = () => {
                 onClick={() => setShowPassword(!showPassword)} />
             }
           </div>
-          <Button className={Styles.btn_signin} onClick={e => submitLogin(e)} payload={login}>
+          <Button className={Styles.btn_signin} onClick={e => submitLogin(e)}>
             Sign in
           </Button>
           <div className={Styles.hr}>

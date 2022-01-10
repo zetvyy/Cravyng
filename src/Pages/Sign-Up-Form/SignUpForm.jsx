@@ -9,6 +9,32 @@ import { registerSuccess } from "../../redux/action/authAction";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { Modal, Box, Typography} from "@mui/material";
 import loadingLogo from './assets/loadingLogo.svg';
+import { useFormik } from "formik";
+
+const validate = values => {
+  const errors = {};
+  if (!values.name) {
+    errors.name = 'Required';
+  } 
+
+  if (!values.password) {
+    errors.password = 'Required';
+  } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i.test(values.password)) {
+    errors.password = 'Must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character';
+  }
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (values.confirmPassword !== values.password) {
+    errors.confirmPassword = 'confirm password doesnt match'
+  }
+
+  return errors;
+};
 
 function SignUpForm() {
   const style = {
@@ -30,43 +56,41 @@ function SignUpForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const [register, setRegister] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-  });
-
+ 
   const dispatch = useDispatch();
   const history = useHistory()
 
-  const handleChangeInput = e => {
-    setRegister({ ...register, [e.target.name]: e.target.value });
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
+    validate,
+    onSubmit: (values, {setSubmitting}) => {
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false)
+    },
+  })
 
   const submitRegister = e => {
-    const {name, email, password, confirmPassword} = register
+    const {name, email, password, confirmPassword} = formik.values
     e.preventDefault();
     setLoading(true);
     
     setTimeout(() => {
-      if (role) {
-        if (name && email && password && confirmPassword) {
-          setLoading(false);
-          dispatch(registerSuccess({ ...register, role}));
-          history.push(`/sign-in/${role}`)
-        } else {
-          alert("register failed")
-          setLoading(false);
-        }
-      } 
+      if (role && name && email && password && confirmPassword) {
+        setLoading(false);
+        dispatch(registerSuccess({ name, email, password, confirmPassword, role}));
+        history.push(`/sign-in/${role}`)
+      } else {
+        alert("register failed")
+        setLoading(false)
+      }
     }, 3000)
-	};
-	
-	const handleClick = () => {
-		
-	}
-
+  };
+  
   return (
     <div>
       <nav>
@@ -83,20 +107,35 @@ function SignUpForm() {
                 name="name" 
                 type="text" 
                 placeholder={role === "merchant" ? "Restaurant Name" : "Customer Name"}
-                value={register.name} 
-                onChange={e => handleChangeInput(e)} />
+                value={formik.values.name} 
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            />
+            {formik.touched.name && formik.errors.name ? 
+              <div style={{color:"red", marginLeft:"10px"}}>{formik.errors.name}</div> : null
+            }
 						<input 
 								name="email" 
 								type="text" 
 								placeholder="Email" 
-								value={register.email} 
-								onChange={e => handleChangeInput(e)} />
+								value={formik.values.email} 
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur} 
+            />
+            {formik.touched.email && formik.errors.email ? 
+              <div style={{color:"red", marginLeft:"10px"}}>{formik.errors.email}</div> : null
+            }
             <div className={Styles.password_input}>
 							<input 
 								name="password" 
 								type={showPassword ? "text" : "password"} 
-								placeholder="Password 5+ Characters" value={register.password} 
-								onChange={e => handleChangeInput(e)} />
+								placeholder="Password 5+ Characters" value={formik.values.password} 
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur} 
+              />
+              {formik.touched.password && formik.errors.password ? 
+                <div style={{color:"red", marginLeft:"10px"}}>{formik.errors.password}</div> : null
+              }
               {showPassword ? 
 								<BsFillEyeFill className={Styles.eye_icon} 
 								onClick={() => setShowPassword(!showPassword)} /> 
@@ -110,8 +149,13 @@ function SignUpForm() {
 								name="confirmPassword" 
 								type={showConfirmPassword ? "text" : "password"} 
 								placeholder="Confirm Password 5+ Characters" 
-								value={register.confirmPassword} 
-								onChange={e => handleChangeInput(e)} />
+								value={formik.values.confirmPassword} 
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur} 
+              />
+              {formik.touched.confirmPassword && formik.errors.confirmPassword ? 
+                <div style={{color:"red", marginLeft:"10px"}}>{formik.errors.confirmPassword}</div> : null
+              }
               {showConfirmPassword ? (
 								<BsFillEyeFill className={Styles.eye_icon} 
 								onClick={() => setShowConfirmPassword(!showConfirmPassword)} />
@@ -122,11 +166,16 @@ function SignUpForm() {
             </div>
 
             <div className={Styles.chkbox}>
-              <input className={Styles.box} type="checkbox" name="remember" onClick={() => handleClick()}/>
+              <input className={Styles.box} type="checkbox" name="remember" />
               <p> I agree with Cravyng terms & conditions </p>
             </div>
             <div className={Styles.formup}>
-              <button className={Styles.btnsignup} onClick={e => submitRegister(e)} payload={register}>
+              <button
+                type='submit' 
+                className={Styles.btnsignup} 
+                onClick={e => submitRegister(e)}
+                onSubmit={formik.handleSubmit}
+              >
                 Sign Up
               </button>
               <hr />
